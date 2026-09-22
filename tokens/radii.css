@@ -1,0 +1,11 @@
+:root{
+  /* Soft corners throughout, generously so — and scaled to the container.
+     A chip is not a card and a card is not a panel; they do not share a radius. */
+  --radius-chip:10px;
+  --radius-control:14px;
+  --radius-card:20px;
+  --radius-plate:26px;
+  --radius-panel:34px;
+  --radius-hero:48px;
+  --radius-pill:999px;   /* reserved for the hero pills — the logo's own shape */
+}

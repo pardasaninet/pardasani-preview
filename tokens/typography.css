@@ -1,0 +1,56 @@
+:root{
+  /* ---- families ---- */
+  --font-sans:"Funnel Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-mono:"antarctican-mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --weight-mono-regular:400;
+  --weight-mono-bold:700;
+  --font-display:var(--font-sans);
+
+  /* ---- weights (Funnel Sans ships 300–800) ---- */
+  --weight-light:300;
+  --weight-regular:400;
+  --weight-medium:500;
+  --weight-semibold:600;
+  --weight-bold:700;
+
+  /* ---- screen size scale (print resume sizes re-scaled for screen) ---- */
+  --text-2xs:0.6875rem;   /* 11px — mono tags, dates */
+  --text-xs:0.75rem;      /* 12px — mono meta, eyebrows */
+  --text-sm:0.875rem;     /* 14px — captions, secondary */
+  --text-base:1rem;       /* 16px — body */
+  --text-md:1.125rem;     /* 18px — lead paragraphs */
+  --text-lg:1.375rem;     /* 22px — card titles */
+  --text-xl:1.75rem;      /* 28px — section headings */
+  --text-2xl:2.5rem;      /* 40px — page titles */
+  --text-3xl:3.5rem;      /* 56px — hero */
+  --text-4xl:5rem;        /* 80px — oversized display */
+
+  /* ---- print scale, verbatim from Resume-apr10.indd (pt) ---- */
+  --print-description:10pt; /* @kind font */
+  --print-body:11pt; /* @kind font */
+  --print-role:9pt; /* @kind font */
+  --print-date:8pt; /* @kind font */
+  --print-tag:8pt; /* @kind font */
+
+  /* ---- leading ---- */
+  --leading-tight:1.05;
+  --leading-snug:1.2;
+  --leading-normal:1.45;
+  --leading-relaxed:1.6;
+  --leading-description:1.1;   /* 10pt/11pt, from source */
+  --leading-new:1.2;           /* 10pt/12pt, from source */
+
+  /* ---- tracking (source uses negative tracking everywhere) ---- */
+  --tracking-display:-0.04em;
+  --tracking-heading:-0.03em;
+  --tracking-body:-0.025em;
+  --tracking-tight:-0.05em;    /* source default for most styles */
+  --tracking-mono:-0.08em;     /* source "Role" style */
+  --tracking-mono-loose:-0.05em;
+  --tracking-label:-0.02em;    /* mono labels — sentence case, NEVER tracked-out all-caps */
+
+  /* ---- composed roles ---- */
+  --type-hero-size:var(--text-3xl);
+  --type-label-size:var(--text-xs);
+  /* measures live in tokens/spacing.css */
+}

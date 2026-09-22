@@ -1,0 +1,59 @@
+:root{
+  /* ---- the nine brand colours, roles per the build brief ---- */
+  --page:#ebe8e0;               /* page surface — linen ground */
+  --bone:#fbfaf7;               /* raised paper: white mixed toward bone, never pure white on linen */
+  --ink:#000000;                /* body text */
+  --accent:#1b5ba8;             /* links, primary button, the mark, focus rings — held back so it stays punchy */
+  --accent-hover:#3667b1;
+  --quiet-blue:#5e7e99;         /* mats, step numbers, secondary detail */
+  --light-blue:#73a7d9;         /* echoes the second blue in the logo */
+  --grey:#aaa5a6;              /* mixes into bone for mats and plates */
+  --footer-band:#375787;
+
+  /* ---- the warm-to-cool dial ----
+     Mats and image plates are bone mixed with the grey. More grey = colder page,
+     which kills the linen feeling. Turn this one number, not the individual mats. */
+  --mat-mix:14%;
+  --mat:color-mix(in oklab, var(--grey) var(--mat-mix), var(--bone));
+  --mat-deep:color-mix(in oklab, var(--grey) calc(var(--mat-mix) * 1.9), var(--bone));
+  --plate:color-mix(in oklab, var(--grey) calc(var(--mat-mix) * 0.6), var(--bone));
+
+  /* ---- per-project theming ----
+     A project page may override --accent, --accent-2 and --texture-tint. Nothing else.
+     Set them inline on the page root: <div style="--accent:#1b5ba8;--accent-2:#5e7e99"> */
+  --accent-2:var(--quiet-blue);
+
+  /* ---- text ---- */
+  --text-body:var(--ink);
+  --text-heading:var(--ink);
+  --text-muted:#696465;         /* the brand grey, darkened to clear 4.5:1 on linen */
+  /* A text-only darkening of --quiet-blue. The raw #5e7e99 is decorative and only
+     reaches 3.5:1 on linen, and every use of this role is 11-12px mono, so the
+     headline allowance never applies. --quiet-blue itself is unchanged. */
+  --text-quiet:#476478;
+  --text-link:var(--accent);
+  --text-link-hover:var(--accent-hover);
+  --text-on-dark:var(--page);
+
+  /* ---- surface ---- */
+  --surface-page:var(--page);
+  --surface-raised:var(--bone);
+  --surface-mat:var(--mat);
+  --surface-plate:var(--plate);
+  --surface-band:var(--footer-band);
+
+  /* ---- line ---- */
+  --line-hairline:color-mix(in oklab, var(--grey) 34%, var(--page));
+  --line-strong:var(--grey);
+  --line-ink:var(--ink);
+  --line-accent:var(--accent);
+
+  /* ---- interactive ---- */
+  --action-bg:var(--accent);
+  --action-bg-hover:var(--accent-hover);
+  --action-fg:var(--bone);
+  --action-quiet-bg:color-mix(in oklab, var(--accent) 8%, transparent);
+}
+
+/* Example project scope. Project pages set these three inline instead. */
+.project-theme-warm{--accent:#1b5ba8;--accent-2:#aaa5a6;--texture-tint:#e6ded0}

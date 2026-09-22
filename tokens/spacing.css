@@ -1,0 +1,28 @@
+:root{
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+  --space-9:96px;
+  --space-10:128px;
+  --space-11:176px;
+
+  /* Airy by default — negative space is the point. */
+  --gutter:24px;
+  --gutter-lg:72px;
+  --section-gap:128px;      /* @kind spacing */
+  --section-gap-tight:88px; /* @kind spacing */
+  --stack-gap:16px;
+  --card-padding:24px;
+  --panel-padding:48px;
+  --control-padding-y:12px;
+  --control-padding-x:22px;
+  --content-max:1180px;     /* @kind spacing */
+  --content-max-text:660px; /* @kind spacing */
+  --measure-prose:62ch;     /* @kind spacing */
+  --measure-narrow:44ch;    /* @kind spacing */
+}

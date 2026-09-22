@@ -1,0 +1,32 @@
+:root{
+  /* ---- linen ----
+     The real thing: a photograph of natural linen (assets/texture-linen.jpg).
+     It carries its own warm colour, so it is a GROUND, not a neutral overlay.
+     On paper surfaces it blends on `luminosity`, which takes the cloth's light and
+     shade but leaves the brand colour underneath — so the page stays linen instead
+     of drifting grey, and the --mat-mix warm-to-cool dial keeps working.
+     On the footer band it blends on `soft-light`, which reads as weave over ink.
+     Tile is 900px; at ~300px on screen the slubs read at the right scale.
+
+     PATH CAVEAT: a relative URL inside a custom property resolves against the
+     DOCUMENT, not this file, so no single value works from every depth. This value
+     is correct for a document at the project root. Any page in a subdirectory must
+     override it on :root (see guidelines/*.html), and the `Linen` component builds
+     its own URL from `window.__PARDASANI_ASSETS` instead. */
+  --texture-image:url("assets/texture-linen.jpg"); /* @kind other */
+  --texture-tile:300px;              /* @kind spacing */
+
+  --texture-blend:luminosity;        /* @kind other */
+  --texture-opacity:0.28;            /* @kind other */
+  --texture-opacity-strong:0.40;     /* @kind other */
+
+  --texture-blend-band:soft-light;   /* @kind other */
+  --texture-opacity-band:0.50;       /* @kind other */
+
+  /* Per-project tint, multiplied under the weave. */
+  --texture-tint:transparent;
+
+  /* Inner shadow that makes a mat read as a physical mount, not a div. */
+  --mat-inset:inset 0 1px 2px rgba(60,52,40,.14), inset 0 0 0 1px rgba(255,255,255,.5); /* @kind shadow */
+  --plate-inset:inset 0 1px 3px rgba(60,52,40,.18); /* @kind shadow */
+}

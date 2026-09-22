@@ -1,0 +1,14 @@
+:root{
+  /* Warm, soft, low. This is paper on linen — nothing floats. */
+  --shadow-xs:0 1px 2px rgba(60,52,40,.06);
+  --shadow-sm:0 2px 8px rgba(60,52,40,.07);
+  --shadow-md:0 8px 24px rgba(60,52,40,.09);
+  --shadow-lg:0 24px 60px rgba(60,52,40,.12);
+  /* Solid, not a tint: a 35% wash of accent composites to ~1.7:1 on linen and
+     ~1.0:1 on the footer band, which is no indicator at all. --ring-focus-band
+     is the variant for use inside the blue footer. */
+  --ring-focus:0 0 0 2px var(--page), 0 0 0 5px var(--accent); /* @kind shadow */
+  --ring-focus-band:0 0 0 2px var(--footer-band), 0 0 0 5px var(--bone); /* @kind shadow */
+  --border-hairline:1px solid var(--line-hairline); /* @kind shadow */
+  --border-strong:1px solid var(--line-strong); /* @kind shadow */
+}
