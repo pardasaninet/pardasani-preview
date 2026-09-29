@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"PardasaniNetDesignSystem_2fc217","components":[{"name":"HeroPills","sourcePath":"components/brand/HeroPills.jsx"},{"name":"Linen","sourcePath":"components/brand/Linen.jsx"},{"name":"Logo","sourcePath":"components/brand/Logo.jsx"},{"name":"Mat","sourcePath":"components/brand/Mat.jsx"},{"name":"PillRow","sourcePath":"components/brand/PillRow.jsx"},{"name":"OVAL","sourcePath":"components/brand/ovalGeometry.jsx"},{"name":"Slice","sourcePath":"components/brand/ovalGeometry.jsx"},{"name":"Shape","sourcePath":"components/brand/ovalGeometry.jsx"},{"name":"CreditBlock","sourcePath":"components/content/CreditBlock.jsx"},{"name":"ProcessStep","sourcePath":"components/content/ProcessStep.jsx"},{"name":"ProjectCard","sourcePath":"components/content/ProjectCard.jsx"},{"name":"Prose","sourcePath":"components/content/Prose.jsx"},{"name":"ResumeEntry","sourcePath":"components/content/ResumeEntry.jsx"},{"name":"SectionHeading","sourcePath":"components/content/SectionHeading.jsx"},{"name":"StrategyChain","sourcePath":"components/content/StrategyChain.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Card","sourcePath":"components/core/Card.jsx"},{"name":"Divider","sourcePath":"components/core/Divider.jsx"},{"name":"Tag","sourcePath":"components/core/Tag.jsx"},{"name":"ContactForm","sourcePath":"components/forms/ContactForm.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"EmptyState","sourcePath":"components/navigation/EmptyState.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"NavBar","sourcePath":"components/navigation/NavBar.jsx"},{"name":"NextProject","sourcePath":"components/navigation/NextProject.jsx"},{"name":"TagFilter","sourcePath":"components/navigation/TagFilter.jsx"},{"name":"TextLink","sourcePath":"components/navigation/TextLink.jsx"},{"name":"TrackTabs","sourcePath":"components/navigation/TrackTabs.jsx"},{"name":"CollapsedText","sourcePath":"components/sections/CollapsedText.jsx"},{"name":"MoreButton","sourcePath":"components/sections/CollapsedText.jsx"},{"name":"CollapsedTextSplit","sourcePath":"components/sections/CollapsedTextSplit.jsx"},{"name":"FlipCard","sourcePath":"components/sections/FlipCards.jsx"},{"name":"FlipCards","sourcePath":"components/sections/FlipCards.jsx"},{"name":"CircleGraphic","sourcePath":"components/sections/GraphicText.jsx"},{"name":"GraphicText","sourcePath":"components/sections/GraphicText.jsx"},{"name":"MediaSplit","sourcePath":"components/sections/MediaSplit.jsx"},{"name":"Opener","sourcePath":"components/sections/Opener.jsx"},{"name":"ProcessScroll","sourcePath":"components/sections/ProcessScroll.jsx"},{"name":"WAVE_BOX","sourcePath":"components/sections/Wave.jsx"},{"name":"Wave","sourcePath":"components/sections/Wave.jsx"},{"name":"WaveSection","sourcePath":"components/sections/WaveSection.jsx"},{"name":"WhatWhyHow","sourcePath":"components/sections/WhatWhyHow.jsx"}],"sourceHashes":{"components/brand/HeroPills.jsx":"342e55f29250","components/brand/Linen.jsx":"d70578004013","components/brand/Logo.jsx":"73e6b7c89eaa","components/brand/Mat.jsx":"e431a8319491","components/brand/PillRow.jsx":"cbfb7931eaa2","components/brand/ovalGeometry.jsx":"e717866d2833","components/brand/useSvgInner.jsx":"1c4b770975ea","components/content/CreditBlock.jsx":"a3f9c7c8005b","components/content/ProcessStep.jsx":"3263a8745c06","components/content/ProjectCard.jsx":"9a8ac0f2607f","components/content/Prose.jsx":"fb866ed30c14","components/content/ResumeEntry.jsx":"bdd5d4c7c752","components/content/SectionHeading.jsx":"dfc07b49756e","components/content/StrategyChain.jsx":"470218c2dac9","components/core/Button.jsx":"79ff9b99f41b","components/core/Card.jsx":"00675bd18067","components/core/Divider.jsx":"b34f17a2905c","components/core/Tag.jsx":"76581851db5f","components/forms/ContactForm.jsx":"f906744db95f","components/forms/Input.jsx":"5a9f39472814","components/navigation/EmptyState.jsx":"b92613a4b6b8","components/navigation/Footer.jsx":"d135c3a12688","components/navigation/NavBar.jsx":"74accf38ff5a","components/navigation/NextProject.jsx":"1c1feb0ef2a5","components/navigation/TagFilter.jsx":"f02198a61f92","components/navigation/TextLink.jsx":"9b26d178d80e","components/navigation/TrackTabs.jsx":"91aad1929c0d","components/sections/CollapsedText.jsx":"4db560cb3d3f","components/sections/CollapsedTextSplit.jsx":"857c04e93e53","components/sections/FlipCards.jsx":"12b906b863df","components/sections/GraphicText.jsx":"747d84102ba0","components/sections/MediaSplit.jsx":"8c1a92db8ef0","components/sections/Opener.jsx":"06c9963c5d5c","components/sections/ProcessScroll.jsx":"9ad845675c03","components/sections/Wave.jsx":"98fcbf357829","components/sections/WaveSection.jsx":"e6c8132a94d0","components/sections/WhatWhyHow.jsx":"741572184a15","ui_kits/documents/doc-page.js":"f52ae9c02fca","ui_kits/portfolio/CaseStudy.jsx":"f4e4990f7167","ui_kits/portfolio/CraftPiece.jsx":"2ac8d4fdf80b","ui_kits/portfolio/Home.jsx":"4c45e8bfdda8","ui_kits/portfolio/OddJobs.jsx":"2a500306cc38","ui_kits/portfolio/ProjectHeader.jsx":"a46fea3b16f7","ui_kits/portfolio/Shell.jsx":"12ebd47906d6","ui_kits/portfolio/WheelBarrow.jsx":"a47cad87f9fb","ui_kits/portfolio/WorkIndex.jsx":"f6c4a5088061","ui_kits/portfolio/app.jsx":"4bdec61396d8","ui_kits/portfolio/data.js":"e1683f9aa20d"},"inlinedExternals":[],"unexposedExports":[{"name":"assetBaseOf","sourcePath":"components/brand/useSvgInner.jsx"},{"name":"useOval","sourcePath":"components/brand/ovalGeometry.jsx"},{"name":"useSvgInner","sourcePath":"components/brand/useSvgInner.jsx"},{"name":"useWordWidths","sourcePath":"components/brand/ovalGeometry.jsx"},{"name":"wavePath","sourcePath":"components/sections/Wave.jsx"}]} */
+/* @ds-bundle: {"format":4,"namespace":"PardasaniNetDesignSystem_2fc217","components":[{"name":"HeroPills","sourcePath":"components/brand/HeroPills.jsx"},{"name":"Linen","sourcePath":"components/brand/Linen.jsx"},{"name":"Logo","sourcePath":"components/brand/Logo.jsx"},{"name":"Mat","sourcePath":"components/brand/Mat.jsx"},{"name":"PillRow","sourcePath":"components/brand/PillRow.jsx"},{"name":"OVAL","sourcePath":"components/brand/ovalGeometry.jsx"},{"name":"Slice","sourcePath":"components/brand/ovalGeometry.jsx"},{"name":"Shape","sourcePath":"components/brand/ovalGeometry.jsx"},{"name":"CreditBlock","sourcePath":"components/content/CreditBlock.jsx"},{"name":"ProcessStep","sourcePath":"components/content/ProcessStep.jsx"},{"name":"ProjectCard","sourcePath":"components/content/ProjectCard.jsx"},{"name":"Prose","sourcePath":"components/content/Prose.jsx"},{"name":"ResumeEntry","sourcePath":"components/content/ResumeEntry.jsx"},{"name":"SectionHeading","sourcePath":"components/content/SectionHeading.jsx"},{"name":"StrategyChain","sourcePath":"components/content/StrategyChain.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Card","sourcePath":"components/core/Card.jsx"},{"name":"Divider","sourcePath":"components/core/Divider.jsx"},{"name":"Tag","sourcePath":"components/core/Tag.jsx"},{"name":"ContactForm","sourcePath":"components/forms/ContactForm.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"EmptyState","sourcePath":"components/navigation/EmptyState.jsx"},{"name":"Footer","sourcePath":"components/navigation/Footer.jsx"},{"name":"NavBar","sourcePath":"components/navigation/NavBar.jsx"},{"name":"NextProject","sourcePath":"components/navigation/NextProject.jsx"},{"name":"TagFilter","sourcePath":"components/navigation/TagFilter.jsx"},{"name":"TextLink","sourcePath":"components/navigation/TextLink.jsx"},{"name":"TrackTabs","sourcePath":"components/navigation/TrackTabs.jsx"},{"name":"CollapsedText","sourcePath":"components/sections/CollapsedText.jsx"},{"name":"MoreButton","sourcePath":"components/sections/CollapsedText.jsx"},{"name":"CollapsedTextSplit","sourcePath":"components/sections/CollapsedTextSplit.jsx"},{"name":"FlipCard","sourcePath":"components/sections/FlipCards.jsx"},{"name":"FlipCards","sourcePath":"components/sections/FlipCards.jsx"},{"name":"CircleGraphic","sourcePath":"components/sections/GraphicText.jsx"},{"name":"GraphicText","sourcePath":"components/sections/GraphicText.jsx"},{"name":"MediaSplit","sourcePath":"components/sections/MediaSplit.jsx"},{"name":"Opener","sourcePath":"components/sections/Opener.jsx"},{"name":"ProcessScroll","sourcePath":"components/sections/ProcessScroll.jsx"},{"name":"ProfileCards","sourcePath":"components/sections/ProfileCards.jsx"},{"name":"PrototypeEmbed","sourcePath":"components/sections/PrototypeEmbed.jsx"},{"name":"WAVE_BOX","sourcePath":"components/sections/Wave.jsx"},{"name":"Wave","sourcePath":"components/sections/Wave.jsx"},{"name":"WaveSection","sourcePath":"components/sections/WaveSection.jsx"},{"name":"WhatWhyHow","sourcePath":"components/sections/WhatWhyHow.jsx"}],"sourceHashes":{"components/brand/HeroPills.jsx":"342e55f29250","components/brand/Linen.jsx":"d70578004013","components/brand/Logo.jsx":"73e6b7c89eaa","components/brand/Mat.jsx":"590b94cdac65","components/brand/PillRow.jsx":"cbfb7931eaa2","components/brand/ovalGeometry.jsx":"e717866d2833","components/brand/useSvgInner.jsx":"1c4b770975ea","components/content/CreditBlock.jsx":"a3f9c7c8005b","components/content/ProcessStep.jsx":"3263a8745c06","components/content/ProjectCard.jsx":"9a8ac0f2607f","components/content/Prose.jsx":"fb866ed30c14","components/content/ResumeEntry.jsx":"bdd5d4c7c752","components/content/SectionHeading.jsx":"dfc07b49756e","components/content/StrategyChain.jsx":"470218c2dac9","components/core/Button.jsx":"79ff9b99f41b","components/core/Card.jsx":"00675bd18067","components/core/Divider.jsx":"b34f17a2905c","components/core/Tag.jsx":"76581851db5f","components/forms/ContactForm.jsx":"f906744db95f","components/forms/Input.jsx":"5a9f39472814","components/navigation/EmptyState.jsx":"b92613a4b6b8","components/navigation/Footer.jsx":"a22859dadd9f","components/navigation/NavBar.jsx":"74accf38ff5a","components/navigation/NextProject.jsx":"1c1feb0ef2a5","components/navigation/TagFilter.jsx":"f02198a61f92","components/navigation/TextLink.jsx":"9b26d178d80e","components/navigation/TrackTabs.jsx":"91aad1929c0d","components/sections/CollapsedText.jsx":"4db560cb3d3f","components/sections/CollapsedTextSplit.jsx":"857c04e93e53","components/sections/FlipCards.jsx":"d54e711900b8","components/sections/GraphicText.jsx":"747d84102ba0","components/sections/MediaSplit.jsx":"8c1a92db8ef0","components/sections/Opener.jsx":"c2e29c85d45d","components/sections/ProcessScroll.jsx":"4ce5fa338403","components/sections/ProfileCards.jsx":"e69abf6e3b98","components/sections/PrototypeEmbed.jsx":"49c13bc39886","components/sections/Wave.jsx":"98fcbf357829","components/sections/WaveSection.jsx":"e6c8132a94d0","components/sections/WhatWhyHow.jsx":"741572184a15","ui_kits/documents/doc-page.js":"f52ae9c02fca","ui_kits/portfolio/CaseStudy.jsx":"f4e4990f7167","ui_kits/portfolio/CraftPiece.jsx":"2ac8d4fdf80b","ui_kits/portfolio/Home.jsx":"4c45e8bfdda8","ui_kits/portfolio/OddJobs.jsx":"d03c917eb603","ui_kits/portfolio/OddJobsParts.jsx":"780a7e9b5c56","ui_kits/portfolio/ProjectHeader.jsx":"a46fea3b16f7","ui_kits/portfolio/Shell.jsx":"12ebd47906d6","ui_kits/portfolio/WheelBarrow.jsx":"a47cad87f9fb","ui_kits/portfolio/WorkIndex.jsx":"f6c4a5088061","ui_kits/portfolio/app.jsx":"4bdec61396d8","ui_kits/portfolio/data.js":"e1683f9aa20d"},"inlinedExternals":[],"unexposedExports":[{"name":"assetBaseOf","sourcePath":"components/brand/useSvgInner.jsx"},{"name":"figmaEmbedUrl","sourcePath":"components/sections/PrototypeEmbed.jsx"},{"name":"figmaOpenUrl","sourcePath":"components/sections/PrototypeEmbed.jsx"},{"name":"figmaParams","sourcePath":"components/sections/PrototypeEmbed.jsx"},{"name":"useOval","sourcePath":"components/brand/ovalGeometry.jsx"},{"name":"useSvgInner","sourcePath":"components/brand/useSvgInner.jsx"},{"name":"useWordWidths","sourcePath":"components/brand/ovalGeometry.jsx"},{"name":"wavePath","sourcePath":"components/sections/Wave.jsx"}]} */
 
 (() => {
 
@@ -89,6 +89,7 @@ function Mat({
   alt = '',
   caption,
   label,
+  fit = 'contain',
   ratio = '4 / 3',
   inset = 'var(--space-6)',
   radius = 'var(--radius-plate)',
@@ -137,14 +138,15 @@ function Mat({
       alignItems: 'center',
       justifyContent: 'center'
     }
-  }, children || (src ? /*#__PURE__*/React.createElement("img", {
+  }, children || (src
+  /* contain by default: a mat never crops the work inside it. */ ? /*#__PURE__*/React.createElement("img", {
     src: src,
     alt: alt,
     style: {
       display: 'block',
       width: '100%',
       height: '100%',
-      objectFit: 'cover'
+      objectFit: fit
     }
   }) : /*#__PURE__*/React.createElement("span", {
     style: {
@@ -1877,7 +1879,7 @@ function Footer({
   words = ['designer', 'developer', 'strategist'],
   location,
   columns = [],
-  note = 'v3.0 2026',
+  note = 'v3.01 2026',
   onTop,
   assetBase,
   style
@@ -2553,7 +2555,11 @@ function Face({
       WebkitBackfaceVisibility: reduced ? undefined : 'hidden',
       transform: reduced ? undefined : `rotateY(${back ? 180 : 0}deg) translateZ(1px)`,
       opacity: reduced ? shown ? 1 : 0 : undefined,
-      transition: reduced ? 'opacity var(--duration-base) var(--ease-out)' : undefined,
+      /* Swap visibility at the midpoint of the turn, when the card is edge-on,
+         so the far face never shows through even where backface-visibility
+         is not honoured. */
+      visibility: reduced || shown ? 'visible' : 'hidden',
+      transition: reduced ? 'opacity var(--duration-base) var(--ease-out)' : 'visibility 0s linear 300ms',
       pointerEvents: shown ? 'auto' : 'none',
       ...(back ? faceText.back : faceText.front)
     }
@@ -2566,11 +2572,29 @@ function FlipCard({
   alt = '',
   imageLabel,
   ratio = '4 / 3',
+  imageOn = 'front',
   flipped,
   onToggle,
   reduced
 }) {
   const hasImage = !!(src || imageLabel);
+  const plate = hasImage && /*#__PURE__*/React.createElement(__ds_scope.Mat, {
+    src: src,
+    alt: alt,
+    label: imageLabel,
+    ratio: ratio,
+    inset: "var(--space-3)"
+  });
+  const backFace = /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-4)',
+      width: '100%'
+    }
+  }, imageOn === 'back' && plate, /*#__PURE__*/React.createElement("span", {
+    style: faceText.back
+  }, back));
   const frontFace = /*#__PURE__*/React.createElement("span", {
     style: {
       display: 'flex',
@@ -2578,13 +2602,7 @@ function FlipCard({
       gap: 'var(--space-4)',
       width: '100%'
     }
-  }, hasImage && /*#__PURE__*/React.createElement(__ds_scope.Mat, {
-    src: src,
-    alt: alt,
-    label: imageLabel,
-    ratio: ratio,
-    inset: "var(--space-3)"
-  }), front && /*#__PURE__*/React.createElement("span", {
+  }, imageOn === 'front' && plate, front && /*#__PURE__*/React.createElement("span", {
     style: faceText.front
   }, front));
   return /*#__PURE__*/React.createElement("button", {
@@ -2621,9 +2639,7 @@ function FlipCard({
       visibility: 'hidden',
       pointerEvents: 'none'
     }
-  }, frontFace, /*#__PURE__*/React.createElement("span", {
-    style: faceText.back
-  }, back)), /*#__PURE__*/React.createElement(Face, {
+  }, frontFace, backFace), /*#__PURE__*/React.createElement(Face, {
     hidden: flipped,
     reduced: reduced,
     flipped: flipped
@@ -2632,7 +2648,7 @@ function FlipCard({
     hidden: !flipped,
     reduced: reduced,
     flipped: flipped
-  }, back)));
+  }, backFace)));
 }
 function FlipCards({
   cards = [],
@@ -2982,6 +2998,8 @@ function Opener({
   tags = [],
   year,
   role,
+  roleLead,
+  roleItems,
   roleLabel = 'Role',
   texture = {},
   media,
@@ -3039,17 +3057,22 @@ function Opener({
     style: {
       display: 'flex',
       width: '100%',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: 'var(--space-3)',
+      marginTop: 'var(--space-2)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
       flexWrap: 'wrap',
       justifyContent: 'center',
-      alignItems: 'center',
-      gap: 'var(--space-2)',
-      marginTop: 'var(--space-2)'
+      gap: 'var(--space-2)'
     }
   }, tags.map(t => /*#__PURE__*/React.createElement(__ds_scope.Tag, {
     key: t
-  }, t)), year && /*#__PURE__*/React.createElement("span", {
+  }, t))), year && /*#__PURE__*/React.createElement("span", {
     style: {
-      marginLeft: 'var(--space-3)',
       fontFamily: 'var(--font-mono)',
       fontSize: 'var(--text-xs)',
       letterSpacing: 'var(--tracking-label)',
@@ -3119,7 +3142,7 @@ function Opener({
       width: '100%',
       aspectRatio: narrow ? '4 / 3' : mediaRatio
     }
-  }, media) : null)))), role && /*#__PURE__*/React.createElement("div", {
+  }, media) : null)))), (role || roleItems) && /*#__PURE__*/React.createElement("div", {
     style: {
       maxWidth: 'var(--content-max)',
       margin: '0 auto',
@@ -3131,9 +3154,25 @@ function Opener({
       display: 'flex',
       flexDirection: 'column',
       gap: 'var(--space-3)',
-      maxWidth: 'var(--measure-prose)'
+      maxWidth: 'var(--measure-wide, 72ch)'
     }
-  }, /*#__PURE__*/React.createElement(Meta, null, roleLabel), /*#__PURE__*/React.createElement("p", {
+  }, /*#__PURE__*/React.createElement(Meta, null, roleLabel), roleItems ? /*#__PURE__*/React.createElement(React.Fragment, null, roleLead && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: 'var(--font-sans)',
+      fontWeight: 'var(--weight-medium)',
+      fontSize: 'var(--text-sm)',
+      letterSpacing: 'var(--tracking-body)'
+    }
+  }, roleLead), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+      gap: 'var(--space-2)'
+    }
+  }, roleItems.map(t => /*#__PURE__*/React.createElement(__ds_scope.Tag, {
+    key: t
+  }, t)))) : /*#__PURE__*/React.createElement("p", {
     style: {
       margin: 0,
       fontFamily: 'var(--font-sans)',
@@ -3167,14 +3206,16 @@ function StepCard({
 }) {
   return /*#__PURE__*/React.createElement("div", {
     style: {
-      flex: plain ? undefined : '1 1 0',
+      /* The active card takes the lion's share of the row so its image reads at
+         a useful size; the rest stay as a small, muted queue. */
+      flex: plain ? undefined : narrow ? undefined : active ? '3 1 0' : '1 1 0',
       minWidth: 0,
       scrollSnapAlign: narrow ? 'center' : undefined,
       width: narrow ? '76%' : undefined,
       flexShrink: narrow ? 0 : undefined,
       transform: plain || active ? 'none' : `scale(${SMALL})`,
       opacity: plain || active ? 1 : 0.62,
-      transition: 'transform var(--duration-slow) var(--ease-out), opacity var(--duration-slow) var(--ease-out)',
+      transition: 'transform var(--duration-slow) var(--ease-out), opacity var(--duration-slow) var(--ease-out), flex-grow var(--duration-slow) var(--ease-out)',
       display: 'flex',
       flexDirection: 'column',
       gap: 'var(--space-3)'
@@ -3410,6 +3451,374 @@ function ProcessScroll({
 }
 Object.assign(__ds_scope, { ProcessScroll });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/sections/ProcessScroll.jsx", error: String((e && e.message) || e) }); }
+
+// components/sections/ProfileCards.jsx
+try { (() => {
+/* Profile cards — a row of short profiles, each of which opens its full board
+   in place. The card carries the summary; the board carries the detail, so the
+   page stays light until someone asks for more. One board open at a time. */
+
+function Panel({
+  open,
+  children
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateRows: open ? '1fr' : '0fr',
+      transition: 'grid-template-rows var(--duration-slow) var(--ease-out)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: 0,
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      paddingTop: 'var(--space-5)',
+      opacity: open ? 1 : 0,
+      transition: 'opacity var(--duration-base) var(--ease-out)'
+    }
+  }, children)));
+}
+function Board({
+  p
+}) {
+  return /*#__PURE__*/React.createElement(__ds_scope.Mat, {
+    src: p.board,
+    alt: p.boardAlt || `Full profile for ${p.name}`,
+    label: p.boardLabel,
+    ratio: p.boardRatio || '2276 / 995',
+    inset: "var(--space-4)",
+    radius: "var(--radius-panel)"
+  });
+}
+function ProfileCard({
+  p,
+  open,
+  onToggle,
+  panelId
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-4)',
+      background: 'var(--surface-raised)',
+      borderRadius: 'var(--radius-card)',
+      boxShadow: open ? 'var(--shadow-md)' : 'var(--shadow-xs)',
+      padding: 'var(--space-6)',
+      height: '100%',
+      transition: 'box-shadow var(--duration-base) var(--ease-out)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 132
+    }
+  }, /*#__PURE__*/React.createElement(__ds_scope.CircleGraphic, {
+    src: p.src,
+    alt: p.name,
+    label: p.imageLabel
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-2)'
+    }
+  }, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      margin: 0,
+      fontFamily: 'var(--font-sans)',
+      fontWeight: 'var(--weight-light)',
+      fontSize: 'var(--text-lg)',
+      lineHeight: 'var(--leading-snug)',
+      letterSpacing: 'var(--tracking-heading)',
+      textWrap: 'balance'
+    }
+  }, p.title), p.subline && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-mono)',
+      fontSize: 'var(--text-xs)',
+      letterSpacing: 'var(--tracking-label)',
+      color: 'var(--text-quiet)'
+    }
+  }, p.subline)), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0,
+      flex: 1,
+      fontFamily: 'var(--font-sans)',
+      fontWeight: 'var(--weight-light)',
+      fontSize: 'var(--text-sm)',
+      lineHeight: 'var(--leading-relaxed)',
+      letterSpacing: 'var(--tracking-body)',
+      textWrap: 'pretty'
+    }
+  }, p.body), /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    onClick: onToggle,
+    "aria-expanded": open,
+    "aria-controls": panelId,
+    style: {
+      alignSelf: 'flex-start',
+      font: 'inherit',
+      fontFamily: 'var(--font-mono)',
+      fontSize: 'var(--text-xs)',
+      letterSpacing: 'var(--tracking-label)',
+      color: 'var(--accent)',
+      background: 'transparent',
+      border: 0,
+      borderBottom: '1px solid var(--line-hairline)',
+      borderRadius: 0,
+      padding: '4px 0',
+      cursor: 'pointer',
+      transition: 'var(--transition-control)'
+    }
+  }, open ? 'Hide full profile' : 'Show full profile'));
+}
+function ProfileCards({
+  profiles = [],
+  narrow = false,
+  style
+}) {
+  const [open, setOpen] = React.useState(null);
+  const base = React.useId().replace(/[^a-zA-Z0-9]/g, '');
+  const toggle = i => setOpen(o => o === i ? null : i);
+  if (narrow) {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 'var(--space-6)',
+        ...style
+      }
+    }, profiles.map((p, i) => /*#__PURE__*/React.createElement("div", {
+      key: p.title
+    }, /*#__PURE__*/React.createElement(ProfileCard, {
+      p: p,
+      open: open === i,
+      onToggle: () => toggle(i),
+      panelId: `${base}-${i}`
+    }), /*#__PURE__*/React.createElement("div", {
+      id: `${base}-${i}`
+    }, /*#__PURE__*/React.createElement(Panel, {
+      open: open === i
+    }, /*#__PURE__*/React.createElement(Board, {
+      p: p
+    }))))));
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    style: style
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: `repeat(${profiles.length}, minmax(0, 1fr))`,
+      gap: 'var(--space-5)',
+      alignItems: 'stretch'
+    }
+  }, profiles.map((p, i) => /*#__PURE__*/React.createElement(ProfileCard, {
+    key: p.title,
+    p: p,
+    open: open === i,
+    onToggle: () => toggle(i),
+    panelId: `${base}-${i}`
+  }))), profiles.map((p, i) => /*#__PURE__*/React.createElement("div", {
+    key: p.title,
+    id: `${base}-${i}`
+  }, /*#__PURE__*/React.createElement(Panel, {
+    open: open === i
+  }, /*#__PURE__*/React.createElement(Board, {
+    p: p
+  })))));
+}
+Object.assign(__ds_scope, { ProfileCards });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/sections/ProfileCards.jsx", error: String((e && e.message) || e) }); }
+
+// components/sections/PrototypeEmbed.jsx
+try { (() => {
+/* Prototype embed — click to load. A Figma embed pulls in several MB of script,
+   so the poster shows first and the prototype only loads when someone asks for
+   it. Each flow carries its own frame shape; the frame is capped at 85vh tall
+   so a mobile flow never runs off the screen. */
+
+function figmaParams(flow) {
+  const id = encodeURIComponent(flow.nodeId);
+  let q = `node-id=${flow.nodeId.replace(':', '-')}&starting-point-node-id=${id}`;
+  if (flow.pageId) q += `&page-id=${encodeURIComponent(flow.pageId)}`;
+  return q;
+}
+function figmaEmbedUrl(fileKey, fileName, flow) {
+  return `https://embed.figma.com/proto/${fileKey}/${encodeURIComponent(fileName)}?${figmaParams(flow)}` + '&embed-host=pardasani&hide-ui=1&scaling=scale-down&content-scaling=fixed';
+}
+function figmaOpenUrl(fileKey, fileName, flow) {
+  return `https://www.figma.com/proto/${fileKey}/${encodeURIComponent(fileName)}?${figmaParams(flow)}&scaling=scale-down&content-scaling=fixed`;
+}
+const mono = {
+  fontFamily: 'var(--font-mono)',
+  fontSize: 'var(--text-xs)',
+  letterSpacing: 'var(--tracking-label)'
+};
+function PrototypeEmbed({
+  fileKey,
+  fileName = 'Prototype',
+  flows = [{
+    label: 'Desktop',
+    nodeId: '0:1',
+    ratio: '16 / 10'
+  }],
+  poster,
+  posterAlt = '',
+  posterLabel = 'Prototype poster frame',
+  caption,
+  ctaLabel = 'Click to try the prototype',
+  openLabel = 'Open it full screen in Figma',
+  title = 'Interactive prototype',
+  narrow = false,
+  style
+}) {
+  const mobileIndex = Math.max(0, flows.findIndex(f => f.label.toLowerCase() === 'mobile'));
+  const phoneFlow = flows.findIndex(f => f.label.toLowerCase() === 'mobile') >= 0 ? mobileIndex : flows.length - 1;
+  const [chosen, setChosen] = React.useState(0);
+  const [loaded, setLoaded] = React.useState(false);
+  /* On phones the tabs are hidden and the mobile flow is the one that loads,
+     since it is the one that fits the screen. */
+  const f = flows[narrow ? phoneFlow : chosen] || flows[0];
+  const ratio = f.ratio || '16 / 10';
+  const src = figmaEmbedUrl(fileKey, fileName, f);
+  const open = figmaOpenUrl(fileKey, fileName, f);
+  return /*#__PURE__*/React.createElement("figure", {
+    style: {
+      margin: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-4)',
+      ...style
+    }
+  }, flows.length > 1 && !narrow && /*#__PURE__*/React.createElement("div", {
+    role: "tablist",
+    "aria-label": "Prototype breakpoint",
+    style: {
+      display: 'flex',
+      gap: 'var(--space-2)'
+    }
+  }, flows.map((fl, i) => /*#__PURE__*/React.createElement("button", {
+    key: fl.label,
+    type: "button",
+    role: "tab",
+    "aria-selected": i === chosen,
+    onClick: () => setChosen(i),
+    style: {
+      ...mono,
+      cursor: 'pointer',
+      padding: '6px 14px',
+      borderRadius: 'var(--radius-pill)',
+      border: `1px solid ${i === chosen ? 'var(--accent)' : 'var(--line-hairline)'}`,
+      background: i === chosen ? 'var(--accent)' : 'transparent',
+      color: i === chosen ? 'var(--bone)' : 'var(--text-body)',
+      transition: 'var(--transition-control)'
+    }
+  }, fl.label))), /*#__PURE__*/React.createElement(__ds_scope.Mat, {
+    ratio: ratio,
+    inset: narrow ? 'var(--space-4)' : 'var(--space-5)',
+    radius: "var(--radius-panel)"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'relative',
+      aspectRatio: ratio,
+      marginInline: 'auto',
+      width: `min(100%, calc(85vh * ${ratio}))`,
+      transition: 'width var(--duration-slow) var(--ease-out)'
+    }
+  }, loaded ? /*#__PURE__*/React.createElement("iframe", {
+    key: src,
+    title: title,
+    src: src,
+    allowFullScreen: true,
+    style: {
+      position: 'absolute',
+      inset: 0,
+      width: '100%',
+      height: '100%',
+      border: 0,
+      background: 'var(--surface-plate)'
+    }
+  }) : /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    onClick: () => setLoaded(true),
+    "aria-label": `Load the ${title.toLowerCase()}`,
+    style: {
+      position: 'absolute',
+      inset: 0,
+      padding: 0,
+      border: 0,
+      cursor: 'pointer',
+      background: 'var(--surface-plate)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      font: 'inherit',
+      color: 'inherit',
+      overflow: 'hidden'
+    }
+  }, poster ? /*#__PURE__*/React.createElement("img", {
+    src: poster,
+    alt: posterAlt,
+    style: {
+      position: 'absolute',
+      inset: 0,
+      width: '100%',
+      height: '100%',
+      objectFit: 'contain'
+    }
+  }) : /*#__PURE__*/React.createElement("span", {
+    style: {
+      ...mono,
+      color: 'var(--text-muted)',
+      padding: 'var(--space-5)',
+      textAlign: 'center'
+    }
+  }, posterLabel), /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: 'absolute',
+      left: '50%',
+      bottom: 'var(--space-5)',
+      transform: 'translateX(-50%)',
+      background: 'var(--bone)',
+      boxShadow: 'var(--shadow-sm)',
+      borderRadius: 'var(--radius-pill)',
+      padding: '10px 20px',
+      whiteSpace: 'nowrap',
+      fontFamily: 'var(--font-sans)',
+      fontSize: 'var(--text-sm)',
+      letterSpacing: 'var(--tracking-body)',
+      color: 'var(--text-body)'
+    }
+  }, ctaLabel)))), /*#__PURE__*/React.createElement("figcaption", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      gap: 'var(--space-2) var(--space-6)',
+      fontFamily: 'var(--font-sans)',
+      fontWeight: 'var(--weight-light)',
+      fontSize: 'var(--text-sm)',
+      letterSpacing: 'var(--tracking-body)',
+      color: 'var(--text-muted)'
+    }
+  }, caption && /*#__PURE__*/React.createElement("span", {
+    style: {
+      textWrap: 'pretty'
+    }
+  }, caption), /*#__PURE__*/React.createElement("a", {
+    href: open,
+    target: "_blank",
+    rel: "noopener",
+    style: {
+      color: 'var(--text-link)'
+    }
+  }, openLabel)));
+}
+Object.assign(__ds_scope, { figmaParams, figmaEmbedUrl, figmaOpenUrl, PrototypeEmbed });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/sections/PrototypeEmbed.jsx", error: String((e && e.message) || e) }); }
 
 // components/sections/Wave.jsx
 try { (() => {
@@ -5179,7 +5588,9 @@ const {
   StrategyChain,
   CreditBlock,
   NextProject,
-  Mat
+  Mat,
+  ProfileCards,
+  PrototypeEmbed
 } = window.PardasaniNetDesignSystem_2fc217;
 
 /* Odd Jobs — the most material of anything in the portfolio, so most of the
@@ -5196,18 +5607,27 @@ function OddJobs({
   const WaveRule = window.WaveRule;
   const personas = [{
     title: 'Priya, the Rain Maker',
+    name: 'Priya Sharma',
     subline: '20, international CS student, picks up gigs',
     imageLabel: 'Archetype 1',
+    src: 'images/odd-jobs/persona-1.png',
+    board: 'images/odd-jobs/persona-board-1.jpg',
     body: 'She has real skills and availability, but visa restrictions block most traditional work. She needs a platform she can trust and a simple way to put herself out there without a formal resume.'
   }, {
     title: 'Jake, the Busy Poster',
+    name: 'Jake Miller',
     subline: '22, senior, posts gigs',
     imageLabel: 'Archetype 2',
+    src: 'images/odd-jobs/persona-2.png',
+    board: 'images/odd-jobs/persona-board-2.jpg',
     body: "He's busy, values speed and just needs reliable help with occasional tasks from someone he can trust. He won't use a platform that feels complicated or unsafe."
   }, {
     title: 'Aaliya, the Community Switcher',
+    name: 'Aaliya Khan',
     subline: '21, first-generation art student, does both',
     imageLabel: 'Archetype 3',
+    src: 'images/odd-jobs/persona-3.png',
+    board: 'images/odd-jobs/persona-board-3.jpg',
     body: "She uses both sides of the platform depending on what the week needs. She's the kind of loyal repeat user who could become an informal ambassador for it."
   }];
 
@@ -5255,7 +5675,33 @@ function OddJobs({
       style: {
         margin: 0
       }
-    }, "Freerice flips that. It drops you straight into an interactive game, so you're participating before you fully understand what the site is about, and the education and persuasion come afterwards. The game does all three jobs at once: playing it is the action, the education and the persuasion together. That's harder to design than it looks."))
+    }, "Freerice flips that. It drops you straight into an interactive game, so you're participating before you fully understand what the site is about, and the education and persuasion come afterwards. The game does all three jobs at once: playing it is the action, the education and the persuasion together. That's harder to design than it looks."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: 'var(--space-4)',
+        marginTop: 'var(--space-2)'
+      }
+    }, /*#__PURE__*/React.createElement(Mat, {
+      ratio: "4 / 3",
+      inset: "var(--space-3)",
+      src: "images/odd-jobs/wireframe-water.png",
+      alt: "Hand-drawn wireframe of water.org, sections marked action, educate and persuade"
+    }), /*#__PURE__*/React.createElement(Mat, {
+      ratio: "4 / 3",
+      inset: "var(--space-3)",
+      src: "images/odd-jobs/wireframe-freerice.png",
+      alt: "Hand-drawn wireframe of freerice.com, sections marked action, educate and persuade"
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        gridColumn: '1 / -1'
+      }
+    }, /*#__PURE__*/React.createElement(Mat, {
+      ratio: "4 / 3",
+      inset: "var(--space-3)",
+      src: "images/odd-jobs/coherence-notes.png",
+      alt: "Handwritten notes on the stylistic and semantic coherence of water.org and freerice.com"
+    }))))
   }, {
     n: '04',
     title: 'How layouts change between screens',
@@ -5264,15 +5710,21 @@ function OddJobs({
         margin: 0
       }
     }, "I compared how Stripe, Apple, Shopify, Gov.UK and Pringles handle the move from desktop to mobile, working through them by hand before I set my own breakpoints."),
-    more: /*#__PURE__*/React.createElement("p", {
+    more: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", {
       style: {
         margin: 0
       }
-    }, "Pringles was the one that taught me something. On desktop the margin is wide enough to carry legibility on its own. On tablet and mobile there's no margin at all, and the reduced column count does that work instead, which told me margin is not the only thing keeping a layout readable."),
-    image: {
-      label: 'Desktop to mobile comparison, process book',
-      caption: 'I compared these sites by hand, desktop against mobile.'
-    }
+    }, "Pringles was the one that taught me something. On desktop the margin is wide enough to carry legibility on its own. On tablet and mobile there's no margin at all, and the reduced column count does that work instead, which told me margin is not the only thing keeping a layout readable."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 'var(--space-2)'
+      }
+    }, /*#__PURE__*/React.createElement(Mat, {
+      ratio: "1064 / 781",
+      inset: "var(--space-3)",
+      src: "images/odd-jobs/pb-23.png",
+      alt: "Handwritten notes comparing desktop and mobile layouts across five sites",
+      caption: "I compared these sites by hand, desktop against mobile."
+    })))
   }, {
     n: '05',
     title: "How I'd know it worked",
@@ -5310,7 +5762,8 @@ function OddJobs({
         border: 0
       }
     }),
-    role: "Solo. User research and personas, competitor analysis, naming, logo, information architecture, user flows, wireframes, typographic study, responsive analysis, and high fidelity across desktop, tablet and mobile.",
+    roleLead: "Solo",
+    roleItems: ['User research and personas', 'Competitor analysis', 'Information architecture', 'User flows', 'Wireframes', 'Typographic study', 'Responsive analysis', 'High fidelity across desktop, tablet and mobile'],
     narrow: narrow
   }), /*#__PURE__*/React.createElement(Page, null, /*#__PURE__*/React.createElement(WaveRule, null), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -5318,7 +5771,6 @@ function OddJobs({
     }
   }, /*#__PURE__*/React.createElement(WhatWhyHow, {
     narrow: narrow,
-    quote: '\u201CTo have a village, you need to be a villager.\u201D',
     items: [{
       q: 'What?',
       a: 'Odd Jobs is a gig platform built for one campus at a time. You post a task you need done, or you pick one up and get paid for it.'
@@ -5337,7 +5789,7 @@ function OddJobs({
     }
   }, /*#__PURE__*/React.createElement(StrategyChain, {
     angle: "The platform has to earn trust before it can get anyone hired, so verification through a university email does the job a resume would normally do.",
-    chain: ['Students need everyday tasks done, and they need money they can earn around their classes, but a regular part-time job asks for set hours and a resume that most of them can\u2019t give.', 'The platforms that already exist don\u2019t close that gap, because TaskRabbit and Fiverr are built for strangers and Handshake is built for professional roles, so neither one carries the trust of being on the same campus.', 'That\u2019s why I made verification the core of the product, and once it was in place the three personas told me what to protect: Priya needs credibility, Jake needs speed and Aaliya needs flexibility.']
+    chain: ['Students need everyday tasks done, and they need money they can earn around their classes, but a regular part-time job asks for set hours and a resume that most of them can\u2019t give.', 'The platforms that already exist don\u2019t close that gap, because TaskRabbit and Fiverr are built for strangers and Handshake is built for professional roles, so neither one carries the trust of being on the same campus.', 'That\u2019s why I made verification the core of the product.']
   })), /*#__PURE__*/React.createElement(WaveRule, {
     label: "The three pillars"
   }), /*#__PURE__*/React.createElement("div", {
@@ -5348,12 +5800,24 @@ function OddJobs({
     narrow: narrow,
     cards: [{
       front: 'Inform',
+      src: 'images/odd-jobs/feature-how-it-works.png',
+      alt: 'The four easy steps and FAQ on the How it Works page',
+      imageLabel: 'Close-up of the How It Works page and FAQ',
+      imageOn: 'back',
       back: 'The How It Works page breaks the platform down for both hirers and earners, with an FAQ for common concerns.'
     }, {
       front: 'Persuade',
+      src: 'images/odd-jobs/feature-payout.png',
+      alt: 'The payout tag and offer buttons on a job post',
+      imageLabel: 'Close-up of the stats, testimonials and payout figure',
+      imageOn: 'back',
       back: 'Social proof does the convincing, through stats, testimonials and a payout figure you can see on the page.'
     }, {
       front: 'Act',
+      src: 'images/odd-jobs/feature-search.png',
+      alt: 'The search and post bars with the category row',
+      imageLabel: 'Close-up of the search bar and sign-in gate',
+      imageOn: 'back',
       back: 'A search bar lets people browse straight away, and a sign-in gate turns a passive visitor into a user.'
     }],
     more: /*#__PURE__*/React.createElement("p", {
@@ -5370,11 +5834,16 @@ function OddJobs({
       flexDirection: 'column',
       gap: 'var(--section-gap-tight)'
     }
-  }, personas.map((p, n) => /*#__PURE__*/React.createElement(GraphicText, {
+  }, ProfileCards ? /*#__PURE__*/React.createElement(ProfileCards, {
+    narrow: narrow,
+    profiles: personas
+  }) : personas.map((p, n) => /*#__PURE__*/React.createElement(GraphicText, {
     key: p.title,
     narrow: narrow,
     reverse: n === 1,
     circleSize: 260,
+    src: p.src,
+    alt: p.title,
     imageLabel: p.imageLabel,
     title: p.title,
     subline: p.subline
@@ -5404,10 +5873,7 @@ function OddJobs({
       flexDirection: 'column',
       gap: 'var(--space-6)'
     }
-  }, /*#__PURE__*/React.createElement(CollapsedTextSplit, {
-    narrow: narrow,
-    imageLabel: "The name shortlist, written out",
-    caption: "Six names, each one tested against what it would make the work sound like.",
+  }, /*#__PURE__*/React.createElement(CollapsedText, {
     title: "Naming",
     more: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", {
       style: {
@@ -5441,13 +5907,15 @@ function OddJobs({
       gap: 'var(--space-5)'
     }
   }, /*#__PURE__*/React.createElement(Mat, {
-    ratio: "4 / 3",
-    label: "The OddJobs wordmark",
-    caption: "The wordmark that came out of the name."
+    ratio: "4 / 5",
+    src: "images/odd-jobs/logo-sketches.png",
+    alt: "Hand-drawn OddJobs wordmark and logo sketches on grid paper",
+    caption: "I sketched the logo first, to set the look of everything built after it."
   }), /*#__PURE__*/React.createElement(Mat, {
-    ratio: "4 / 3",
-    label: "Typographic study sheet",
-    caption: "I tested ten typefaces before settling on the pair the site uses."
+    ratio: "4 / 5",
+    src: "images/odd-jobs/wordmark.png",
+    alt: "The final OddJobs wordmark in green, with a pushpin on the j",
+    caption: "The wordmark that came out of the name."
   }))), /*#__PURE__*/React.createElement(WaveRule, {
     label: "Research"
   }), /*#__PURE__*/React.createElement("div", {
@@ -5505,6 +5973,56 @@ function OddJobs({
     label: r.image.label,
     caption: r.image.caption
   })))))), /*#__PURE__*/React.createElement(WaveRule, {
+    label: "Structure"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      paddingTop: 'var(--space-6)',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-6)'
+    }
+  }, /*#__PURE__*/React.createElement(CollapsedText, {
+    title: "Four pages and one job post",
+    more: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", {
+      style: {
+        margin: 0
+      }
+    }, "I started by mapping user flows, and worked out the strategy and information architecture from there. The first site map came straight out of that brain dump."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: narrow ? '1fr' : '1fr 1fr',
+        gap: 'var(--space-4)'
+      }
+    }, /*#__PURE__*/React.createElement(Mat, {
+      ratio: "4 / 5",
+      inset: "var(--space-3)",
+      src: "images/odd-jobs/sketch-userflows.png",
+      alt: "Handwritten user flows mapping pages and functions"
+    }), /*#__PURE__*/React.createElement(Mat, {
+      ratio: "4 / 5",
+      inset: "var(--space-3)",
+      src: "images/odd-jobs/sketch-ia.png",
+      alt: "Hand-drawn early information architecture"
+    })))
+  }, /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0
+    }
+  }, "The site runs on four pages. The earn and hire boards both lead into the same job post page, so a gig reads the same way whichever side you come from.")), /*#__PURE__*/React.createElement(Mat, {
+    ratio: "1600 / 1103",
+    inset: "var(--space-5)",
+    radius: "var(--radius-panel)",
+    src: "images/odd-jobs/site-map.png",
+    alt: "Site map: Home, How it Works, Earn and Hire, with Earn and Hire both leading into Job Post"
+  })), /*#__PURE__*/React.createElement(WaveRule, {
+    label: "Visual language"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      paddingTop: 'var(--space-6)'
+    }
+  }, window.VisualLanguage && /*#__PURE__*/React.createElement(window.VisualLanguage, {
+    narrow: narrow
+  })), /*#__PURE__*/React.createElement(WaveRule, {
     label: "The build"
   }), /*#__PURE__*/React.createElement(ProcessScroll, {
     narrow: narrow,
@@ -5513,26 +6031,74 @@ function OddJobs({
     },
     steps: [{
       title: 'Sketch',
+      src: 'images/odd-jobs/initial-wireframe.png',
+      alt: 'Hand-drawn initial wireframes of the landing, How it Works, job post, browse and post pages',
       imageLabel: 'Hand-drawn initial wireframe',
       caption: 'I drew the first wireframe by hand.'
     }, {
       title: 'Wireframes',
+      src: 'images/odd-jobs/figma-wireframe.png',
+      alt: 'Figma wireframe of the job search page',
       imageLabel: 'Figma wireframes',
       caption: 'I rebuilt the structure in Figma before any visual treatment went onto it.'
     }, {
       title: 'Tablet, first pass',
+      src: 'images/odd-jobs/tablet-iteration-1.png',
+      alt: 'Five tablet screens from the first iteration',
       imageLabel: 'Tablet iteration 1',
       caption: 'This is the first tablet version.'
     }, {
       title: 'Tablet, second pass',
+      src: 'images/odd-jobs/tablet-iteration-2.png',
+      alt: 'Five tablet screens from the second iteration',
       imageLabel: 'Tablet iteration 2',
       caption: 'In the second pass I resized the text, kept the top and bottom bars but made them smaller and better spaced, took the card grid from three columns down to two, and let the categories run onto two lines.'
     }, {
       title: 'Three breakpoints',
+      src: 'images/odd-jobs/desktop-mockup.png',
+      alt: 'Odd Jobs pages floating beside a desktop monitor',
       imageLabel: 'Desktop, tablet and mobile high fidelity',
       caption: 'These are the final screens at desktop, tablet and mobile.'
     }]
+  }), /*#__PURE__*/React.createElement(WaveRule, {
+    label: "Across the breakpoints"
   }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      paddingTop: 'var(--space-6)'
+    }
+  }, window.BreakpointCompare && /*#__PURE__*/React.createElement(window.BreakpointCompare, {
+    narrow: narrow
+  })), PrototypeEmbed && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(WaveRule, {
+    label: "The prototype"
+  }), /*#__PURE__*/React.createElement(PrototypeEmbed, {
+    narrow: narrow,
+    style: {
+      marginTop: 'var(--space-6)'
+    },
+    fileKey: "Nv8m47T7Du5hBxf9z231sa",
+    fileName: "Gig",
+    flows: [{
+      label: 'Desktop',
+      nodeId: '69:1129',
+      pageId: '1:2',
+      ratio: '16 / 10'
+    }, {
+      label: 'Tablet',
+      nodeId: '244:5053',
+      pageId: '257:3231',
+      ratio: '4 / 3'
+    }, {
+      label: 'Mobile',
+      nodeId: '358:1519',
+      pageId: '358:760',
+      ratio: '9 / 17'
+    }],
+    title: "Odd Jobs interactive prototype",
+    poster: "images/odd-jobs/product-look.png",
+    posterLabel: "Odd Jobs screens at desktop, tablet and mobile",
+    posterAlt: "Odd Jobs screens at desktop, tablet and mobile",
+    caption: "This is the working prototype, so you can click through."
+  })), /*#__PURE__*/React.createElement("div", {
     style: {
       paddingTop: 'var(--section-gap)'
     }
@@ -5582,7 +6148,8 @@ function OddJobs({
       label: 'Video',
       value: 'Walkthrough',
       href: 'https://youtu.be/6o12_j6Wd_c'
-    }]
+    }],
+    note: "I used Claude for concept development and copywriting, so the screens were grounded in real use cases rather than dummy text. ChatGPT image generation made the mockup backgrounds, which were compositional aids, not final design assets."
   })), /*#__PURE__*/React.createElement(Section, null, /*#__PURE__*/React.createElement(NextProject, {
     title: next.title,
     type: P.typeLine(next),
@@ -5600,6 +6167,397 @@ Object.assign(window, {
   OddJobs
 });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/portfolio/OddJobs.jsx", error: String((e && e.message) || e) }); }
+
+// ui_kits/portfolio/OddJobsParts.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/* Odd Jobs page parts built from the process book: the site map, the visual
+   language and the breakpoint comparison. Page-specific, so they live here
+   rather than in the section library. */
+const {
+  Mat: OJMat
+} = window.PardasaniNetDesignSystem_2fc217;
+const ojMono = {
+  fontFamily: 'var(--font-mono)',
+  fontSize: 'var(--text-xs)',
+  letterSpacing: 'var(--tracking-label)'
+};
+const ojBody = {
+  margin: 0,
+  fontFamily: 'var(--font-sans)',
+  fontWeight: 'var(--weight-light)',
+  fontSize: 'var(--text-base)',
+  lineHeight: 'var(--leading-relaxed)',
+  letterSpacing: 'var(--tracking-body)',
+  textWrap: 'pretty'
+};
+const ojH3 = {
+  margin: 0,
+  fontFamily: 'var(--font-sans)',
+  fontWeight: 'var(--weight-light)',
+  fontSize: 'var(--text-lg)',
+  lineHeight: 'var(--leading-snug)',
+  letterSpacing: 'var(--tracking-heading)'
+};
+const SITE = [{
+  page: 'Home',
+  parts: ['Hero and preview', 'How does it work?', 'Verification and security', 'Partner universities']
+}, {
+  page: 'How it Works',
+  parts: ['The concept', 'For hirers and earners', 'Four easy steps', 'FAQ']
+}, {
+  page: 'Earn',
+  parts: ['Search and filter', 'Make a new post', 'Gig cards']
+}, {
+  page: 'Hire',
+  parts: ['Search and filter', 'Make a new post', 'Service cards']
+}];
+function SiteColumn({
+  page,
+  parts
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      ...ojMono,
+      fontSize: 'var(--text-sm)',
+      color: 'var(--text-body)',
+      background: 'var(--surface-raised)',
+      boxShadow: 'var(--shadow-xs)',
+      borderRadius: 'var(--radius-chip)',
+      padding: '8px 14px'
+    }
+  }, page), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginLeft: 18,
+      borderLeft: '1px solid var(--quiet-blue)',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-2)',
+      padding: 'var(--space-3) 0 var(--space-1)'
+    }
+  }, parts.map(p => /*#__PURE__*/React.createElement("div", {
+    key: p,
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 'var(--space-2)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 14,
+      height: 1,
+      background: 'var(--quiet-blue)'
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      ...ojMono,
+      color: 'var(--text-muted)'
+    }
+  }, p)))));
+}
+function SiteMap({
+  narrow
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--surface-mat)',
+      boxShadow: 'var(--mat-inset)',
+      borderRadius: 'var(--radius-panel)',
+      padding: narrow ? 'var(--space-6)' : 'var(--space-7)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: narrow ? '1fr 1fr' : 'repeat(4, minmax(0, 1fr))',
+      gap: narrow ? 'var(--space-6) var(--space-4)' : 'var(--space-5)'
+    }
+  }, SITE.map(c => /*#__PURE__*/React.createElement(SiteColumn, _extends({
+    key: c.page
+  }, c))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      gridColumn: narrow ? '1 / -1' : '3 / 5',
+      borderTop: '1px dashed var(--quiet-blue)',
+      paddingTop: 'var(--space-4)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: narrow ? 'flex-start' : 'center'
+    }
+  }, /*#__PURE__*/React.createElement(SiteColumn, {
+    page: "Job post",
+    parts: ['Details and call to action', 'More like this']
+  }))));
+}
+const SWATCHES = ['#2ebf70', '#e26d64', '#eba29c', '#fce4e4', '#eed0f4', '#b9d6e6', '#ffae7c', '#dbf5d0'];
+function VisualLanguage({
+  narrow
+}) {
+  React.useEffect(() => {
+    if (document.getElementById('oj-shantell')) return;
+    const l = document.createElement('link');
+    l.id = 'oj-shantell';
+    l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;600&display=swap';
+    document.head.appendChild(l);
+  }, []);
+  const specimen = (family, name) => /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-2)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: family,
+      fontSize: narrow ? 56 : 72,
+      lineHeight: 1,
+      color: 'var(--text-body)'
+    }
+  }, "Aa"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      ...ojMono,
+      color: 'var(--text-muted)'
+    }
+  }, name));
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-8)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-5)'
+    }
+  }, /*#__PURE__*/React.createElement("h3", {
+    style: ojH3
+  }, "Mood board"), /*#__PURE__*/React.createElement(OJMat, {
+    ratio: "2000 / 1054",
+    inset: "var(--space-4)",
+    radius: "var(--radius-panel)",
+    src: "images/odd-jobs/pb-12.png",
+    alt: "Mood board of pinned notes, doodles, handwriting and sticky notes"
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: narrow ? '1fr' : 'minmax(0, 1fr) minmax(0, 1.3fr)',
+      gap: narrow ? 'var(--space-7)' : 'var(--space-9)',
+      alignItems: 'start'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-5)'
+    }
+  }, /*#__PURE__*/React.createElement("h3", {
+    style: ojH3
+  }, "Typography"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 'var(--space-8)'
+    }
+  }, specimen('var(--font-mono)', 'Antarctican Mono'), specimen("'Shantell Sans', var(--font-sans)", 'Shantell Sans')), /*#__PURE__*/React.createElement("p", {
+    style: ojBody
+  }, "I tested ten typefaces before settling on the pair the site uses."), /*#__PURE__*/React.createElement("ul", {
+    "aria-label": "The ten typefaces tested",
+    style: {
+      margin: 0,
+      padding: 0,
+      listStyle: 'none',
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 'var(--space-2)'
+    }
+  }, ['Shantell Sans', 'Informal', 'GoodDog New', 'Azo Mono', 'Sweet & Salty', 'ParadroidMono Soft', 'Hey Eloise', 'Montserrat Alternates', 'Monaco', 'Antarctican Mono'].map(n => {
+    const kept = n === 'Shantell Sans' || n === 'Antarctican Mono';
+    return /*#__PURE__*/React.createElement("li", {
+      key: n,
+      style: {
+        ...ojMono,
+        padding: '5px 12px',
+        borderRadius: 'var(--radius-pill)',
+        border: `1px solid ${kept ? 'var(--accent)' : 'var(--line-hairline)'}`,
+        color: kept ? 'var(--accent)' : 'var(--text-muted)'
+      }
+    }, n);
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-5)'
+    }
+  }, /*#__PURE__*/React.createElement("h3", {
+    style: ojH3
+  }, "Colour"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+      gap: 'var(--space-3)'
+    }
+  }, SWATCHES.map(h => /*#__PURE__*/React.createElement("div", {
+    key: h,
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-2)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      aspectRatio: '1 / 1',
+      borderRadius: 'var(--radius-card)',
+      background: h,
+      boxShadow: 'var(--shadow-xs)'
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      ...ojMono,
+      color: 'var(--text-muted)'
+    }
+  }, h)))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-5)'
+    }
+  }, /*#__PURE__*/React.createElement("h3", {
+    style: ojH3
+  }, "Elements"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: narrow ? '1fr' : 'repeat(3, minmax(0, 1fr))',
+      gap: 'var(--space-5)'
+    }
+  }, /*#__PURE__*/React.createElement(OJMat, {
+    ratio: "4 / 3",
+    inset: "var(--space-4)",
+    src: "images/odd-jobs/feature-payout.png",
+    alt: "The price tag, accept and make offer buttons, profile chip and date note",
+    caption: "Price tag, offer buttons, profile chip and date note."
+  }), /*#__PURE__*/React.createElement(OJMat, {
+    ratio: "4 / 3",
+    inset: "var(--space-4)",
+    src: "images/odd-jobs/asset-cards.png",
+    alt: "Four hand-drawn card styles: taped, pinned, clipped and ring-bound",
+    caption: "The four card styles every gig sits on."
+  }), /*#__PURE__*/React.createElement(OJMat, {
+    ratio: "4 / 3",
+    inset: "var(--space-4)",
+    src: "images/odd-jobs/asset-doodles.png",
+    alt: "Doodles of a piggy bank, a shopping cart, a pen and a lightning bolt",
+    caption: "Doodles that mark each category."
+  }))));
+}
+const COMPARE = [{
+  key: 'search',
+  label: 'Search',
+  shots: [['Desktop', 'ba-search-desktop'], ['Tablet', 'ba-search-tablet'], ['Mobile', 'ba-search-mobile']],
+  line: 'Desktop and tablet keep search and posting side by side under one headline. On mobile the menu folds away and the two bars stack, so each one gets the full width.'
+}, {
+  key: 'how',
+  label: 'How it works',
+  shots: [['Desktop', 'ba-how-desktop'], ['Tablet', 'ba-how-tablet'], ['Mobile', 'ba-how-mobile']],
+  line: 'The four security points sit in one row on desktop and drop to a two by two grid on tablet. On mobile only the verification point stays, and the partner logos run off the edge.'
+}, {
+  key: 'steps',
+  label: 'Hire and earn',
+  shots: [['Desktop and tablet', 'ba-steps-desktop'], ['Mobile', 'ba-steps-mobile']],
+  line: 'Desktop and tablet share one layout, with the hire and earn notes side by side. On mobile the notes stack, and the four steps move into a two by two grid.'
+}, {
+  key: 'gigs',
+  label: 'Gig cards',
+  shots: [['Desktop', 'ba-gigs-desktop'], ['Tablet', 'ba-gigs-tablet'], ['Mobile', 'ba-gigs-mobile']],
+  line: 'Desktop runs three cards across beside the filters, and tablet runs two. On mobile the filters collapse into two controls and each card fills the width.'
+}, {
+  key: 'post',
+  label: 'Job post',
+  shots: [['Desktop', 'ba-post-desktop'], ['Tablet', 'ba-post-tablet'], ['Mobile', 'ba-post-mobile']],
+  line: 'On every screen the price, date and accept buttons sit above the photo, so the decision comes before the detail. On mobile each block gets the full width.'
+}];
+function BreakpointCompare({
+  narrow
+}) {
+  const [k, setK] = React.useState(0);
+  const f = COMPARE[k];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-5)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    role: "tablist",
+    "aria-label": "Feature",
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 'var(--space-2)'
+    }
+  }, COMPARE.map((c, i) => /*#__PURE__*/React.createElement("button", {
+    key: c.key,
+    type: "button",
+    role: "tab",
+    "aria-selected": i === k,
+    onClick: () => setK(i),
+    style: {
+      ...ojMono,
+      cursor: 'pointer',
+      padding: '6px 14px',
+      borderRadius: 'var(--radius-pill)',
+      border: `1px solid ${i === k ? 'var(--accent)' : 'var(--line-hairline)'}`,
+      background: i === k ? 'var(--accent)' : 'transparent',
+      color: i === k ? 'var(--bone)' : 'var(--text-body)',
+      transition: 'var(--transition-control)'
+    }
+  }, c.label))), /*#__PURE__*/React.createElement("p", {
+    style: {
+      ...ojBody,
+      maxWidth: 'var(--measure-prose)'
+    }
+  }, f.line), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: narrow ? '1fr' : `repeat(${f.shots.length}, minmax(0, 1fr))`,
+      gap: 'var(--space-5)',
+      alignItems: 'start'
+    }
+  }, f.shots.map(([label, file]) => /*#__PURE__*/React.createElement("div", {
+    key: file,
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--space-3)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      ...ojMono,
+      color: 'var(--text-quiet)'
+    }
+  }, label), /*#__PURE__*/React.createElement(OJMat, {
+    inset: "var(--space-3)"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: `images/odd-jobs/${file}.png`,
+    alt: `${f.label} at ${label.toLowerCase()} width`,
+    style: {
+      display: 'block',
+      width: '100%',
+      height: 'auto'
+    }
+  }))))));
+}
+Object.assign(window, {
+  SiteMap,
+  VisualLanguage,
+  BreakpointCompare
+});
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/portfolio/OddJobsParts.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/portfolio/ProjectHeader.jsx
 try { (() => {
@@ -6714,6 +7672,10 @@ __ds_ns.MediaSplit = __ds_scope.MediaSplit;
 __ds_ns.Opener = __ds_scope.Opener;
 
 __ds_ns.ProcessScroll = __ds_scope.ProcessScroll;
+
+__ds_ns.ProfileCards = __ds_scope.ProfileCards;
+
+__ds_ns.PrototypeEmbed = __ds_scope.PrototypeEmbed;
 
 __ds_ns.WAVE_BOX = __ds_scope.WAVE_BOX;
 
