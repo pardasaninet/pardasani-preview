@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<title>Project data</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="assets/v4.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="background: {{rootBg}}; color: #161616; font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; line-height: 1.55; text-wrap: pretty">
+
+<sc-if value="{{isWork}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; column-gap: 12px; row-gap: 24px; padding-top: 12px">
+<h1 class="t-page c6">Work</h1>
+<div class="c4 chip-row" role="group" aria-label="Filter projects">
+<sc-for list="{{chips}}" as="f" hint-placeholder-count="6">
+<button type="button" class="chip" aria-pressed="{{f.on}}" onClick="{{f.pick}}"><span class="nudge">{{f.name}}</span></button>
+</sc-for>
+</div>
+</div>
+<p class="t-label" aria-live="polite" style="margin-top: var(--gap-w); margin-bottom: var(--gap-s)">/ {{viewLabel}}</p>
+<ul class="row bento" aria-label="Projects" style="list-style: none; margin: 0; padding: 0">
+<sc-for list="{{shown}}" as="p" hint-placeholder-count="8">
+<li class="{{p.span}}" style="height: clamp(300px, 36vw, 460px)">
+<a href="{{p.href}}" class="card" style="height: 100%">
+<span class="card-img" aria-hidden="true"><sc-if value="{{p.src}}" hint-placeholder-val="{{ false }}"><img src="{{p.src}}" alt="" class="{{p.fit}}"></sc-if><sc-if value="{{p.noSrc}}" hint-placeholder-val="{{ true }}"><span class="ph-label">Image: {{p.image}}</span></sc-if></span>
+<span class="cap glass-i"><span class="cap-name">{{p.name}}</span><span class="cap-kind">{{p.kind}}</span></span>
+<span class="arrow glass-i" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M5.5 4.5H11.5V10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</a>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+
+<sc-if value="{{isFeatured}}" hint-placeholder-val="{{ false }}">
+<ul class="row bento" aria-label="Selected work" style="list-style: none; margin: 0; padding: 0">
+<sc-for list="{{featured}}" as="p" hint-placeholder-count="2">
+<li class="{{p.span}}" style="height: clamp(380px, 46vw, 600px)">
+<a href="{{p.href}}" class="card" style="height: 100%">
+<span class="card-img" aria-hidden="true"><sc-if value="{{p.src}}" hint-placeholder-val="{{ false }}"><img src="{{p.src}}" alt="" class="{{p.fit}}"></sc-if><sc-if value="{{p.noSrc}}" hint-placeholder-val="{{ true }}"><span class="ph-label">Image: {{p.image}}</span></sc-if></span>
+<span class="cap glass-i"><span class="cap-name">{{p.name}}</span><span class="cap-sum">{{p.summary}}</span><span class="cap-kind">{{p.featuredKind}}</span></span>
+<span class="arrow glass-i" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M5.5 4.5H11.5V10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</a>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+
+<sc-if value="{{isIndex}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; margin-bottom: var(--gap-s)">
+<h2 class="t-label">/ More work</h2>
+<a href="Work.dc.html" class="mono-link">See all projects <span aria-hidden="true" style="margin-left: 6px">→</span></a>
+</div>
+<div style="position: relative" onMouseLeave="{{ixLeave}}">
+<ul class="ix">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="9">
+<li onMouseEnter="{{r.enter}}"><a href="{{r.href}}" class="ix-row" onFocus="{{r.enter}}" onBlur="{{ixLeave}}"><span class="c5"><span class="ix-name">{{r.name}}</span></span><span class="c5 ix-kind">{{r.kind}}</span></a></li>
+</sc-for>
+</ul>
+<div class="ix-prev" aria-hidden="true" style="left: {{prev.left}}%; top: {{prev.top}}px; height: {{prev.h}}px; opacity: {{prev.op}}; transform: rotate({{prev.rot}}deg) scale({{prev.scale}})"><sc-if value="{{prev.src}}" hint-placeholder-val="{{ false }}"><img src="{{prev.src}}" alt="" style="display: block; width: 100%; height: 100%; object-fit: cover"></sc-if><sc-if value="{{prev.noSrc}}" hint-placeholder-val="{{ true }}"><span class="ph-label">Image: {{prev.image}}</span></sc-if></div>
+</div>
+</sc-if>
+
+<sc-if value="{{isReel}}" hint-placeholder-val="{{ false }}">
+<div class="hero-row">
+<ul class="hero-track" aria-label="Projects">
+<sc-for list="{{reel}}" as="t" hint-placeholder-count="10">
+<li class="hero-tile {{t.dup}}" aria-hidden="{{t.hidden}}"><a href="{{t.href}}" class="hero-link" tabindex="{{t.tab}}"><img src="{{t.src}}" alt="" style="object-position: {{t.focus}}"><span class="hero-cap glass-i">{{t.name}}</span></a></li>
+</sc-for>
+</ul>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"view":{"editor":"enum","options":["work","featured","index","reel"],"default":"work"},"$preview":{"width":1280,"height":4300}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { f: 'All', row: -1, lastRow: 0 };
+  }
+  componentDidMount() {
+    let h = '';
+    try { h = (window.location.hash || '').replace('#', ''); } catch (e) {}
+    const fromHash = { ux: 'UX/UI', brand: 'Brand identity', development: 'Development' }[h];
+    if (fromHash) this.setState({ f: fromHash });
+  }
+  renderVals() {
+    // The single source of project data. Adding a project is one row.
+    // fit says how a card shows its image, and focus is where a hero tile crops it.
+    const PROJECTS = [
+      { slug: 'odd-jobs', name: 'Odd Jobs', kind: 'UX research', filters: ['UX/UI'], image: 'oddjobs-hero.jpg', src: 'assets/oddjobs-hero.jpg', fit: 'fit fit-169 bg-oj', focus: '50% 50%', page: 'OddJobs.dc.html', featured: true, featuredKind: 'UX research, Responsive design', summary: 'Odd Jobs is a take on a job board that focuses on university students.' },
+      { slug: 'thingalicious', name: 'Thingalicious', kind: 'Brand systems', filters: ['Brand identity', 'Packaging'], image: 'thingalicious-hero.jpg', src: 'assets/thingalicious-hero.jpg', fit: 'fit fit-43 bg-th', focus: '50% 50%', page: 'Thingalicious.dc.html', featured: true, featuredKind: 'Brand systems, 3D packaging', summary: 'Thingalicious is a curated fashion jewelry brand, and I lead its creative direction across every place it appears, online and offline.' },
+      { slug: 'delighto', name: 'Delighto.ai', kind: 'Front-end development', filters: ['UX/UI', 'Development'], image: 'delighto-hero.jpg', src: 'assets/delighto-hero.jpg', fit: 'fit fit-169 bg-de', focus: '50% 50%', page: 'Delighto.dc.html' },
+      { slug: 'chai-and-co', name: 'Chai & Co.', kind: 'Mobile UI', filters: ['Brand identity', 'UX/UI'], image: 'chai-hero.jpg', src: 'assets/chai-hero.jpg', fit: 'fit fit-32 bg-ch', focus: '50% 50%', page: 'ChaiAndCo.dc.html' },
+      { slug: 'doberman', name: 'Doberman', kind: 'Brand identity', filters: ['Brand identity'], image: 'doberman-hero.jpg', src: 'assets/doberman-hero.jpg', fit: 'fit fit-cover fit-do', focus: '50% 40%', page: 'Doberman.dc.html' }
+    ];
+    // A chip only shows when at least one project sits under it.
+    const FILTERS = ['All'].concat(['Brand identity', 'Packaging', 'UX/UI', 'Development', 'Visual design'].filter((name) => PROJECTS.some((p) => p.filters.indexOf(name) > -1)));
+    const withHref = (p) => ({ ...p, href: p.page || '#' + p.slug, noSrc: !p.src });
+    const pairUp = (list) => {
+      const n = list.length;
+      return list.map((p, i) => {
+        const left = i % 2 === 0;
+        let span = (Math.floor(i / 2) % 2 === 0) === left ? 'c6' : 'c4';
+        if (left && i === n - 1) span = 'c10';
+        return { ...withHref(p), span };
+      });
+    };
+
+    const view = this.props.view || 'work';
+    const f = this.state.f;
+    const chips = FILTERS.map((name) => ({ name, on: name === f ? 'true' : 'false', pick: () => this.setState({ f: name }) }));
+    const shown = pairUp(PROJECTS.filter((p) => f === 'All' || p.filters.indexOf(f) > -1));
+    const featured = pairUp(PROJECTS.filter((p) => p.featured));
+
+    // The hero row runs the five projects twice, so its drift loops without a seam.
+    const reel = [0, 1].flatMap((copy) => PROJECTS.map((p) => ({ name: p.name, href: p.page, src: p.src, focus: p.focus, dup: copy ? 'hero-dup' : '', hidden: copy ? 'true' : 'false', tab: copy ? '-1' : '0' })));
+
+    const rest = PROJECTS.filter((p) => !p.featured).map(withHref);
+    const ROT = [-4, 3, -2, 5, -5, 2];
+    const LEFT = [66, 71, 63, 69, 64, 72];
+    const HEIGHT = [170, 160, 176, 164, 172, 158];
+    const NUDGE = [-6, 4, -10, 6, -4, 8];
+    const row = this.state.row;
+    const k = row < 0 ? this.state.lastRow : row;
+    const j = k % 6;
+    const rows = rest.map((p, i) => ({ name: p.name, kind: p.kind, href: p.href, enter: () => this.setState({ row: i, lastRow: i }) }));
+    const prev = {
+      left: LEFT[j], top: k * 64 + 32 - HEIGHT[j] / 2 + NUDGE[j], h: HEIGHT[j], rot: ROT[j],
+      op: row < 0 ? 0 : 1, scale: row < 0 ? 0.94 : 1, image: rest[k] ? rest[k].image : '',
+      src: rest[k] && rest[k].src ? rest[k].src : '', noSrc: !(rest[k] && rest[k].src)
+    };
+
+    return {
+      isWork: view === 'work',
+      isFeatured: view === 'featured',
+      isIndex: view === 'index',
+      isReel: view === 'reel',
+      rootBg: view === 'reel' ? 'transparent' : '#f1f0ec',
+      reel,
+      chips,
+      viewLabel: f === 'All' ? 'All work' : f,
+      shown,
+      featured,
+      rows,
+      prev,
+      ixLeave: () => this.setState({ row: -1 })
+    };
+  }
+}
+</script>
+</body>
+</html>

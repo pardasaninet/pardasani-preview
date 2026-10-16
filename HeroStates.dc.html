@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<title>Hero states</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="assets/v4.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="box-sizing: border-box; min-height: 100%; padding: 40px 44px 56px; background: #f1f0ec; color: #161616; font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; display: flex; flex-direction: column; gap: 56px">
+
+<section style="display: flex; flex-direction: column; gap: 14px">
+<p class="t-label">/ Laptop, 1440 × 900. The box is 1392px wide. Widgets 3 by 2 on the right, 160px cells. Music at rest, weather as it shows here</p>
+<div style="width: 1392px"><dc-import name="Hero" hint-size="1392px,572px"></dc-import></div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 14px">
+<p class="t-label">/ Desktop, 1280. The box is 1232px wide. Widgets 3 by 2 on the right, 160px cells. Music playing with shuffle on, weather loading</p>
+<div style="width: 1232px"><dc-import name="Hero" music="playing" weather="loading" hint-size="1232px,552px"></dc-import></div>
+</section>
+
+<div style="display: flex; align-items: flex-start; gap: 56px">
+<section style="display: flex; flex-direction: column; gap: 14px">
+<p class="t-label">/ Tablet, 768. The box is 739px wide. Widgets 4 by 2 under the intro, 160px cells. Weather sunny, by day</p>
+<div style="width: 739px"><dc-import name="Hero" weather="sunny" hint-size="739px,600px"></dc-import></div>
+</section>
+<section style="display: flex; flex-direction: column; gap: 14px">
+<p class="t-label">/ Phone, 390. The box is 366px wide. Widgets 2 by 2 under the intro, 153px cells, no logo. Weather failed</p>
+<div style="width: 366px"><dc-import name="Hero" weather="failed" hint-size="366px,600px"></dc-import></div>
+</section>
+</div>
+
+<section style="display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<p class="t-label">/ Weather widget. Four states by day and by night, then loading and a failed request, at the hero cell size for each width</p>
+<p class="t-label" style="color: #4a4946">/ Numbers stay as brackets here because this canvas can't fetch. On the site the one request on page load fills them</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<p class="t-kind" style="margin: 0; color: #4a4946">Desktop, laptop and tablet, the 160px cell</p>
+<div style="display: flex; align-items: flex-start; gap: 16px">
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 160px"><dc-import name="Weather" weather="sunny" night="no" style="display: block; width: 160px; height: 160px" hint-size="160px,160px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Sunny, day</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 160px"><dc-import name="Weather" weather="sunny" night="yes" style="display: block; width: 160px; height: 160px" hint-size="160px,160px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Sunny, night</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 160px"><dc-import name="Weather" weather="cloudy" night="no" style="display: block; width: 160px; height: 160px" hint-size="160px,160px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Cloudy, day</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 160px"><dc-import name="Weather" weather="cloudy" night="yes" style="display: block; width: 160px; height: 160px" hint-size="160px,160px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Cloudy, night</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 160px"><dc-import name="Weather" weather="rainy" night="no" style="display: block; width: 160px; height: 160px" hint-size="160px,160px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Rainy, day</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 160px"><dc-import name="Weather" weather="rainy" night="yes" style="display: block; width: 160px; height: 160px" hint-size="160px,160px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Rainy, night</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 160px"><dc-import name="Weather" weather="snowy" night="no" style="display: block; width: 160px; height: 160px" hint-size="160px,160px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Snowy, day</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 160px"><dc-import name="Weather" weather="snowy" night="yes" style="display: block; width: 160px; height: 160px" hint-size="160px,160px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Snowy, night</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 160px"><dc-import name="Weather" weather="loading" night="no" style="display: block; width: 160px; height: 160px" hint-size="160px,160px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Loading</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 160px"><dc-import name="Weather" weather="failed" night="no" style="display: block; width: 160px; height: 160px" hint-size="160px,160px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Request failed</figcaption></figure>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<p class="t-kind" style="margin: 0; color: #4a4946">Phone, the 153px cell at 390</p>
+<div style="display: flex; align-items: flex-start; gap: 16px">
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 153px"><dc-import name="Weather" weather="sunny" night="no" style="display: block; width: 153px; height: 153px" hint-size="153px,153px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Sunny, day</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 153px"><dc-import name="Weather" weather="sunny" night="yes" style="display: block; width: 153px; height: 153px" hint-size="153px,153px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Sunny, night</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 153px"><dc-import name="Weather" weather="cloudy" night="no" style="display: block; width: 153px; height: 153px" hint-size="153px,153px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Cloudy, day</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 153px"><dc-import name="Weather" weather="cloudy" night="yes" style="display: block; width: 153px; height: 153px" hint-size="153px,153px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Cloudy, night</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 153px"><dc-import name="Weather" weather="rainy" night="no" style="display: block; width: 153px; height: 153px" hint-size="153px,153px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Rainy, day</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 153px"><dc-import name="Weather" weather="rainy" night="yes" style="display: block; width: 153px; height: 153px" hint-size="153px,153px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Rainy, night</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 153px"><dc-import name="Weather" weather="snowy" night="no" style="display: block; width: 153px; height: 153px" hint-size="153px,153px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Snowy, day</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 153px"><dc-import name="Weather" weather="snowy" night="yes" style="display: block; width: 153px; height: 153px" hint-size="153px,153px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Snowy, night</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 153px"><dc-import name="Weather" weather="loading" night="no" style="display: block; width: 153px; height: 153px" hint-size="153px,153px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Loading</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px; width: 153px"><dc-import name="Weather" weather="failed" night="no" style="display: block; width: 153px; height: 153px" hint-size="153px,153px"></dc-import><figcaption class="t-kind" style="color: #4a4946">Request failed</figcaption></figure>
+</div>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":2110,"height":2700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

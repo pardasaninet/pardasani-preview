@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<title>Site components</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+:root{--ground:#f1f0ec;--ink:#161616;--body:#3b3a37;--muted:#5f5e5a;--tone2:#85837d;--hairline:#c9c7c0;--tile:#e4e2dc;--surface:#f8f7f3;--placeholder:#d3d1ca;--outline:rgba(22,22,22,0.14);--gradient:radial-gradient(90% 85% at 0% 100%,#b49d91 0%,rgba(180,157,145,0) 62%),radial-gradient(70% 80% at 100% 10%,#74b0df 0%,rgba(116,176,223,0) 65%),radial-gradient(60% 70% at 100% 100%,#8fb9d2 0%,rgba(143,185,210,0) 70%),linear-gradient(135deg,#2456ac 0%,#3f7fc8 45%,#8fb9d2 100%);--gradient-solid:#2c5ea8;--glass-gradient-fill:rgba(241,240,236,0.18);--glass-gradient-line:rgba(241,240,236,0.65);--glass-image-fill:rgba(241,240,236,0.72);--glass-image-line:rgba(255,255,255,0.8);--r-media:20px;--r-chip:14px;--r-pill:999px;--margin:clamp(12px,1.875vw,24px);--gap-t:12px;--gap-s:clamp(24px,3.1vw,40px);--gap-w:clamp(120px,15.6vw,200px);--ease:cubic-bezier(0.2,0.8,0.2,1);--sans:'Funnel Sans',ui-sans-serif,system-ui,sans-serif;--mono:'Antarctican Mono','IBM Plex Mono',ui-monospace,monospace}
+.root{min-height:100%;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;text-wrap:pretty;-webkit-font-smoothing:antialiased}
+.root h1,.root h2,.root h3,.root h4{text-wrap:balance}
+.gradient{background:var(--gradient)}
+.glass-g{background:var(--glass-gradient-fill);border:1px solid var(--glass-gradient-line);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);color:var(--ground)}
+.glass-i{background:var(--glass-image-fill);border:1px solid var(--glass-image-line);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);color:var(--ink)}
+.frost{background:rgba(241,240,236,0.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.solid .glass-g,.glass-g.solid{background:var(--gradient-solid);-webkit-backdrop-filter:none;backdrop-filter:none}
+.solid .glass-i,.glass-i.solid,.solid .frost,.frost.solid{background:var(--ground);-webkit-backdrop-filter:none;backdrop-filter:none}
+@media (prefers-reduced-transparency:reduce){.glass-g{background:var(--gradient-solid);-webkit-backdrop-filter:none;backdrop-filter:none}.glass-i,.frost{background:var(--ground);-webkit-backdrop-filter:none;backdrop-filter:none}}
+.grain{position:absolute;inset:0;width:100%;height:100%;opacity:0.04;pointer-events:none}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.t-label{margin:0;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;line-height:1.35}
+.t-kind{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;line-height:1.35}
+.t-tag{display:inline-flex;align-items:center;min-height:26px;padding:0 10px;box-sizing:border-box;border:1px solid currentColor;border-radius:999px;font-family:var(--mono);font-size:11px;letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap;line-height:1}
+.t-code{font-family:var(--mono);font-size:12px;letter-spacing:0;text-transform:none}
+.t-page{margin:0;font-size:clamp(88px,21vw,270px);font-weight:800;letter-spacing:-0.07em;line-height:0.78}
+.t-case{margin:0;font-size:clamp(64px,17vw,218px);font-weight:800;letter-spacing:-0.065em;line-height:0.8}
+.t-statement{margin:0;font-size:clamp(24px,2.5vw,32px);font-weight:500;letter-spacing:-0.022em;line-height:1.2}
+.t-quote{margin:0;font-size:clamp(26px,2.7vw,34px);font-weight:500;letter-spacing:-0.022em;line-height:1.2}
+.t-heading{margin:0;font-size:clamp(21px,1.9vw,24px);font-weight:700;letter-spacing:-0.025em;line-height:1.15}
+.t-body{margin:0;font-size:clamp(16px,1.42vw,18px);line-height:1.55;color:var(--body)}
+.tone2{color:var(--tone2)}
+.nudge{display:inline-block;transform:translateY(-0.06em)}
+.split,.row{display:flex;flex-wrap:wrap;column-gap:12px}
+.split{row-gap:var(--gap-s)}
+.row{row-gap:12px}
+/* Bento grids (project cards, About tiles): 14px gaps, a touch wider than the 12px page grid */
+.bento{column-gap:14px;row-gap:14px}
+.bento>.c4{width:clamp(calc((100% - 126px) * 0.4 + 42px),calc((720px - 100%) * 999),100%)}
+.bento>.c6{width:clamp(calc((100% - 126px) * 0.6 + 70px),calc((720px - 100%) * 999),100%)}
+.c2,.c3,.c4,.c5,.c6,.c7{flex:none;min-width:0}
+.c2{width:clamp(calc((100% - 108px) * 0.2 + 12px),calc((720px - 100%) * 999),calc(50% - 6px))}
+.c3{width:clamp(calc((100% - 108px) * 0.3 + 24px),calc((720px - 100%) * 999),100%)}
+.c4{width:clamp(calc((100% - 108px) * 0.4 + 36px),calc((720px - 100%) * 999),100%)}
+.c5{width:clamp(calc((100% - 108px) * 0.5 + 48px),calc((720px - 100%) * 999),100%)}
+.c6{width:clamp(calc((100% - 108px) * 0.6 + 60px),calc((720px - 100%) * 999),100%)}
+.c7{width:clamp(calc((100% - 108px) * 0.7 + 72px),calc((720px - 100%) * 999),100%)}
+.c10{flex:none;width:100%;min-width:0}
+.o5{margin-left:clamp(0px,calc((100% - 720px) * 999),calc((100% - 108px) * 0.5 + 60px))}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.on-dark a:focus-visible,.on-dark button:focus-visible{outline-color:var(--ground)}
+.is-focus{outline:2px solid var(--ink);outline-offset:3px}
+.on-dark .is-focus{outline-color:var(--ground)}
+.still,.still *{transition-duration:0.01ms!important;transition-delay:0s!important}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:4px var(--margin)}
+.nav-home{display:flex;align-items:center;gap:8px;min-height:44px;color:var(--ink);text-decoration:none;font-size:15px;font-weight:800;letter-spacing:-0.02em;white-space:nowrap}
+.nav-home img{display:block;width:27px;height:28px}
+.nav-links{display:flex;align-items:center;margin-right:-10px}
+.nav-link{display:flex;align-items:center;min-height:44px;padding:0 10px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color 160ms var(--ease)}
+.nav-link:hover,.nav-link.is-hover{color:var(--ink)}
+.nav-link[aria-current="page"]{color:var(--ink);font-weight:600}
+@media (max-width:540px){.nav-name{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.nav-link{padding:0 8px}.nav-links{margin-right:-8px}}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 18px;box-sizing:border-box;border-radius:999px;text-decoration:none;font-size:15px;font-weight:600;white-space:nowrap;transition:background-color 160ms var(--ease)}
+.glass-g.pill:hover,.glass-g.pill.is-hover{background:rgba(241,240,236,0.32)}
+.hero-window{--wp:clamp(16px,1.9vw,24px);padding:var(--wp);gap:clamp(16px,1.6vw,24px)}
+.hero-intro{position:relative;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.hero-line{margin:0;max-width:50%;font-size:clamp(15px,1.33vw,17px);line-height:1.55;color:var(--ground)}
+.hero-copy{display:flex;flex-direction:column;align-items:flex-start;gap:16px;flex:1;min-width:0}
+.btn-pill{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;box-sizing:border-box;border:1px solid var(--ink);border-radius:999px;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;font-weight:600;line-height:1;text-decoration:none;white-space:nowrap;transition:background-color 160ms var(--ease),color 160ms var(--ease)}
+.btn-pill:hover,.btn-pill.is-hover{background:var(--ink);color:var(--ground)}
+.hero-mark{position:relative;flex:none;width:58px;height:60px}
+.hero-loop{position:absolute;display:block;transform:translate(-50%,-50%);transition:left 700ms var(--ease),top 700ms var(--ease),opacity 500ms var(--ease)}
+.hero-bleed{position:relative;margin:0 calc(-1 * var(--wp))}
+@media (max-width:719px){.hero-line{max-width:none}}
+.chip{position:relative;display:inline-flex;align-items:center;min-height:36px;padding:0 14px;box-sizing:border-box;border-radius:999px;border:1px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;transition:background-color 160ms var(--ease),color 160ms var(--ease)}
+.chip::before{content:"";position:absolute;inset:-4px -3px}
+.chip:hover,.chip.is-hover{background:rgba(22,22,22,0.06)}
+.chip[aria-pressed="true"],.chip.is-active{background:var(--ink);color:var(--ground)}
+.card{position:relative;display:block;overflow:hidden;border-radius:var(--r-media);background:var(--placeholder);color:var(--ink);text-decoration:none;isolation:isolate}
+/* Raised glass edge: the softest shadow underneath and a hairline of light inside the edge, so cards lift off the page without darkening it */
+:root{--raise:0 1px 2px rgba(22,22,22,0.05),0 6px 16px -10px rgba(22,22,22,0.12);--raise-in:inset 0 1px 0 rgba(255,255,255,0.55),inset 0 0 0 1px rgba(255,255,255,0.22)}
+.card,.tile{box-shadow:var(--raise)}
+.card::after,.tile::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:var(--raise-in);pointer-events:none;z-index:5}
+.card-img{position:absolute;inset:0;background:var(--placeholder);transition:transform 520ms var(--ease)}
+.card:hover .card-img,.card.is-hover .card-img{transform:scale(1.03)}
+.ph{position:relative;overflow:hidden;border-radius:var(--r-media);background:var(--placeholder)}
+.ph-label{position:absolute;top:14px;left:16px;right:16px;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;line-height:1.4;color:#4a4946}
+.cap{position:absolute;left:12px;bottom:12px;max-width:calc(100% - 92px);box-sizing:border-box;display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:var(--r-chip)}
+.cap-name{font-size:clamp(17px,1.56vw,20px);font-weight:700;letter-spacing:-0.02em;line-height:1.15}
+.cap-sum{font-size:13px;line-height:1.4;color:var(--body)}
+.cap-kind{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
+.arrow{position:absolute;right:12px;bottom:12px;width:44px;height:44px;box-sizing:border-box;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background-color 200ms var(--ease),color 200ms var(--ease),border-color 200ms var(--ease)}
+.card:hover .arrow,.card.is-hover .arrow{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.ix{position:relative;list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.ix-row{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px;row-gap:2px;min-height:64px;box-sizing:border-box;padding:18px 0 14px;border-bottom:1px solid var(--hairline);color:var(--ink);text-decoration:none}
+.ix-name{display:inline-block;font-size:clamp(18px,1.7vw,22px);font-weight:600;letter-spacing:-0.015em;line-height:1.2;transition:transform 260ms var(--ease)}
+.ix-row:hover .ix-name,.ix-row:focus-visible .ix-name,.ix-row.is-hover .ix-name{transform:translateX(8px)}
+.ix-kind{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
+.ix-prev{position:absolute;z-index:3;width:240px;border-radius:var(--r-media);overflow:hidden;background:var(--placeholder);pointer-events:none;transition:top 260ms var(--ease),left 260ms var(--ease),height 260ms var(--ease),transform 260ms var(--ease),opacity 180ms ease}
+@media (hover:none),(max-width:719px){.ix-prev{display:none}}
+.foot{position:relative;overflow:hidden;border-radius:20px 20px 0 0;color:var(--ground);padding:clamp(64px,10vw,128px) var(--margin) 12px}
+.foot-link{display:inline-flex;align-items:center;min-height:44px;color:var(--ground);text-decoration:none;font-size:14px}
+.foot-link:hover{text-decoration:underline;text-underline-offset:4px}
+.email{margin:0;padding:0;background:none;border:0;color:var(--ground);font-family:var(--sans);font-size:clamp(34px,8.8vw,112px);font-weight:800;letter-spacing:-0.055em;line-height:0.95;text-align:left;overflow-wrap:anywhere;text-decoration:underline;text-decoration-thickness:0.035em;text-underline-offset:0.12em;cursor:copy}
+.icon-btn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;box-sizing:border-box;border-radius:50%;color:inherit;transition:background-color 160ms var(--ease)}
+.glass-g.icon-btn:hover{background:rgba(241,240,236,0.32)}
+.sheet{padding:clamp(32px,4vw,56px) var(--margin) 0}
+.sec{margin-top:clamp(96px,10vw,128px);padding-top:12px;border-top:1px solid var(--ink)}
+.sec-head{margin-bottom:var(--gap-s)}
+.sec-title{margin:0;font-size:clamp(21px,1.9vw,24px);font-weight:700;letter-spacing:-0.025em;line-height:1.15}
+.note{margin:0;font-size:15px;line-height:1.55;color:var(--body)}
+.states{display:flex;flex-wrap:wrap;gap:24px 12px}
+.state-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:24px 12px}
+.state{flex:1 1 260px;min-width:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.state-label{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
+.frame{position:relative;overflow:hidden;border-radius:14px;background:var(--ground);outline:1px solid var(--outline);outline-offset:-1px}
+.ctl{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;box-sizing:border-box;border-radius:999px;border:1px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer}
+.ctl:hover{background:rgba(22,22,22,0.06)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:0.01ms!important;transition-delay:0s!important;animation-duration:0.01ms!important}}
+</style>
+</helmet>
+<div id="top" class="root {{rootClass}}">
+<svg width="0" height="0" aria-hidden="true" style="position: absolute"><filter id="grain-site" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter></svg>
+
+<div class="frost" style="position: sticky; top: 0; z-index: 20">
+<nav class="nav" aria-label="Main">
+<a href="#top" class="nav-home" aria-label="mannat pardasani, home"><img src="assets/logo-mark.svg" alt="" width="27" height="28"><span class="nav-name">mannat pardasani</span></a>
+<div class="nav-links"><a href="#work" class="nav-link">Work</a><a href="#about" class="nav-link">About</a><a href="#contact" class="nav-link">Contact</a><a href="#resume" class="nav-link">Resume</a></div>
+</nav>
+</div>
+
+<main class="sheet">
+
+<header>
+<h1 class="t-case">Site</h1>
+<div class="split" style="margin-top: var(--gap-s)">
+<p class="t-label c5">/ Components</p>
+<p class="t-statement c5">These are the parts every page is built from. <span class="tone2">Each one shows its states side by side, and the strip at the top of this sheet is the live nav.</span></p>
+</div>
+</header>
+
+<section class="sec" aria-labelledby="h-nav">
+<div class="split sec-head">
+<h2 id="h-nav" class="sec-title c5">Nav</h2>
+<div class="c5" style="display: flex; flex-direction: column; gap: 10px">
+<p class="note">The nav is a sticky, faintly frosted strip with no divider line. Links are grey until they're hovered, the current page turns ink and semibold, and the last link's text lines up with the right edge of the grid.</p>
+<p class="note">Below 540px wide, the name beside the mark is hidden so the four links still fit on one line. It stays in the link's label for screen readers.</p>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px">
+<sc-for list="{{navStates}}" as="n" hint-placeholder-count="5">
+<figure class="state" style="flex: none">
+<div class="frame" style="background: {{n.bg}}">
+<sc-if value="{{n.image}}" hint-placeholder-val="{{ false }}"><span class="ph-label" aria-hidden="true" style="top: 18px; left: 40%">Image scrolling under the nav</span></sc-if>
+<div class="frost" style="position: relative">
+<nav class="nav" aria-label="{{n.aria}}">
+<a href="#top" class="nav-home" aria-label="mannat pardasani, home"><img src="assets/logo-mark.svg" alt="" width="27" height="28"><span class="nav-name">mannat pardasani</span></a>
+<div class="nav-links"><a href="#work" class="nav-link {{n.workCls}}" aria-current="{{n.workCur}}">Work</a><a href="#about" class="nav-link {{n.aboutCls}}">About</a><a href="#contact" class="nav-link">Contact</a><a href="#resume" class="nav-link">Resume</a></div>
+</nav>
+</div>
+</div>
+<figcaption class="state-label">{{n.label}}</figcaption>
+</figure>
+</sc-for>
+</div>
+</section>
+
+<section class="sec" aria-labelledby="h-hero">
+<div class="split sec-head">
+<h2 id="h-hero" class="sec-title c5">Hero window</h2>
+<div class="c5" style="display: flex; flex-direction: column; gap: 10px">
+<p class="note">The gradient window sits 4px below the nav. The name spans its top, and under it everything sits on a widget grid of square cells with 12px gaps and 24px padding, sized by the box's width through container queries. The box has six columns from 880px wide, four from 520px and two below that. Widgets come in three shapes, small, medium and large, so the grid never leaves a gap.</p>
+<p class="note">The intro sits straight on the gradient over the deep blue. The widgets are light glass with ink text, 20px corners and 16px padding: music, New York weather, a photo and the logo as an app icon. Their states are on the Hero states board.</p>
+<p class="t-code" style="margin: 0; color: var(--muted)">cells: (box width minus gaps) divided by 6, 4 or 2. Widgets: rgba(241,240,236,0.72) fill, 1px rgba(255,255,255,0.8) border, blur(16px) saturate(150%)</p>
+</div>
+</div>
+<div class="frame">
+<div class="frost"><nav class="nav" aria-label="Main, hero example"><a href="#top" class="nav-home" aria-label="mannat pardasani, home"><img src="assets/logo-mark.svg" alt="" width="27" height="28"><span class="nav-name">mannat pardasani</span></a><div class="nav-links"><a href="#work" class="nav-link">Work</a><a href="#about" class="nav-link">About</a><a href="#contact" class="nav-link">Contact</a><a href="#resume" class="nav-link">Resume</a></div></nav></div>
+<div style="padding: 4px var(--margin) var(--margin)">
+<dc-import name="Hero" hint-size="100%,620px"></dc-import>
+</div>
+</div>
+<div class="states" style="margin-top: var(--gap-s)">
+<figure class="state"><div class="gradient on-dark" style="height: 120px; overflow: hidden; border-radius: 14px; display: flex; align-items: flex-start; padding: 20px; box-sizing: border-box"><span style="position: relative; isolation: isolate; display: inline-flex"><a href="#resume" class="pill glass-g"><span class="nudge">Resume</span><span aria-hidden="true">↗</span></a></span></div><figcaption class="state-label">Pill, default</figcaption></figure>
+<figure class="state"><div class="gradient on-dark" style="height: 120px; overflow: hidden; border-radius: 14px; display: flex; align-items: flex-start; padding: 20px; box-sizing: border-box"><span style="position: relative; isolation: isolate; display: inline-flex"><a href="#resume" class="pill glass-g is-hover"><span class="nudge">Resume</span><span aria-hidden="true">↗</span></a></span></div><figcaption class="state-label">Pill, hover</figcaption></figure>
+<figure class="state"><div class="gradient on-dark" style="height: 120px; overflow: hidden; border-radius: 14px; display: flex; align-items: flex-start; padding: 20px; box-sizing: border-box"><span style="position: relative; isolation: isolate; display: inline-flex"><a href="#resume" class="pill glass-g is-focus"><span class="nudge">Resume</span><span aria-hidden="true">↗</span></a></span></div><figcaption class="state-label">Pill, keyboard focus</figcaption></figure>
+<figure class="state"><div class="gradient on-dark" style="height: 120px; overflow: hidden; border-radius: 14px; display: flex; align-items: flex-start; gap: 6px; padding: 20px; box-sizing: border-box"><a href="#resume" class="pill glass-g solid"><span class="nudge">Resume</span><span aria-hidden="true">↗</span></a></div><figcaption class="state-label">Reduced transparency</figcaption></figure>
+<figure class="state"><div style="height: 120px; overflow: hidden; border-radius: 14px; display: flex; align-items: flex-start; justify-content: flex-end; padding: 20px; box-sizing: border-box; background: var(--ground); border: 1px solid var(--outline)"><a href="#work" class="btn-pill"><span class="nudge">View more</span></a></div><figcaption class="state-label">View more under the Home cards</figcaption></figure>
+<figure class="state"><div style="height: 120px; overflow: hidden; border-radius: 14px; display: flex; align-items: flex-start; justify-content: flex-end; padding: 20px; box-sizing: border-box; background: var(--ground); border: 1px solid var(--outline)"><a href="#work" class="btn-pill is-hover"><span class="nudge">View more</span></a></div><figcaption class="state-label">View more, hover</figcaption></figure>
+</div>
+</section>
+
+<section class="sec" aria-labelledby="h-card">
+<div class="split sec-head">
+<h2 id="h-card" class="sec-title c5">Project card</h2>
+<div class="c5" style="display: flex; flex-direction: column; gap: 10px">
+<p class="note">Each image keeps its whole subject. Mockups sit on their own backdrop colour, pinned to the top in cards taller than the image and centred in wider ones, and photos crop around a focal point. A glass caption sits 12px in from the bottom left with the name, an optional one-line summary and the kind, and a round glass arrow sits in the bottom right. The whole card is one link.</p>
+<p class="note">On hover, the image eases in by 3% and the arrow fills with ink.</p>
+</div>
+</div>
+<div class="state-grid">
+<sc-for list="{{cardStates}}" as="c" hint-placeholder-count="5">
+<figure class="state">
+<a href="#project" class="card {{c.cls}}" style="height: 360px">
+<span class="card-img" aria-hidden="true"><span class="ph-label">Image: {{c.img}}</span></span>
+<span class="cap glass-i {{c.solid}}"><span class="cap-name">{{c.name}}</span><sc-if value="{{c.sum}}" hint-placeholder-val="{{ true }}"><span class="cap-sum">{{c.sum}}</span></sc-if><span class="cap-kind">{{c.kind}}</span></span>
+<span class="arrow glass-i {{c.solid}}" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M5.5 4.5H11.5V10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</a>
+<figcaption class="state-label">{{c.label}}</figcaption>
+</figure>
+</sc-for>
+</div>
+</section>
+
+<section class="sec" aria-labelledby="h-pair">
+<div class="split sec-head">
+<h2 id="h-pair" class="sec-title c5">Card pair</h2>
+<div class="c5" style="display: flex; flex-direction: column; gap: 10px">
+<p class="note">Two cards share a row at the same height, one six columns wide and one four, 12px apart. Rows alternate wide then narrow, then narrow then wide, and a last card on its own goes full width.</p>
+<p class="t-code" style="margin: 0; color: var(--muted)">row height clamp(300px, 36vw, 460px)</p>
+</div>
+</div>
+<div class="row">
+<sc-for list="{{pair}}" as="c" hint-placeholder-count="5">
+<a href="#project" class="card {{c.span}}" style="height: clamp(300px, 36vw, 460px)">
+<span class="card-img" aria-hidden="true"><span class="ph-label">Image: {{c.img}}</span></span>
+<span class="cap glass-i"><span class="cap-name">{{c.name}}</span><sc-if value="{{c.sum}}" hint-placeholder-val="{{ false }}"><span class="cap-sum">{{c.sum}}</span></sc-if><span class="cap-kind">{{c.kind}}</span></span>
+<span class="arrow glass-i" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M5.5 4.5H11.5V10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</a>
+</sc-for>
+</div>
+</section>
+
+<section class="sec" aria-labelledby="h-filter">
+<div class="split sec-head">
+<h2 id="h-filter" class="sec-title c5">Filter chips</h2>
+<div class="c5" style="display: flex; flex-direction: column; gap: 10px">
+<p class="note">The chips sit at the top of Work. The active chip fills with ink, and the label above the grid names the current view and changes as you filter. There's no result count.</p>
+<p class="note">Each chip is 36px tall and carries an invisible 44px hit area.</p>
+</div>
+</div>
+<div class="states" style="margin-bottom: var(--gap-s)">
+<figure class="state" style="flex: 0 1 auto"><div style="padding: 8px 0"><button type="button" class="chip"><span class="nudge">Packaging</span></button></div><figcaption class="state-label">Default</figcaption></figure>
+<figure class="state" style="flex: 0 1 auto"><div style="padding: 8px 0"><button type="button" class="chip is-hover"><span class="nudge">Packaging</span></button></div><figcaption class="state-label">Hover</figcaption></figure>
+<figure class="state" style="flex: 0 1 auto"><div style="padding: 8px 0"><button type="button" class="chip is-active"><span class="nudge">Packaging</span></button></div><figcaption class="state-label">Active</figcaption></figure>
+<figure class="state" style="flex: 0 1 auto"><div style="padding: 8px 0"><button type="button" class="chip is-focus"><span class="nudge">Packaging</span></button></div><figcaption class="state-label">Keyboard focus</figcaption></figure>
+</div>
+<div class="frame" style="padding: var(--margin)">
+<div role="group" aria-label="Filter projects" style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{chips}}" as="f" hint-placeholder-count="6">
+<button type="button" class="chip" aria-pressed="{{f.on}}" onClick="{{f.pick}}"><span class="nudge">{{f.name}}</span></button>
+</sc-for>
+</div>
+<p class="t-label" aria-live="polite" style="margin-top: var(--gap-s); margin-bottom: var(--gap-s)">/ {{viewLabel}}</p>
+<div class="row">
+<sc-for list="{{shown}}" as="c" hint-placeholder-count="6">
+<a href="#project" class="card {{c.span}}" style="height: 200px">
+<span class="card-img" aria-hidden="true"><span class="ph-label">Image: {{c.img}}</span></span>
+<span class="cap glass-i"><span class="cap-name">{{c.name}}</span><span class="cap-kind">{{c.kind}}</span></span>
+<span class="arrow glass-i" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M5.5 4.5H11.5V10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</a>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section class="sec" aria-labelledby="h-tags">
+<div class="split sec-head">
+<h2 id="h-tags" class="sec-title c5">Tags</h2>
+<p class="note c5">Tags are outlined pills in mono caps. They name skills in the credits and on About, and they never link anywhere.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="t-tag">UX research</span><span class="t-tag">Information architecture</span><span class="t-tag">Personas</span><span class="t-tag">User flows</span><span class="t-tag">Wireframing</span><span class="t-tag">Brand identity</span><span class="t-tag">Packaging design</span>
+</div>
+</section>
+
+<section class="sec" aria-labelledby="h-index">
+<div class="split sec-head">
+<h2 id="h-index" class="sec-title c5">Index list with hover preview</h2>
+<div class="c5" style="display: flex; flex-direction: column; gap: 10px">
+<p class="note">Hovering a row, or reaching it with the keyboard, slides the name 8px right and brings in a 240px preview of that project. Each row has its own tilt, position and height so the preview feels hand-placed, and it glides between rows over 260ms.</p>
+<p class="note">This list opens on Chai &amp; Co. so the preview shows here. Touch screens and narrow screens get the plain list.</p>
+</div>
+</div>
+<div style="position: relative" onMouseLeave="{{ixLeave}}">
+<ul class="ix">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+<li onMouseEnter="{{r.enter}}"><a href="#project" class="ix-row {{r.cls}}" onFocus="{{r.enter}}" onBlur="{{ixLeave}}"><span class="c5"><span class="ix-name">{{r.name}}</span></span><span class="c5 ix-kind">{{r.kind}}</span></a></li>
+</sc-for>
+</ul>
+<div class="ix-prev" aria-hidden="true" style="left: {{prev.left}}%; top: {{prev.top}}px; height: {{prev.h}}px; opacity: {{prev.op}}; transform: rotate({{prev.rot}}deg) scale({{prev.scale}})"><span class="ph-label">Image: {{prev.img}}</span></div>
+</div>
+</section>
+
+<section class="sec" aria-labelledby="h-foot">
+<div class="split sec-head">
+<h2 id="h-foot" class="sec-title c5">Footer</h2>
+<div class="c5" style="display: flex; flex-direction: column; gap: 10px">
+<p class="note">The footer ends every page on the gradient, full width with 20px top corners. The label and the availability sentence sit together on the cobalt side. The email is one button that copies itself, and the word Copied appears under it only after the click.</p>
+<p class="note">The live footer closing this sheet is the same component every page mounts.</p>
+<p class="note">The LinkedIn and Instagram icons are from Font Awesome Free, credited in the code.</p>
+</div>
+</div>
+<figure class="state" style="flex: none">
+<div class="gradient on-dark" style="position: relative; border-radius: 20px; overflow: hidden; padding: 40px var(--margin) 40px; color: var(--ground)">
+<svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain-site)"></rect></svg>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(22, 22, 22, 0.2) 0%, rgba(22, 22, 22, 0.55) 60%, rgba(22, 22, 22, 0.62) 100%)"></div>
+<div style="position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 12px">
+<span class="email" style="display: block; cursor: default">mannat@pardasani.net</span>
+<span class="t-label">Copied</span>
+<span class="pill glass-g"><span class="nudge">Resume</span><span aria-hidden="true">↗</span></span>
+</div>
+</div>
+<figcaption class="state-label">After the click</figcaption>
+</figure>
+</section>
+
+</main>
+
+<div style="margin-top: clamp(96px, 10vw, 128px)"><dc-import name="Footer" hint-size="100%,1000px"></dc-import></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"reducedTransparency":{"editor":"boolean","default":false,"section":"Preview"},"reducedMotion":{"editor":"boolean","default":false,"section":"Preview"},"$preview":{"width":1280,"height":9600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    let reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    this.sysReduce = reduce;
+    this.state = { step: (props.reducedMotion || reduce) ? 2 : 0, snap: false, f: 'All', row: 1, lastRow: 1, copied: false };
+  }
+  componentDidMount() {
+    if (this.state.step === 0) this.play();
+  }
+  componentDidUpdate(prev) {
+    if (prev.reducedMotion !== this.props.reducedMotion) this.play();
+  }
+  componentWillUnmount() {
+    this.clear();
+    clearTimeout(this.copyTimer);
+  }
+  clear() {
+    (this.timers || []).forEach(clearTimeout);
+    this.timers = [];
+  }
+  play() {
+    this.clear();
+    if (this.props.reducedMotion || this.sysReduce) { this.setState({ step: 2, snap: false }); return; }
+    this.setState({ step: 0, snap: true });
+    this.timers = [
+      setTimeout(() => this.setState({ snap: false }), 60),
+      setTimeout(() => this.setState({ step: 1 }), 120),
+      setTimeout(() => this.setState({ step: 2 }), 800)
+    ];
+  }
+  renderVals() {
+    const P = [
+      { name: 'Odd Jobs', kind: 'UX research, Responsive design', img: 'oddjobs-hero.jpg', sum: 'Odd Jobs is a take on a job board that focuses on university students.', filters: ['UX/UI'] },
+      { name: 'Thingalicious', kind: 'Brand systems, 3D packaging', img: 'thingalicious-hero.jpg', sum: '', filters: ['Brand identity', 'Packaging'] },
+      { name: 'Delighto.ai', kind: 'Front-end development', img: 'live site', sum: '', filters: ['UX/UI', 'Development'] },
+      { name: 'Chai & Co.', kind: 'Mobile UI', img: 'app screens', sum: '', filters: ['Brand identity', 'UX/UI'] },
+      { name: 'Doberman', kind: 'Brand identity', img: 'signage and stationery', sum: '', filters: ['Brand identity'] }
+    ];
+    const pairUp = (list) => {
+      const n = list.length;
+      return list.map((p, i) => {
+        const left = i % 2 === 0;
+        const row = Math.floor(i / 2);
+        let span = (row % 2 === 0) === left ? 'c6' : 'c4';
+        if (left && i === n - 1) span = 'c10';
+        return { ...p, span };
+      });
+    };
+
+    // The three loops of the logo at 65%: apart and hidden, apart and shown, then together as the mark.
+    const MARK = [[28.6, 40.9, 57.1, 81.7], [36.3, 51.3, 57.5, 82.0], [47.6, 32.4, 82.0, 57.3]];
+    const APART = [[-34, 46], [10, 50], [56, 40]];
+    const markSet = (st, k) => MARK.map((e, i) => {
+      const at = st === 2 ? e : APART[i];
+      return { x: (at[0] * k).toFixed(1), y: (at[1] * k).toFixed(1), w: (e[2] * k).toFixed(1), h: (e[3] * k).toFixed(1), op: st === 0 ? 0 : 1 };
+    });
+    const mk = markSet(this.state.step, 0.65);
+
+    const navStates = [
+      { label: 'Default', bg: 'var(--ground)', aria: 'Main, default', workCls: '', aboutCls: '', image: false },
+      { label: 'Current page, Work', bg: 'var(--ground)', aria: 'Main, current page', workCls: '', workCur: 'page', aboutCls: '', image: false },
+      { label: 'Hover on About', bg: 'var(--ground)', aria: 'Main, hover', workCls: '', aboutCls: 'is-hover', image: false },
+      { label: 'Keyboard focus on About', bg: 'var(--ground)', aria: 'Main, focus', workCls: '', aboutCls: 'is-focus', image: false },
+      { label: 'Over an image while scrolling', bg: 'var(--placeholder)', aria: 'Main, over an image', workCls: '', aboutCls: '', image: true }
+    ];
+
+    const odd = P[0];
+    const cardStates = [
+      { ...odd, label: 'Default', cls: '', solid: '' },
+      { ...P[1], label: 'Without a summary', cls: '', solid: '' },
+      { ...odd, label: 'Hover', cls: 'is-hover', solid: '' },
+      { ...odd, label: 'Keyboard focus', cls: 'is-focus', solid: '' },
+      { ...odd, label: 'Reduced transparency', cls: '', solid: 'solid' }
+    ];
+
+    const f = this.state.f;
+    const F = ['All'].concat(['Brand identity', 'Packaging', 'UX/UI', 'Development', 'Visual design'].filter((name) => P.some((p) => p.filters.indexOf(name) > -1)));
+    const chips = F.map((name) => ({ name, on: name === f ? 'true' : 'false', pick: () => this.setState({ f: name }) }));
+    const shown = pairUp(P.filter((p) => f === 'All' || p.filters.indexOf(f) > -1));
+
+    const R = [P[2], P[3], P[4]];
+    const H = [170, 160, 176, 164, 172, 158];
+    const J = [-6, 4, -10, 6, -4, 8];
+    const L = [66, 71, 63, 69, 64, 72];
+    const T = [-4, 3, -2, 5, -5, 2];
+    const row = this.state.row;
+    const k = row < 0 ? this.state.lastRow : row;
+    const rows = R.map((p, i) => ({ name: p.name, kind: p.kind, cls: row === i ? 'is-hover' : '', enter: () => this.setState({ row: i, lastRow: i }) }));
+    const prev = { left: L[k], top: k * 64 + 32 - H[k] / 2 + J[k], h: H[k], rot: T[k], op: row < 0 ? 0 : 1, scale: row < 0 ? 0.94 : 1, img: R[k].img };
+
+    const copy = () => {
+      try { navigator.clipboard.writeText('mannat@pardasani.net'); } catch (e) {}
+      clearTimeout(this.copyTimer);
+      this.setState({ copied: true });
+      this.copyTimer = setTimeout(() => this.setState({ copied: false }), 2400);
+    };
+
+    return {
+      rootClass: [this.props.reducedTransparency ? 'solid' : '', this.props.reducedMotion ? 'still' : ''].join(' '),
+      snapCls: this.state.snap ? 'still' : '',
+      mk: { a: mk[0], b: mk[1], c: mk[2] },
+      replay: () => this.play(),
+      navStates,
+      cardStates,
+      pair: pairUp(P),
+      chips,
+      viewLabel: f === 'All' ? 'All work' : f,
+      shown,
+      rows,
+      prev,
+      ixLeave: () => this.setState({ row: -1 }),
+      copy,
+      copiedText: this.state.copied ? 'Copied' : '',
+      copiedOp: this.state.copied ? 1 : 0
+    };
+  }
+}
+</script>
+</body>
+</html>

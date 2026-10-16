@@ -1,3 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Mannat Pardasani</title>
-<meta http-equiv="refresh" content="0; url=ui_kits/portfolio/"><link rel="canonical" href="ui_kits/portfolio/"></head>
-<body><a href="ui_kits/portfolio/">Go to the portfolio preview</a></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<title>Home</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="assets/v4.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div id="top" class="root {{rootClass}}" style="font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; color: #161616">
+
+<div class="frost nav-bar">
+<nav class="nav" aria-label="Main">
+<a href="./" class="nav-home" aria-label="mannat pardasani, home"><img src="assets/logo-mark.svg" alt="" width="27" height="28"><span class="nav-name">mannat pardasani</span></a>
+<div class="nav-links"><a href="Work.dc.html" class="nav-link">Work</a><a href="AboutPage.dc.html" class="nav-link">About</a><a href="Contact.dc.html" class="nav-link">Contact</a><a href="#resume" class="nav-link">Resume</a></div>
+</nav>
+</div>
+
+<main class="page">
+
+<section aria-label="Introduction" style="padding-top: 4px">
+<dc-import name="Hero" hint-size="100%,640px"></dc-import>
+</section>
+
+<section aria-label="Selected work" style="margin-top: 12px">
+<dc-import name="Projects" view="featured" hint-size="100%,600px"></dc-import>
+</section>
+
+<div class="more-row"><a href="Work.dc.html" class="btn-pill"><span class="nudge">View more</span></a></div>
+
+<section class="split gap-w" aria-labelledby="home-about">
+<div class="c5"><h2 id="home-about" class="t-label">/ About</h2></div>
+<div class="c5" style="display: flex; flex-direction: column; align-items: flex-start; gap: 12px">
+<p class="t-statement">I studied design and code at the same time, on purpose. <span class="tone2">I think of everything I design as an experience, whether it's something you hold or something you scroll.</span></p>
+<a href="AboutPage.dc.html" class="mono-link">More about me<span aria-hidden="true" style="margin-left: 6px">→</span></a>
+</div>
+</section>
+
+<section class="gap-w" aria-label="More work">
+<dc-import name="Projects" view="index" hint-size="100%,680px"></dc-import>
+</section>
+
+</main>
+
+<div class="gap-w"><dc-import name="Footer" hint-size="100%,860px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"reducedMotion":{"editor":"boolean","default":false,"section":"Preview"},"reducedTransparency":{"editor":"boolean","default":false,"section":"Preview"},"$preview":{"width":1280,"height":3500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      rootClass: [this.props.reducedTransparency ? 'solid' : '', this.props.reducedMotion ? 'still' : ''].join(' ')
+    };
+  }
+}
+</script>
+</body>
+</html>

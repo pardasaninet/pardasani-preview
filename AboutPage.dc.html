@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<title>About</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="assets/v4.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}
+/* Orbit photos: each image fills its circle, with a faint 1px edge so the lighter photos stay crisp on the cream */
+.photo{position:relative;overflow:hidden}
+.photo img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover}
+.photo::after{content:'';position:absolute;inset:0;border-radius:50%;border:1px solid rgba(22,22,22,0.14);pointer-events:none}
+</style>
+</helmet>
+<div id="top" class="root {{rootClass}}" style="font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; color: #161616">
+<svg width="0" height="0" aria-hidden="true" style="position: absolute"><filter id="grain-aboutpage" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter></svg>
+
+<div class="frost nav-bar">
+<nav class="nav" aria-label="Main">
+<a href="./" class="nav-home" aria-label="mannat pardasani, home"><img src="assets/logo-mark.svg" alt="" width="27" height="28"><span class="nav-name">mannat pardasani</span></a>
+<div class="nav-links"><a href="Work.dc.html" class="nav-link">Work</a><a href="AboutPage.dc.html" class="nav-link" aria-current="page">About</a><a href="Contact.dc.html" class="nav-link">Contact</a><a href="#resume" class="nav-link">Resume</a></div>
+</nav>
+</div>
+
+<main class="page">
+
+<sc-if value="{{wide}}" hint-placeholder-val="{{ true }}">
+<section class="orbit" aria-label="Intro" style="margin-top: 12px">
+<p class="t-label" style="position: absolute; left: 0; top: 12px; z-index: 2">/ About</p>
+<svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none"><ellipse cx="50" cy="50" rx="45" ry="41" fill="none" stroke="rgba(22, 22, 22, 0.24)" stroke-width="1.2" stroke-dasharray="1 7" stroke-linecap="round" vector-effect="non-scaling-stroke"></ellipse></svg>
+<sc-for list="{{photos}}" as="p" hint-placeholder-count="7">
+<div class="photo-wrap" style="left: {{p.left}}%; top: {{p.top}}%; z-index: {{p.z}}; opacity: {{p.op}}; transform: translate(-50%, -50%) scale({{p.ds}})">
+<button type="button" class="photo" aria-expanded="{{p.expanded}}" onMouseEnter="{{p.enter}}" onMouseLeave="{{p.leave}}" onFocus="{{p.enter}}" onBlur="{{p.leave}}" onClick="{{p.toggle}}" style="transform: scale({{p.s}})"><img src="{{p.src}}" alt="{{p.alt}}" width="76" height="76" decoding="async"></button>
+<sc-if value="{{p.showCap}}" hint-placeholder-val="{{ false }}"><span class="photo-cap glass-i">{{p.caption}}</span></sc-if>
+</div>
+</sc-for>
+<h1 class="capsule">
+<span class="cw"><span class="nudge">I studied</span></span>
+<span class="cw cp gradient" style="color: var(--ground)"><span class="nudge">design</span></span>
+<span class="cw"><span class="nudge">and</span></span>
+<span class="cw cp" style="border: 2px solid var(--ink)"><span class="nudge">programming</span></span>
+<span class="cw"><span class="nudge">at the same time,</span></span>
+<span class="cw"><span class="nudge" style="position: relative">on purpose.<svg class="loop {{snapLoop}}" viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M 24 66 C 8 30, 66 8, 118 9 C 172 11, 199 38, 188 64 C 176 92, 92 99, 46 88 C 12 80, 4 54, 34 34" pathLength="100" fill="none" stroke="#74b0df" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" stroke-dasharray="100" style="stroke-dashoffset: {{loopOff}}"></path></svg></span></span>
+</h1>
+</section>
+</sc-if>
+<sc-if value="{{narrow}}" hint-placeholder-val="{{ false }}">
+<section aria-label="Intro" style="padding-top: 16px">
+<p class="t-label">/ About</p>
+<h1 class="capsule" style="justify-content: flex-start; margin-top: 28px">
+<span class="cw"><span class="nudge">I studied</span></span>
+<span class="cw cp gradient" style="color: var(--ground)"><span class="nudge">design</span></span>
+<span class="cw"><span class="nudge">and</span></span>
+<span class="cw cp" style="border: 2px solid var(--ink)"><span class="nudge">programming</span></span>
+<span class="cw"><span class="nudge">at the same time,</span></span>
+<span class="cw"><span class="nudge" style="position: relative">on purpose.<svg class="loop {{snapLoop}}" viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M 24 66 C 8 30, 66 8, 118 9 C 172 11, 199 38, 188 64 C 176 92, 92 99, 46 88 C 12 80, 4 54, 34 34" pathLength="100" fill="none" stroke="#74b0df" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" stroke-dasharray="100" style="stroke-dashoffset: {{loopOff}}"></path></svg></span></span>
+</h1>
+<div class="photo-row" role="list" aria-label="Photos">
+<sc-for list="{{photos}}" as="p" hint-placeholder-count="7">
+<div role="listitem" style="flex: none; opacity: {{p.op}}; transform: translateY({{p.dy}}px)"><button type="button" class="photo" aria-expanded="{{p.expanded}}" onClick="{{p.toggle}}"><img src="{{p.src}}" alt="{{p.alt}}" width="76" height="76" decoding="async"></button></div>
+</sc-for>
+</div>
+<p class="t-kind" aria-live="polite" style="margin: 4px 0 0; min-height: 14px; color: var(--muted)">{{rowCaption}}</p>
+</section>
+</sc-if>
+
+<section class="row bento gap-w" aria-label="Bits and pieces">
+<div class="tile c6 gradient on-dark" style="color: var(--ground); display: flex; flex-direction: column; justify-content: space-between; gap: 96px">
+<svg class="grain" aria-hidden="true" style="border-radius: 20px"><rect width="100%" height="100%" filter="url(#grain-aboutpage)"></rect></svg>
+<h2 class="t-label" style="position: relative">/ Toolkit</h2>
+<div class="dock glass-g" style="position: relative; align-self: center" onMouseLeave="{{dockLeave}}">
+<div class="dock-group">
+<ul class="dock-icons" aria-label="Every day">
+<sc-for list="{{daily}}" as="d" hint-placeholder-count="6">
+<li class="dock-item"><button type="button" class="dock-btn {{d.cls}}" aria-label="{{d.name}}" onMouseEnter="{{d.enter}}" onFocus="{{d.enter}}" onBlur="{{dockLeave}}" style="transform: translateY({{d.lift}}px) scale({{d.s}})">{{d.label}}</button><sc-if value="{{d.tip}}" hint-placeholder-val="{{ false }}"><span class="dock-tip glass-i"><span style="font-size: 13px; font-weight: 700">{{d.name}}</span><span style="font-size: 12px; color: var(--body)">[What you use it for]</span></span></sc-if></li>
+</sc-for>
+</ul>
+<p class="t-kind" style="margin: 0">Every day</p>
+</div>
+<span class="dock-div" aria-hidden="true" style="display: {{divDisplay}}"></span>
+<div class="dock-group">
+<ul class="dock-icons" aria-label="Experimenting with">
+<sc-for list="{{trying}}" as="d" hint-placeholder-count="6">
+<li class="dock-item"><button type="button" class="dock-btn {{d.cls}}" aria-label="{{d.name}}" onMouseEnter="{{d.enter}}" onFocus="{{d.enter}}" onBlur="{{dockLeave}}" style="transform: translateY({{d.lift}}px) scale({{d.s}})">{{d.label}}</button><sc-if value="{{d.tip}}" hint-placeholder-val="{{ false }}"><span class="dock-tip glass-i"><span style="font-size: 13px; font-weight: 700">{{d.name}}</span><span style="font-size: 12px; color: var(--body)">[What you use it for]</span></span></sc-if></li>
+</sc-for>
+</ul>
+<p class="t-kind" style="margin: 0">Experimenting with</p>
+</div>
+</div>
+</div>
+<div class="tile c4" style="background: var(--tile); display: flex; flex-direction: column; justify-content: space-between; gap: 48px">
+<h2 class="t-label">/ Education</h2>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: clamp(28px, 2.8vw, 36px); font-weight: 800; letter-spacing: -0.035em; line-height: 1">Purdue University</p>
+<p style="margin: 0; font-size: 15px; color: var(--body)">B.F.A. in Visual Communications Design<br>B.S. in Web Programming and Design</p>
+<p class="t-label" style="margin-top: 6px; color: var(--muted)">Class of 2026</p>
+</div>
+</div>
+<div class="tile c4" style="background: var(--tile); overflow: hidden">
+<sc-if value="{{isCurrently}}" hint-placeholder-val="{{ true }}">
+<h2 class="t-label">/ Currently</h2>
+<div style="position: absolute; left: 22px; right: 22px; top: calc(50% + 11px); transform: translateY(-50%)">
+<sc-for list="{{now}}" as="n" hint-placeholder-count="3">
+<div class="lab-card" style="position: {{n.p}}; left: {{n.l}}; top: {{n.t}}; margin: {{n.m}}; transform: rotate({{n.r}}deg)"><div class="ph" style="aspect-ratio: 4 / 3; border-radius: 10px"><sc-if value="{{n.src}}" hint-placeholder-val="{{ false }}"><img src="{{n.src}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%"></sc-if><sc-if value="{{n.noSrc}}" hint-placeholder-val="{{ true }}"><span class="ph-label">Photo: {{n.file}}</span></sc-if></div><p style="margin: 8px 2px 0; font-size: 14px; font-weight: 700; line-height: 1.2">{{n.title}}</p><p class="t-kind" style="margin: 2px 2px 2px; color: var(--muted)">{{n.mono}}</p></div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{isLab}}" hint-placeholder-val="{{ false }}">
+<h2 class="t-label">/ Lab</h2>
+<div style="position: absolute; left: 22px; right: 22px; top: calc(50% + 11px); transform: translateY(-50%)">
+<div class="lab-card" style="left: 0; top: 0; transform: rotate(-5deg)"><div class="ph" style="aspect-ratio: 4 / 3; border-radius: 10px"></div><p style="margin: 8px 2px 0; font-size: 14px; font-weight: 700; line-height: 1.2">3D-printed keychain</p><p class="t-kind" style="margin: 2px 2px 2px; color: var(--muted)">OpenSCAD</p></div>
+<div class="lab-card" style="left: 54%; top: 22px; transform: rotate(4deg)"><div class="ph" style="aspect-ratio: 4 / 3; border-radius: 10px"></div><p style="margin: 8px 2px 0; font-size: 14px; font-weight: 700; line-height: 1.2">Charms</p><p class="t-kind" style="margin: 2px 2px 2px; color: var(--muted)">Blender</p></div>
+<div class="lab-card" style="position: relative; margin: 94px 0 0 27%; transform: rotate(-2deg)"><div class="ph" style="aspect-ratio: 4 / 3; border-radius: 10px"></div><p style="margin: 8px 2px 0; font-size: 14px; font-weight: 700; line-height: 1.2">[Next experiment]</p><p class="t-kind" style="margin: 2px 2px 2px; color: var(--muted)">[Tool]</p></div>
+</div>
+</sc-if>
+</div>
+<div class="tile c6 on-dark" style="background: var(--ink); color: var(--ground); overflow: hidden">
+<h2 class="t-label">/ This site</h2>
+<p style="position: relative; z-index: 1; margin: 18px 0 0; max-width: 24ch; font-size: clamp(20px, 2vw, 26px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.2">I designed and built it myself, using AI to move fast while keeping the design and strategy in my hands.</p>
+<div aria-hidden="true" style="position: absolute; right: -6%; bottom: -18%; width: 58%; aspect-ratio: 16 / 10; transform: rotate(-6deg); border-radius: 14px; background: var(--ground); overflow: hidden">
+<div style="display: flex; align-items: center; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--hairline)"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--hairline)"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--hairline)"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--hairline)"></span><img src="assets/logo-mark.svg" alt="" style="width: 14px; height: 14px; margin-left: 10px"></div>
+<div class="gradient" style="margin: 10px; height: 46%; border-radius: 8px"></div>
+<div style="display: flex; gap: 6px; margin: 0 10px"><div style="flex: 3; height: 54px; border-radius: 6px; background: var(--placeholder)"></div><div style="flex: 2; height: 54px; border-radius: 6px; background: var(--placeholder)"></div></div>
+</div>
+</div>
+</section>
+
+<section class="gap-w" aria-labelledby="about-skills">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<h2 id="about-skills" class="t-label">/ Skills</h2>
+</div>
+<div class="fan {{fanCls}}" style="margin-top: var(--gap-s)">
+<div class="fan-card" style="z-index: 1; transform: translate(calc(-50% + {{c0.x}}px), {{c0.y}}px) rotate({{c0.r}}deg)"><div class="skill" style="background: var(--surface); color: var(--ink); border: 1px solid var(--outline)"><h3>Product</h3><ul><li>UX research</li><li>Information architecture</li><li>Responsive design</li><li>Prototyping</li><li>Wireframing</li><li>Figma</li></ul></div></div>
+<div class="fan-card" style="z-index: 2; transform: translate(calc(-50% + {{c1.x}}px), {{c1.y}}px) rotate({{c1.r}}deg)"><div class="skill gradient" style="color: var(--ground)"><svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain-aboutpage)"></rect></svg><h3>Brand</h3><ul><li>Brand identity</li><li>Packaging design</li><li>Art direction</li><li>Print production</li><li>Illustrator, Photoshop and InDesign</li></ul></div></div>
+<div class="fan-card" style="z-index: 3; transform: translate(calc(-50% + {{c2.x}}px), {{c2.y}}px) rotate({{c2.r}}deg)"><div class="skill" style="background: var(--ink); color: var(--ground)"><h3>Code</h3><ul><li>HTML and CSS</li><li>JavaScript</li><li>TypeScript</li><li>React</li><li>Tailwind CSS</li></ul></div></div>
+<div class="fan-card" style="z-index: 4; transform: translate(calc(-50% + {{c3.x}}px), {{c3.y}}px) rotate({{c3.r}}deg)"><div class="skill" style="background: var(--tile); color: var(--ink); border: 1px solid var(--outline)"><h3>AI proficiency</h3><ul><li>Claude Code</li><li>Cursor</li><li>Figma Make</li><li>Adobe Firefly</li></ul></div></div>
+</div>
+</section>
+
+<section class="gap-w" aria-labelledby="about-exp">
+<h2 id="about-exp" class="t-label">/ Experience</h2>
+<ul class="acc" style="margin-top: var(--gap-s)">
+<sc-for list="{{jobs}}" as="e" hint-placeholder-count="8">
+<li class="acc-item">
+<button type="button" class="acc-btn" aria-expanded="{{e.expanded}}" onClick="{{e.toggle}}"><span class="acc-org">{{e.org}}</span><span class="acc-role">{{e.role}}</span><span class="acc-sign" aria-hidden="true">{{e.sign}}</span></button>
+<sc-if value="{{e.isOpen}}" hint-placeholder-val="{{ false }}"><div class="acc-panel"><span style="max-width: 72ch">{{e.desc}}</span><span class="t-kind" style="white-space: nowrap">{{e.dates}}</span></div></sc-if>
+</li>
+</sc-for>
+</ul>
+</section>
+
+</main>
+
+<div class="gap-w"><dc-import name="Footer" hint-size="100%,860px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"bentoTile":{"editor":"enum","options":["Currently","Lab"],"default":"Currently","section":"Variant"},"reducedMotion":{"editor":"boolean","default":false,"section":"Preview"},"reducedTransparency":{"editor":"boolean","default":false,"section":"Preview"},"$preview":{"width":1280,"height":4300}}'>
+// Orbit photos, in order round the orbit from the first position. Give one a caption and it shows when that photo is hovered or tapped.
+const PHOTOS = [
+  { src: 'assets/about-circle-01-flowers.jpg', alt: 'A bouquet of bright summer flowers wrapped in brown paper.', caption: '' },
+  { src: 'assets/about-circle-02-skyline-night.jpg', alt: 'A city skyline lit up at night across the water.', caption: '' },
+  { src: 'assets/about-circle-03-street.jpg', alt: 'A narrow cobblestone street lined with old brick row houses.', caption: '' },
+  { src: 'assets/about-circle-04-bookshop.jpg', alt: 'Tall wooden shelves full of colourful books in a bookshop.', caption: '' },
+  { src: 'assets/about-circle-05-bookshelf.jpg', alt: 'A wall of lit shelves stacked with art and design books.', caption: '' },
+  { src: 'assets/about-circle-06-beach.jpg', alt: 'A pebble beach and a blue sea on a sunny afternoon.', caption: '' },
+  { src: 'assets/about-circle-07-hollywood.jpg', alt: 'The Hollywood sign on a hillside under a cloudy sky.', caption: '' }
+];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    let reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    this.sysReduce = reduce;
+    const r = !!(props.reducedMotion || reduce);
+    this.state = { a: 0, t: r ? 9999 : 0, photo: -1, dock: -1, fanned: false, drawn: r, snapLoop: false, open: 0, narrow: this.isNarrow() };
+  }
+  isNarrow() {
+    try { return window.innerWidth < 760; } catch (e) { return false; }
+  }
+  reduced() {
+    return !!(this.props.reducedMotion || this.sysReduce);
+  }
+  componentDidMount() {
+    this.onResize = () => {
+      const n = this.isNarrow();
+      if (n !== this.state.narrow) this.setState({ narrow: n });
+    };
+    window.addEventListener('resize', this.onResize);
+    this.onScroll = () => {
+      if (this.reduced() || this.raf) return;
+      this.raf = requestAnimationFrame(() => {
+        this.raf = 0;
+        this.setState({ a: (window.scrollY || 0) * 0.12 });
+      });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.drawLoop();
+    this.driftIn();
+    this.watchFan();
+  }
+  componentDidUpdate(prev) {
+    if (prev.reducedMotion !== this.props.reducedMotion) {
+      if (this.props.reducedMotion) this.setState({ a: 0 });
+      this.drawLoop();
+      this.driftIn();
+      this.watchFan();
+    }
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    if (this.raf) cancelAnimationFrame(this.raf);
+    (this.loopTimers || []).forEach(clearTimeout);
+    this.stopDrift();
+    this.stopFan();
+  }
+  // The cards fan out on their own once the section is on screen, and stay spread.
+  watchFan() {
+    if (this.fanIO) this.fanIO.disconnect();
+    clearTimeout(this.fanTimer);
+    if (this.reduced()) return;
+    this.setState({ fanned: false });
+    const spread = () => { this.fanTimer = setTimeout(() => this.setState({ fanned: true }), 200); };
+    let el = null;
+    try { el = document.querySelector('.fan'); } catch (e) {}
+    if (!el || typeof IntersectionObserver === 'undefined') { spread(); return; }
+    this.fanIO = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { this.fanIO.disconnect(); spread(); }
+    }, { threshold: 0.35 });
+    this.fanIO.observe(el);
+  }
+  stopFan() {
+    if (this.fanIO) this.fanIO.disconnect();
+    clearTimeout(this.fanTimer);
+  }
+  drawLoop() {
+    (this.loopTimers || []).forEach(clearTimeout);
+    if (this.reduced()) { this.setState({ drawn: true, snapLoop: false }); return; }
+    this.setState({ drawn: false, snapLoop: true });
+    this.loopTimers = [
+      setTimeout(() => this.setState({ snapLoop: false }), 60),
+      setTimeout(() => this.setState({ drawn: true }), 260)
+    ];
+  }
+  stopDrift() {
+    if (this.driftRaf) cancelAnimationFrame(this.driftRaf);
+    clearTimeout(this.driftTimer);
+    this.driftRaf = 0;
+  }
+  driftIn() {
+    this.stopDrift();
+    if (this.reduced()) { this.setState({ t: 9999 }); return; }
+    this.setState({ t: 0 });
+    let start = 0;
+    const tick = (now) => {
+      if (!start) start = now;
+      const t = now - start;
+      this.setState({ t });
+      this.driftRaf = t < 1200 + PHOTOS.length * 90 ? requestAnimationFrame(tick) : 0;
+    };
+    this.driftRaf = requestAnimationFrame(tick);
+    // If frames never arrive, the photos still end up in place.
+    this.driftTimer = setTimeout(() => { if (!start) { this.stopDrift(); this.setState({ t: 9999 }); } }, 2500);
+  }
+  // Each photo fades in and drifts 40 degrees along the orbit into place, 90ms after the one before it.
+  drift(i) {
+    const k = Math.min(1, Math.max(0, (this.state.t - i * 90) / 1200));
+    const e = 1 - Math.pow(1 - k, 3);
+    return { back: 40 * (1 - e), op: e.toFixed(3), ds: (0.8 + 0.2 * e).toFixed(3), dy: (14 * (1 - e)).toFixed(1) };
+  }
+  renderVals() {
+    const reduced = this.reduced();
+    const narrow = this.state.narrow;
+
+    // Seven photos spaced evenly round the orbit, the first one where it has always started.
+    const photos = PHOTOS.map((ph, i) => {
+      const d = this.drift(i);
+      const phi = (30 + this.state.a - d.back + i * 360 / PHOTOS.length) * Math.PI / 180;
+      const big = this.state.photo === i;
+      return {
+        src: ph.src, alt: ph.alt, caption: ph.caption, showCap: big && !!ph.caption,
+        big, op: d.op, ds: d.ds, dy: d.dy,
+        left: (50 + 45 * Math.cos(phi)).toFixed(2),
+        top: (50 + 41 * Math.sin(phi)).toFixed(2),
+        z: big ? 3 : 1,
+        s: big ? 1.5 : 1,
+        expanded: ph.caption ? (big ? 'true' : 'false') : undefined,
+        enter: () => this.setState({ photo: i }),
+        leave: () => this.setState({ photo: -1 }),
+        toggle: () => this.setState({ photo: this.state.photo === i ? -1 : i })
+      };
+    });
+
+    const DAILY = [['Fg', 'Figma'], ['Ai', 'Illustrator'], ['Ps', 'Photoshop'], ['Id', 'InDesign'], ['Cc', 'Claude Code'], ['Cu', 'Cursor']];
+    const TRYING = [['Fm', 'Figma Make'], ['Ff', 'Adobe Firefly'], ['Fr', 'Framer'], ['Sh', 'Shopify'], ['Bl', 'Blender'], ['Os', 'OpenSCAD']];
+    const hov = this.state.dock;
+    const tool = (pair, i) => {
+      const dist = hov < 0 ? 9 : Math.abs(hov - i);
+      return {
+        label: pair[0], name: pair[1], tip: hov === i, cls: narrow ? 'sm' : '',
+        s: dist === 0 ? 1.45 : dist === 1 ? 1.18 : 1,
+        lift: dist === 0 ? -10 : dist === 1 ? -4 : 0,
+        enter: () => this.setState({ dock: i })
+      };
+    };
+
+    const fanned = reduced || this.state.fanned;
+    const POS = fanned ? [[-405, 18, -6], [-135, 0, -2], [135, 0, 2], [405, 18, 6]] : [[-26, 8, -7], [-9, 0, -2.5], [9, 0, 2.5], [26, 8, 7]];
+    const card = (p) => ({ x: p[0], y: p[1], r: p[2] });
+
+    const JOBS = [
+      ['Thingalicious', 'Creative Director', '2026 to present', 'I lead creative direction for the jewelry brand across every place it appears, from the logo, packaging and labels to social media, in-store displays and the catalog.'],
+      ['Purdue RecWell', 'Outreach Specialist', 'May 2026 to June 2026', 'I ran social media content strategy and production, planning and executing a full content calendar to grow student participation. I used Meta engagement data to decide what we posted.'],
+      ['Delighto.ai', 'Web Developer', 'Aug 2025 to May 2026', "I built the front end for Delighto.ai's website redesign in TypeScript, React and Tailwind CSS, turning hi-fi Figma screens into fully responsive layouts with microinteractions. I worked in a capstone team across design and development."],
+      ['Communique Marketing Services', 'UX Design Intern', 'Dec 2025 to Jan 2026', 'I researched low-digital-literacy users in tier 2 and 3 Indian cities, then built journey maps and wireframes for the YouTube SpottedOnShorts bootcamp site, which won the 2026 ET Trendies Award in Education. I also came up with 100+ experiential concepts for Google Gemini activations and took 15+ to pitch.'],
+      ['Purdue Student Life Marketing', 'Graphic Design Intern', 'Oct 2024 to Aug 2025', 'I designed 200+ print and digital assets reaching 50,000+ students and kept a shared design system consistent across 30+ newsletters. I built the FSCL 150th Anniversary identity system, which was chosen over concepts from senior designers.'],
+      ['peopleHum', 'Marketing Intern', 'May 2024 to July 2024', 'I designed recurring B2B formats for an HR tech brand, including LinkedIn creatives, carousels and blog infographics, from a weekly content calendar.'],
+      ['KPMG', 'Digital Strategy Analyst', 'May 2023 to July 2023', "I designed the conversational UI for KPMG's internal chatbot and mapped AR/VR experience concepts for Samsung for stakeholder review."],
+      ['AIGA Purdue', 'Vice President', 'Aug 2024 to May 2026', 'I organized professional development events for design students, including talks, panels, workshops and peer-to-peer networking.']
+    ];
+    // Currently cards. When a photo arrives, put its url in src and it fills the image area.
+    const NOW = [
+      { title: 'Lorem ipsum', mono: 'Lorem', file: 'currently-1.jpg', src: '', p: 'absolute', l: '0', t: '0', m: '0', r: -5 },
+      { title: 'Redesigning the Thingalicious store', mono: 'Shopify', file: 'currently-2.jpg', src: '', p: 'absolute', l: '54%', t: '22px', m: '0', r: 4 },
+      { title: 'Freelancing in New York', mono: 'NYC', file: 'currently-3.jpg', src: '', p: 'relative', l: 'auto', t: 'auto', m: '94px 0 0 27%', r: -2 }
+    ];
+
+    const open = this.state.open;
+    const jobs = JOBS.map(([org, role, dates, desc], i) => {
+      const isOpen = open === i;
+      return { org, role, dates, desc, isOpen, expanded: isOpen ? 'true' : 'false', sign: isOpen ? '−' : '+', toggle: () => this.setState({ open: isOpen ? -1 : i }) };
+    });
+
+    return {
+      rootClass: [this.props.reducedTransparency ? 'solid' : '', this.props.reducedMotion ? 'still' : ''].join(' '),
+      wide: !narrow,
+      narrow,
+      photos,
+      rowCaption: this.state.photo < 0 ? '' : PHOTOS[this.state.photo].caption,
+      loopOff: this.state.drawn ? 0 : 100,
+      snapLoop: this.state.snapLoop ? 'still' : '',
+      daily: DAILY.map((p, i) => tool(p, i)),
+      trying: TRYING.map((p, i) => tool(p, i + 6)),
+      divDisplay: narrow ? 'none' : 'block',
+      dockLeave: () => this.setState({ dock: -1 }),
+      c0: card(POS[0]), c1: card(POS[1]), c2: card(POS[2]), c3: card(POS[3]),
+      fanCls: narrow ? 'stack' : '',
+      jobs,
+      now: NOW.map((n) => ({ ...n, noSrc: !n.src })),
+      isCurrently: this.props.bentoTile !== 'Lab',
+      isLab: this.props.bentoTile === 'Lab'
+    };
+  }
+}
+</script>
+</body>
+</html>

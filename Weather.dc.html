@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<title>Weather widget</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="assets/v4.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+/* Apple-style small weather widget. Its own sky per state, white text, 20px corners, a 1px inner border. */
+.wx{position:relative;container-type:inline-size;box-sizing:border-box;width:100%;aspect-ratio:1 / 1;border-radius:20px;border:1px solid rgba(255,255,255,0.35);overflow:hidden;isolation:isolate;color:#ffffff;font-family:'Funnel Sans',ui-sans-serif,system-ui,sans-serif;--wxa:#4b5d73;--wxb:#66778c}
+.wx.s-sunny{--wxa:#1b5ba8;--wxb:#3a72b8}
+.wx.s-cloudy{--wxa:#4b5d73;--wxb:#66778c}
+.wx.s-rainy{--wxa:#33445a;--wxb:#4b5d73}
+.wx.s-snowy{--wxa:#4d6a8a;--wxb:#61748a}
+.wx.is-night{--wxa:#0e1a33;--wxb:#1f3360}
+/* The raised glass edge from the stylesheet: the softest shadow underneath and a hairline of light inside */
+.wx{box-shadow:var(--raise)}
+.wx::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:var(--raise-in);pointer-events:none;z-index:2}
+.wx-base,.wx-sky,.wx-fx{position:absolute;inset:0;pointer-events:none}
+.wx-base{background:linear-gradient(180deg,#4b5d73,#66778c)}
+.wx-sky{background:linear-gradient(180deg,var(--wxa),var(--wxb));transition:opacity 600ms cubic-bezier(0.2,0.8,0.2,1)}
+/* Motion sits behind the text and fades out before the small text at the bottom. Stars stay right of the city and temperature. */
+.wx-fx{overflow:hidden;transition:opacity 600ms cubic-bezier(0.2,0.8,0.2,1);-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 42%,transparent 60%);mask-image:linear-gradient(180deg,#000 0%,#000 42%,transparent 60%)}
+
+.fx-glow{position:absolute;right:-34%;top:-34%;width:96%;aspect-ratio:1 / 1;border-radius:50%;background:radial-gradient(circle,rgba(255,214,140,0.14) 0%,rgba(255,214,140,0.06) 45%,rgba(255,214,140,0) 70%);animation:wx-breathe 7s ease-in-out infinite alternate}
+.fx-rays{position:absolute;right:-56%;top:-56%;width:140%;aspect-ratio:1 / 1;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,0.04) 0deg 5deg,rgba(255,255,255,0) 5deg 20deg);-webkit-mask-image:radial-gradient(circle,#000 0%,transparent 68%);mask-image:radial-gradient(circle,#000 0%,transparent 68%);animation:wx-spin 60s linear infinite}
+.fx-star{position:absolute;width:2px;height:2px;border-radius:50%;background:#ffffff;opacity:0.35;animation:wx-twinkle 3.2s ease-in-out infinite alternate}
+.fx-cloud{position:absolute;left:0;width:78%;height:auto;opacity:0.1;filter:blur(3px);animation:wx-drift 40s linear infinite}
+.is-night .fx-cloud{opacity:0.14}
+.fx-cloud.c1{top:4%;transform:translateX(10%)}
+.fx-cloud.c2{top:26%;width:62%;transform:translateX(70%);animation-delay:-21s}
+.fx-rain{position:absolute;inset:-30% -20%;transform:rotate(14deg)}
+.fx-rain i{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(205,228,255,0.24) 0 1px,rgba(205,228,255,0) 1px 17px);-webkit-mask-image:repeating-linear-gradient(180deg,#000 0 12px,transparent 12px 30px);mask-image:repeating-linear-gradient(180deg,#000 0 12px,transparent 12px 30px);animation:wx-fall 0.75s linear infinite}
+.fx-rain i + i{left:8px;-webkit-mask-image:repeating-linear-gradient(180deg,transparent 0 15px,#000 15px 24px,transparent 24px 30px);mask-image:repeating-linear-gradient(180deg,transparent 0 15px,#000 15px 24px,transparent 24px 30px);animation-duration:0.9s}
+.is-night .fx-rain i{background:repeating-linear-gradient(90deg,rgba(205,228,255,0.3) 0 1px,rgba(205,228,255,0) 1px 17px)}
+.fx-snow{position:absolute;inset:-20% 0 0;--flake:rgba(255,255,255,0.045);background-image:radial-gradient(circle at 12% 18%,var(--flake) 0 2px,transparent 2.5px),radial-gradient(circle at 46% 8%,var(--flake) 0 1.5px,transparent 2px),radial-gradient(circle at 78% 30%,var(--flake) 0 2px,transparent 2.5px),radial-gradient(circle at 30% 52%,var(--flake) 0 1.5px,transparent 2px),radial-gradient(circle at 64% 70%,var(--flake) 0 2px,transparent 2.5px),radial-gradient(circle at 90% 86%,var(--flake) 0 1.5px,transparent 2px);background-size:64px 64px;animation:wx-snowfall 9s linear infinite,wx-sway 4s ease-in-out infinite alternate}
+.fx-snow.f2{background-size:46px 46px;animation-duration:12s,5s;opacity:0.9}
+.is-night .fx-snow{--flake:rgba(255,255,255,0.2)}
+@keyframes wx-breathe{from{opacity:0.7;transform:scale(0.92)}to{opacity:1;transform:scale(1.04)}}
+@keyframes wx-spin{to{transform:rotate(360deg)}}
+@keyframes wx-twinkle{from{opacity:0.15}to{opacity:0.7}}
+@keyframes wx-drift{from{transform:translateX(-100%)}to{transform:translateX(130%)}}
+@keyframes wx-fall{from{transform:translateY(-30px)}to{transform:translateY(0)}}
+@keyframes wx-snowfall{from{background-position-y:0}to{background-position-y:64px}}
+@keyframes wx-sway{from{transform:translateX(-4px)}to{transform:translateX(4px)}}
+@media (prefers-reduced-motion:reduce){.wx-fx *{animation:none!important}.wx-sky,.wx-fx{transition:none}}
+.still .wx-fx *{animation:none!important}
+
+/* Text: left-aligned, top block and bottom block. Padding and line heights tighten a little in the smaller cells so everything stays inside. */
+.wx-content{position:relative;z-index:1;box-sizing:border-box;height:100%;padding:clamp(12px,8.5cqi,16px);display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+.wx-top,.wx-bottom{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.wx-city{display:flex;align-items:center;gap:4px;font-size:clamp(13px,10cqi,15px);font-weight:600;line-height:1.2;white-space:nowrap}
+.wx-city svg{display:block;flex:none;width:0.72em;height:0.72em}
+.wx-temp{font-size:clamp(40px,32cqi,68px);font-weight:300;letter-spacing:-0.03em;line-height:0.92;white-space:nowrap}
+.wx-time{margin-top:2px;font-size:clamp(26px,22cqi,46px);font-weight:300;letter-spacing:-0.02em;line-height:1.1;white-space:nowrap}
+.wx-icon{display:block;width:24px;height:24px;margin-bottom:3px}
+.wx-cond,.wx-hl{font-size:clamp(13px,10cqi,15px);font-weight:500;line-height:1.15;white-space:nowrap}
+.wx-skel{display:block;border-radius:6px;background:rgba(255,255,255,0.18)}
+.wx-skel.temp{width:52%;height:clamp(32px,26cqi,52px);margin-top:6px}
+.wx-skel.line{width:66%;height:12px;margin-top:6px}
+.wx-skel.line.short{width:44%}
+</style>
+</helmet>
+<div class="wx s-{{v.state}} {{v.nightCls}}" role="group" aria-label="Weather in New York" aria-busy="{{v.busy}}">
+<span class="wx-base" aria-hidden="true"></span>
+<span class="wx-sky" aria-hidden="true" style="opacity: {{v.skyOp}}"></span>
+<span class="wx-fx" aria-hidden="true" style="opacity: {{v.skyOp}}">
+<sc-if value="{{v.fx.glow}}" hint-placeholder-val="{{ false }}"><span class="fx-rays"></span><span class="fx-glow"></span></sc-if>
+<sc-if value="{{v.fx.stars}}" hint-placeholder-val="{{ false }}"><span class="fx-star" style="left: 78%; top: 8%"></span><span class="fx-star" style="left: 90%; top: 15%; animation-delay: -1.1s"></span><span class="fx-star" style="left: 84%; top: 27%; animation-delay: -2s"></span><span class="fx-star" style="left: 94%; top: 37%; animation-delay: -0.6s"></span><span class="fx-star" style="left: 70%; top: 4%; animation-delay: -2.6s"></span></sc-if>
+<sc-if value="{{v.fx.clouds}}" hint-placeholder-val="{{ false }}"><svg class="fx-cloud c1" viewBox="0 0 120 56"><path d="M28 54h66a20 20 0 0 0 2.6-39.8A28 28 0 0 0 44 10.6 18 18 0 0 0 28 54Z" fill="#ffffff"></path></svg><svg class="fx-cloud c2" viewBox="0 0 120 56"><path d="M28 54h66a20 20 0 0 0 2.6-39.8A28 28 0 0 0 44 10.6 18 18 0 0 0 28 54Z" fill="#ffffff"></path></svg></sc-if>
+<sc-if value="{{v.fx.rain}}" hint-placeholder-val="{{ false }}"><span class="fx-rain"><i></i><i></i></span></sc-if>
+<sc-if value="{{v.fx.snow}}" hint-placeholder-val="{{ false }}"><span class="fx-snow"></span><span class="fx-snow f2"></span></sc-if>
+</span>
+<div class="wx-content">
+<div class="wx-top">
+<span class="wx-city">New York<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3 3 10.6l7.6 2.8 2.8 7.6Z"></path></svg></span>
+<sc-if value="{{v.reading}}" hint-placeholder-val="{{ true }}"><span class="wx-temp">{{v.temp}}°</span></sc-if>
+<sc-if value="{{v.loading}}" hint-placeholder-val="{{ false }}"><span class="wx-skel temp" aria-hidden="true"></span></sc-if>
+<sc-if value="{{v.failed}}" hint-placeholder-val="{{ false }}"><span class="wx-time">{{v.time}}</span></sc-if>
+</div>
+<div class="wx-bottom">
+<sc-if value="{{v.reading}}" hint-placeholder-val="{{ true }}"><img class="wx-icon" src="{{v.icon}}" alt=""><span class="wx-cond">{{v.condition}}</span><span class="wx-hl">H:{{v.high}}° L:{{v.low}}°</span></sc-if>
+<sc-if value="{{v.loading}}" hint-placeholder-val="{{ false }}"><span class="wx-skel line" aria-hidden="true"></span><span class="wx-skel line short" aria-hidden="true"></span></sc-if>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"weather":{"editor":"enum","options":["auto","loading","failed","sunny","cloudy","rainy","snowy"],"default":"auto","section":"Preview"},"night":{"editor":"enum","options":["no","yes"],"default":"no","section":"Preview"},"$preview":{"width":214,"height":214}}'>
+// The request. It runs once, when the page loads, straight from the browser. Open-Meteo needs no key.
+const OPEN_METEO = 'https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&current=temperature_2m,weather_code,is_day&daily=temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit&timezone=America%2FNew_York&forecast_days=1';
+// The exported site always fetches once on page load. (In the design canvas this was off, because the canvas blocks network calls.)
+const LIVE_FETCH = true;
+
+const ICON = {
+  sun: 'assets/wx-sun.svg',
+  moon: 'assets/wx-moon.svg',
+  partlyDay: 'assets/wx-partly-day.svg',
+  partlyNight: 'assets/wx-partly-night.svg',
+  cloud: 'assets/wx-cloud.svg',
+  fog: 'assets/wx-fog.svg',
+  drizzle: 'assets/wx-drizzle.svg',
+  rain: 'assets/wx-rain.svg',
+  storm: 'assets/wx-storm.svg',
+  snow: 'assets/wx-snow.svg'
+};
+
+// Open-Meteo weather code to the widget's state, condition and icon.
+function mapCode(code, isDay) {
+  if (code === 0 || code === 1) return { state: 'sunny', condition: isDay ? 'Sunny' : 'Clear', icon: isDay ? ICON.sun : ICON.moon };
+  if (code === 2) return { state: 'cloudy', condition: 'Partly Cloudy', icon: isDay ? ICON.partlyDay : ICON.partlyNight };
+  if (code === 3) return { state: 'cloudy', condition: 'Cloudy', icon: ICON.cloud };
+  if (code === 45 || code === 48) return { state: 'cloudy', condition: 'Foggy', icon: ICON.fog };
+  if (code >= 51 && code <= 57) return { state: 'rainy', condition: 'Drizzle', icon: ICON.drizzle };
+  if (code >= 61 && code <= 67) return { state: 'rainy', condition: code >= 66 ? 'Freezing Rain' : 'Rain', icon: ICON.rain };
+  if (code >= 80 && code <= 82) return { state: 'rainy', condition: 'Showers', icon: ICON.rain };
+  if (code >= 95 && code <= 99) return { state: 'rainy', condition: 'Thunderstorms', icon: ICON.storm };
+  if (code >= 71 && code <= 77) return { state: 'snowy', condition: 'Snow', icon: ICON.snow };
+  if (code === 85 || code === 86) return { state: 'snowy', condition: 'Snow Showers', icon: ICON.snow };
+  return null;
+}
+
+// The one small object the widget reads, for example { temp: 37, high: 38, low: 24, state: 'cloudy', isDay: true, condition: 'Partly Cloudy' }.
+function toReading(json) {
+  const c = json && json.current;
+  const d = json && json.daily;
+  if (!c || !d || typeof c.temperature_2m !== 'number') return null;
+  const isDay = c.is_day === 1;
+  const m = mapCode(c.weather_code, isDay);
+  if (!m) return null;
+  return { temp: Math.round(c.temperature_2m), high: Math.round(d.temperature_2m_max[0]), low: Math.round(d.temperature_2m_min[0]), state: m.state, isDay, condition: m.condition, icon: m.icon };
+}
+
+// One request per page, shared by every widget on it, and never repeated.
+let request = null;
+function getReading() {
+  if (!request) {
+    request = fetch(OPEN_METEO)
+      .then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then((json) => { const reading = toReading(json); if (!reading) throw new Error('Unreadable response'); return reading; });
+  }
+  return request;
+}
+
+// What each forced state shows. Numbers stay as placeholders unless a real reading has arrived.
+const FORCED = {
+  sunny: (night) => ({ condition: night ? 'Clear' : 'Sunny', icon: night ? ICON.moon : ICON.sun }),
+  cloudy: (night) => ({ condition: 'Partly Cloudy', icon: night ? ICON.partlyNight : ICON.partlyDay }),
+  rainy: () => ({ condition: 'Rain', icon: ICON.rain }),
+  snowy: () => ({ condition: 'Snow', icon: ICON.snow })
+};
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    // On the live site, ?weather=sunny|cloudy|rainy|snowy and &night=1 force a state to check it.
+    let qState = '';
+    let qNight = false;
+    try {
+      const q = new URLSearchParams(window.location.search);
+      if (FORCED[q.get('weather')]) { qState = q.get('weather'); qNight = q.get('night') === '1'; }
+    } catch (e) {}
+    this.query = { state: qState, night: qNight };
+    // A widget forced into a state by its props (the component sheet) never fetches.
+    this.fetches = LIVE_FETCH && !['loading', 'failed', 'sunny', 'cloudy', 'rainy', 'snowy'].includes(props.weather);
+    this.state = { status: this.fetches ? 'loading' : 'failed', reading: null, revealed: true, now: Date.now() };
+  }
+  componentDidMount() {
+    this.clock = setInterval(() => this.setState({ now: Date.now() }), 30000);
+    if (this.fetches) this.load();
+  }
+  componentWillUnmount() {
+    this.gone = true;
+    clearInterval(this.clock);
+    clearTimeout(this.reveal);
+  }
+  // Loads once. No refresh or polling while the page is open.
+  load() {
+    getReading()
+      .then((reading) => {
+        if (this.gone) return;
+        this.setState({ status: 'ready', reading, revealed: false });
+        this.reveal = setTimeout(() => this.setState({ revealed: true }), 30);
+      })
+      .catch(() => { if (!this.gone) this.setState({ status: 'failed' }); });
+  }
+  renderVals() {
+    const s = this.state;
+    const prop = this.props.weather || 'auto';
+    const forced = FORCED[prop] ? prop : this.query.state;
+    const night = FORCED[prop] ? this.props.night === 'yes' : (forced ? this.query.night : !!(s.reading && !s.reading.isDay));
+    let status = prop === 'loading' || prop === 'failed' ? prop : (forced ? 'ready' : s.status);
+    const r = s.reading;
+    let state = 'cloudy';
+    let condition = '';
+    let icon = '';
+    if (status === 'ready') {
+      if (forced) { state = forced; const f = FORCED[forced](night); condition = f.condition; icon = f.icon; }
+      else { state = r.state; condition = r.condition; icon = r.icon; }
+    }
+    let time = '';
+    try { time = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).format(s.now); } catch (e) {}
+    const ready = status === 'ready';
+    return {
+      v: {
+        state,
+        nightCls: ready && night ? 'is-night' : '',
+        busy: status === 'loading' ? 'true' : 'false',
+        skyOp: ready && (forced || s.revealed) ? 1 : 0,
+        reading: ready,
+        loading: status === 'loading',
+        failed: status === 'failed',
+        temp: r ? r.temp : '[--]',
+        high: r ? r.high : '[--]',
+        low: r ? r.low : '[--]',
+        condition,
+        icon,
+        time,
+        fx: {
+          glow: ready && state === 'sunny' && !night,
+          stars: ready && state === 'sunny' && night,
+          clouds: ready && state === 'cloudy',
+          rain: ready && state === 'rainy',
+          snow: ready && state === 'snowy'
+        }
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

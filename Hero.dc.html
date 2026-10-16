@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<title>Home hero</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="assets/v4.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+/* The box: the home gradient window. Everything inside responds to the box's width, not the window's. */
+.hx{position:relative;container:hx / inline-size;box-sizing:border-box;display:flex;flex-direction:column;gap:24px;padding:24px;border-radius:20px;overflow:hidden;color:#f1f0ec;font-family:'Funnel Sans',ui-sans-serif,system-ui,sans-serif;background:radial-gradient(90% 85% at 0% 100%,#b49d91 0%,rgba(180,157,145,0) 62%),radial-gradient(70% 80% at 100% 10%,#74b0df 0%,rgba(116,176,223,0) 65%),radial-gradient(60% 70% at 100% 100%,#8fb9d2 0%,rgba(143,185,210,0) 70%),linear-gradient(135deg,#2456ac 0%,#3f7fc8 45%,#8fb9d2 100%)}
+.hx-grain{position:absolute;inset:0;width:100%;height:100%;opacity:0.04;pointer-events:none}
+.hx-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.hx-name{position:relative;margin:0;line-height:0}
+
+/* Intro and widgets. Phone and tablet: the intro sits above the widgets, both on the left.
+   Desktop and laptop: the intro takes the left, the widgets sit on the right, tops lined up. */
+.hx-row{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+.hx-intro{min-width:0;display:flex;flex-direction:column;gap:16px}
+
+/* The widget group: square cells that stop growing at 160px, 14px gaps. Phone 2 by 2, tablet 4 by 2, desktop 3 by 2. */
+.hx-grid{flex:none;display:grid;gap:14px;--cell:min((100cqi - 14px) / 2,160px);grid-template-columns:repeat(2,var(--cell));grid-template-rows:repeat(2,var(--cell))}
+.hx-music{grid-column:1 / 3;grid-row:1}
+.hx-weather{grid-column:1;grid-row:2}
+.hx-photo{grid-column:2;grid-row:2}
+.hx-logo{display:none}
+@container hx (min-width:520px){
+.hx-grid{--cell:min((100cqi - 42px) / 4,160px);grid-template-columns:repeat(4,var(--cell))}
+.hx-photo{grid-column:3 / 5;grid-row:1 / 3}
+.hx-logo{display:flex;grid-column:2;grid-row:2}
+}
+@container hx (min-width:880px){
+.hx-row{flex-direction:row}
+.hx-intro{flex:1}
+.hx-grid{--cell:min((100cqi - 70px) / 6,160px);grid-template-columns:repeat(3,var(--cell))}
+.hx-weather{grid-column:3;grid-row:1}
+.hx-photo{grid-column:1 / 3;grid-row:2}
+.hx-logo{grid-column:3;grid-row:2}
+}
+
+/* Intro text, straight on the gradient over the deep blue on the left */
+.hx-statement{margin:0;max-width:34ch;font-size:clamp(24px,2.6cqw,34px);font-weight:500;letter-spacing:-0.022em;line-height:1.2;color:#f1f0ec}
+.hx-dim{color:rgba(241,240,236,0.72)}
+.hx-body{margin:0;max-width:56ch;font-size:clamp(15px,1.35cqw,17px);line-height:1.55;color:rgba(241,240,236,0.9)}
+
+/* Widgets: light glass with ink text, 20px corners, 16px padding */
+.hx-w{position:relative;container-type:size;box-sizing:border-box;min-width:0;min-height:0;padding:16px;border-radius:20px;overflow:hidden;color:#161616;background:rgba(241,240,236,0.72);border:1px solid rgba(255,255,255,0.8);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%)}
+.solid .hx-w,.solid .hx-cap,.solid .mw-big{background:#f1f0ec;-webkit-backdrop-filter:none;backdrop-filter:none}
+@media (prefers-reduced-transparency:reduce){.hx-w,.hx-cap,.mw-big{background:#f1f0ec;-webkit-backdrop-filter:none;backdrop-filter:none}}
+.hx-icon{display:block;flex:none}
+/* The raised glass edge from the stylesheet: the softest shadow underneath and a hairline of light inside */
+.hx-w,.hx-logo{box-shadow:var(--raise)}
+.hx-w::after,.hx-logo::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:var(--raise-in);pointer-events:none}
+
+/* Music: medium shows art, title, artist, progress and controls. Small shows the art and one play button. */
+.mw{display:flex;align-items:center;gap:12px;height:100%}
+.mw-art{position:relative;flex:none;width:min(100cqh,calc(100cqw - 168px));aspect-ratio:1 / 1;border-radius:14px;overflow:hidden;background:#d3d1ca}
+.mw-art img{display:block;width:100%;height:100%;object-fit:cover}
+.mw-tag{position:absolute;left:8px;top:8px;padding:3px 7px;border-radius:999px;background:rgba(241,240,236,0.92);color:#161616;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:9px;font-weight:500;letter-spacing:0.06em;line-height:1.2;text-transform:uppercase}
+.mw-side{flex:1;min-width:0;align-self:stretch;display:flex;flex-direction:column;justify-content:space-between}
+.mw-text{display:flex;flex-direction:column;gap:2px;min-width:0}
+.mw-title{font-size:clamp(14px,10cqh,19px);font-weight:600;letter-spacing:-0.015em;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mw-artist{font-size:clamp(13px,8.5cqh,16px);line-height:1.3;color:#3b3a37;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mw-bottom{display:flex;flex-direction:column;gap:2px}
+.mw-bar{display:block;height:3px;border-radius:2px;background:rgba(22,22,22,0.16);overflow:hidden}
+.mw-fill{display:block;height:100%;background:#161616}
+.mw-ctrls{display:flex;align-items:center;justify-content:space-between;margin:0 -10px -10px}
+.mw-btn,.mw-big{display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;border-radius:999px;background:transparent;color:#7e7c78;cursor:pointer;transition:background-color 160ms cubic-bezier(0.2,0.8,0.2,1)}
+/* Controls are filled glyphs in the lightest grey that still reads at 3:1 on the glass. Shuffle, a line icon, sits in a grey circle while it's on. */
+.mw-btn:hover{background:rgba(22,22,22,0.08)}
+.mw-btn.on{background:radial-gradient(circle,#7e7c78 0 15px,transparent 15.5px);color:#f1f0ec}
+.mw-btn:focus-visible,.mw-big:focus-visible{outline:2px solid #161616;outline-offset:1px}
+.mw-big{display:none}
+@container (max-aspect-ratio:3 / 2){
+.hx-music{padding:0}
+.mw-side{display:none}
+.mw-art{position:absolute;inset:0;width:auto;aspect-ratio:auto;border-radius:0}
+.mw-big{display:flex;position:absolute;right:12px;bottom:12px;background:rgba(241,240,236,0.72);border:1px solid rgba(255,255,255,0.8);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%)}
+}
+
+/* Weather: its own component (Weather.dc.html), filling the square cell */
+.hx-weather{min-width:0;min-height:0}
+
+/* Photo: fills the widget, centred. A glass caption shows only once there is caption text. */
+.hx-photo{padding:0;border:0}
+.hx-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.hx-cap{position:absolute;left:16px;bottom:16px;max-width:calc(100% - 32px);box-sizing:border-box;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;line-height:1.3;color:#161616;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(241,240,236,0.72);border:1px solid rgba(255,255,255,0.8);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%)}
+
+/* Logo: the mark on its cream rounded square, read as an app icon */
+.hx-logo{position:relative;align-items:center;justify-content:center;border-radius:20px;background:#f1f0ec}
+.hx-logo img{display:block;width:84%;height:auto}
+</style>
+</helmet>
+<div class="hx">
+<svg width="0" height="0" aria-hidden="true" style="position: absolute"><filter id="grain-hero" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter></svg>
+<svg class="hx-grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain-hero)"></rect></svg>
+<h1 class="hx-name"><span class="hx-sr">mannat pardasani</span><svg viewBox="70 -849 8719 1089" width="100%" aria-hidden="true" style="display: block; overflow: visible"><text x="0" y="0" font-size="1200" textLength="8850" lengthAdjust="spacing" font-family="Funnel Sans, ui-sans-serif, sans-serif" font-weight="800" fill="#f1f0ec">mannat pardasani</text></svg></h1>
+
+<div class="hx-row">
+
+<div class="hx-intro">
+<p class="hx-statement">I'm the Creative Director at Thingalicious. <span class="hx-dim">Previously at Delighto.ai and KPMG.</span></p>
+
+</div>
+
+<div class="hx-grid">
+
+<div class="hx-w hx-music" role="group" aria-label="Music player">
+<div class="mw">
+<div class="mw-art">
+<sc-if value="{{track.cover}}" hint-placeholder-val="{{ false }}"><img src="{{track.cover}}" alt=""></sc-if>
+<sc-if value="{{track.placeholder}}" hint-placeholder-val="{{ true }}"><span class="mw-tag">placeholder</span></sc-if>
+<button type="button" class="mw-big" aria-label="{{playLabel}}" onClick="{{toggle}}"><sc-if value="{{playing}}" hint-placeholder-val="{{ false }}"><svg class="hx-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h4v16h-4zM6 4h4v16H6z"></path></svg></sc-if><sc-if value="{{paused}}" hint-placeholder-val="{{ true }}"><svg class="hx-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l14 9-14 9V3Z"></path></svg></sc-if></button>
+</div>
+<div class="mw-side">
+<div class="mw-text"><span class="mw-title">{{track.title}}</span><span class="mw-artist">{{track.artist}}</span></div>
+<div class="mw-bottom">
+<span class="mw-bar" role="progressbar" aria-label="Track progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{pct}}"><span class="mw-fill" style="width: {{pct}}%"></span></span>
+<div class="mw-ctrls">
+<!-- Icons in this widget are from Lucide (lucide.dev), ISC license -->
+<button type="button" class="mw-btn {{shuffleCls}}" aria-label="Shuffle" aria-pressed="{{shufflePressed}}" onClick="{{toggleShuffle}}"><svg class="hx-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 14l4 4-4 4M18 2l4 4-4 4M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22M2 6h1.972a4 4 0 0 1 3.6 2.2M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"></path></svg></button>
+<button type="button" class="mw-btn" aria-label="Previous track" onClick="{{prev}}"><svg class="hx-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 20L9 12l10-8v16ZM5 19V5"></path></svg></button>
+<button type="button" class="mw-btn" aria-label="{{playLabel}}" onClick="{{toggle}}"><sc-if value="{{playing}}" hint-placeholder-val="{{ false }}"><svg class="hx-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h4v16h-4zM6 4h4v16H6z"></path></svg></sc-if><sc-if value="{{paused}}" hint-placeholder-val="{{ true }}"><svg class="hx-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l14 9-14 9V3Z"></path></svg></sc-if></button>
+<button type="button" class="mw-btn" aria-label="Next track" onClick="{{next}}"><svg class="hx-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4l10 8-10 8V4ZM19 5v14"></path></svg></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="hx-weather"><dc-import name="Weather" weather="{{weather}}" night="{{night}}" style="display: block; width: 100%; height: 100%" hint-size="100%,100%"></dc-import></div>
+
+<figure id="{{photo.id}}" class="hx-w hx-photo" style="margin: 0">
+<sc-if value="{{photo.src}}" hint-placeholder-val="{{ true }}"><img src="{{photo.src}}" alt="{{photo.alt}}" decoding="async"></sc-if>
+<sc-if value="{{photo.caption}}" hint-placeholder-val="{{ false }}"><figcaption class="hx-cap">{{photo.caption}}</figcaption></sc-if>
+</figure>
+
+<div class="hx-logo"><img src="assets/logo-14.svg" alt="" width="64" height="64"></div>
+
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"music":{"editor":"enum","options":["rest","playing"],"default":"rest","section":"Preview"},"weather":{"editor":"enum","options":["auto","loading","failed","sunny","cloudy","rainy","snowy"],"default":"auto","section":"Preview"},"night":{"editor":"enum","options":["no","yes"],"default":"no","section":"Preview"},"$preview":{"width":1280,"height":560}}'>
+// Music. Three placeholder entries until the real playlist is decided. Each one needs a title, an artist,
+// a cover (an uploaded image url) and a src (an uploaded audio url). Turn off placeholder once it is real.
+const PLAYLIST = [
+  { title: '[Track 1 title]', artist: '[Artist]', cover: '', src: '', placeholder: true },
+  { title: '[Track 2 title]', artist: '[Artist]', cover: '', src: '', placeholder: true },
+  { title: '[Track 3 title]', artist: '[Artist]', cover: '', src: '', placeholder: true }
+];
+// A placeholder has no audio, so it plays a 30 second stand-in so the controls can be tried.
+const STAND_IN_SECONDS = 30;
+
+// Photo. The wide crop (1600 x 800) is for the medium widget (desktop and phone), the square one (1200 x 1200)
+// for the large one (tablet). The widget's own shape picks one, so only that one downloads.
+// The glass caption stays off until caption has text.
+const PHOTO = {
+  wide: 'assets/home-photo-wide.jpg',
+  square: 'assets/home-photo-square.jpg',
+  alt: 'A city skyline at golden hour, seen from the water.',
+  caption: ''
+};
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    // Nothing plays until someone presses play. The "playing" preview starts with shuffle on.
+    const demo = props.music === 'playing';
+    this.state = { order: demo ? [0, 2, 1] : [0, 1, 2], pos: 0, playing: demo, shuffle: demo, t: demo ? 11 : 0, dur: STAND_IN_SECONDS, shape: '' };
+    this.photoId = 'hx-photo-' + Math.random().toString(36).slice(2, 9);
+  }
+  componentDidMount() {
+    if (this.state.playing) this.startTrack(this.state.order[this.state.pos], false);
+    this.watchPhoto();
+  }
+  // Wide when the widget is about twice as wide as it is tall, square otherwise. Follows the widget if it changes shape.
+  watchPhoto() {
+    let el = null;
+    try { el = document.getElementById(this.photoId); } catch (e) {}
+    if (!el || typeof ResizeObserver === 'undefined') { this.setState({ shape: 'wide' }); return; }
+    this.photoRO = new ResizeObserver((entries) => {
+      const r = entries[0].contentRect;
+      if (!r.width || !r.height) return;
+      const shape = r.width > r.height * 1.4 ? 'wide' : 'square';
+      if (shape !== this.state.shape) this.setState({ shape });
+    });
+    this.photoRO.observe(el);
+  }
+  componentWillUnmount() {
+    if (this.photoRO) this.photoRO.disconnect();
+    clearInterval(this.ticker);
+    if (this.audio) { this.audio.pause(); this.audio.removeAttribute('src'); }
+  }
+  // Plays one track. A real track plays its audio, created only on the first press, so nothing preloads before that.
+  startTrack(index, fromStart) {
+    clearInterval(this.ticker);
+    const tr = PLAYLIST[index];
+    if (tr.src) {
+      if (!this.audio) {
+        this.audio = new Audio();
+        this.audio.preload = 'metadata';
+        this.audio.addEventListener('timeupdate', () => this.setState({ t: this.audio.currentTime, dur: this.audio.duration || STAND_IN_SECONDS }));
+        this.audio.addEventListener('ended', () => this.step(1, true));
+      }
+      if (this.audio.getAttribute('src') !== tr.src) this.audio.src = tr.src;
+      if (fromStart) this.audio.currentTime = 0;
+      const p = this.audio.play();
+      if (p && p.catch) p.catch(() => this.setState({ playing: false }));
+    } else {
+      if (this.audio) this.audio.pause();
+      this.ticker = setInterval(() => {
+        const t = this.state.t + 0.25;
+        if (t >= STAND_IN_SECONDS) this.step(1, true);
+        else this.setState({ t });
+      }, 250);
+    }
+  }
+  play() {
+    this.setState({ playing: true });
+    this.startTrack(this.state.order[this.state.pos], false);
+  }
+  pause() {
+    clearInterval(this.ticker);
+    if (this.audio) this.audio.pause();
+    this.setState({ playing: false });
+  }
+  // Previous and next skip tracks. When a track ends, the next one starts.
+  step(dir, keepPlaying) {
+    const n = PLAYLIST.length;
+    const pos = (this.state.pos + dir + n) % n;
+    const playing = keepPlaying || this.state.playing;
+    clearInterval(this.ticker);
+    if (this.audio) this.audio.pause();
+    this.setState({ pos, t: 0, dur: STAND_IN_SECONDS, playing });
+    if (playing) this.startTrack(this.state.order[pos], true);
+  }
+  toggleShuffle() {
+    const current = this.state.order[this.state.pos];
+    if (!this.state.shuffle) {
+      const rest = PLAYLIST.map((_, i) => i).filter((i) => i !== current);
+      for (let i = rest.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const x = rest[i]; rest[i] = rest[j]; rest[j] = x;
+      }
+      this.setState({ shuffle: true, order: [current].concat(rest), pos: 0 });
+    } else {
+      this.setState({ shuffle: false, order: PLAYLIST.map((_, i) => i), pos: current });
+    }
+  }
+  renderVals() {
+    const s = this.state;
+    const track = PLAYLIST[s.order[s.pos]];
+    return {
+      track,
+      playing: s.playing,
+      paused: !s.playing,
+      playLabel: s.playing ? 'Pause' : 'Play',
+      toggle: () => (this.state.playing ? this.pause() : this.play()),
+      prev: () => this.step(-1, false),
+      next: () => this.step(1, false),
+      shuffleCls: s.shuffle ? 'on' : '',
+      shufflePressed: s.shuffle ? 'true' : 'false',
+      toggleShuffle: () => this.toggleShuffle(),
+      pct: Math.min(100, Math.round((s.t / (s.dur || STAND_IN_SECONDS)) * 1000) / 10),
+      weather: this.props.weather || 'auto',
+      night: this.props.night || 'no',
+      photo: { id: this.photoId, src: s.shape ? PHOTO[s.shape] : '', alt: PHOTO.alt, caption: PHOTO.caption }
+    };
+  }
+}
+</script>
+</body>
+</html>
