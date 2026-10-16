@@ -59,31 +59,31 @@ body{margin:0}
 .hx-w,.hx-logo{box-shadow:var(--raise)}
 .hx-w::after,.hx-logo::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:var(--raise-in);pointer-events:none}
 
-/* Music: the album art fills the widget's height. Title and artist sit to its right with the Apple Music badge, the controls
-   run along the bottom with 44px hit areas over the padding, and the progress is a 2px line on the widget's bottom edge. */
+/* Music: the album art fills the widget's height. Title and artist sit to its right, a progress bar runs under them,
+   and the controls run along the bottom with 44px hit areas over the padding. The Apple Music link is a small arrow in the top right corner. */
 .hx-music{padding:0}
 .mw{display:flex;height:100%}
 .mw-art{position:relative;flex:none;height:100%;aspect-ratio:1 / 1;overflow:hidden;background:#d3d1ca}
 .mw-art img{display:block;width:100%;height:100%;object-fit:cover}
 .mw-side{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between;padding:10px 12px 0}
 .mw-head{position:relative;min-width:0}
-.mw-text{display:flex;flex-direction:column;gap:1px;min-width:0}
-.mw-title{margin-right:var(--badge-w,104px);font-size:14px;font-weight:600;letter-spacing:-0.01em;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mw-text{display:flex;flex-direction:column;gap:1px;min-width:0;padding-right:22px}
+.mw-title{font-size:14px;font-weight:600;letter-spacing:-0.01em;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mw-artist{font-size:13px;line-height:1.3;color:#5f5e5a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mw-badge{position:absolute;top:-3px;right:0;display:inline-flex;align-items:center;gap:3px;min-height:24px;padding:0 8px;box-sizing:border-box;border:1px solid #161616;border-radius:999px;color:#161616;font-size:11px;font-weight:600;line-height:1;text-decoration:none;white-space:nowrap}
-.mw-badge.has-img{padding:0;border:0}
-.mw-badge::before{content:'';position:absolute;inset:-10px -4px}
-.mw-badge img{display:block;height:24px;width:auto}
-.mw-badge svg{display:block;width:11px;height:11px}
-.mw-badge:focus-visible{outline:2px solid #161616;outline-offset:2px}
+/* The link: a white arrow on a grey dot, the same grey as the controls, with a 44px hit area */
+.mw-link{position:absolute;top:8px;right:8px;z-index:1;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:#7e7c78;color:#ffffff;transition:background-color 160ms cubic-bezier(0.2,0.8,0.2,1)}
+.mw-link::before{content:'';position:absolute;inset:-11px}
+.mw-link:hover{background:#5f5e5a}
+.mw-link svg{display:block;width:12px;height:12px}
+.mw-link:focus-visible{outline:2px solid #161616;outline-offset:2px}
+.mw-prog{display:block;height:4px;border-radius:999px;background:rgba(22,22,22,0.12);overflow:hidden}
+.mw-fill{display:block;height:100%;border-radius:inherit;background:#161616;transition:width 250ms linear}
 .mw-ctrls{display:flex;align-items:center;justify-content:space-between;height:28px;margin:0 -8px 8px}
 .mw-btn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:-8px 0;padding:0;border:0;border-radius:999px;background:transparent;color:#7e7c78;cursor:pointer;transition:background-color 160ms cubic-bezier(0.2,0.8,0.2,1)}
-/* Controls are filled glyphs in the lightest grey that still reads at 3:1 on the glass. Shuffle, a line icon, sits in a grey circle while it's on. */
+/* Controls are filled glyphs in the lightest grey that still reads at 3:1 on the glass. */
 .mw-btn:hover{background:rgba(22,22,22,0.08)}
-.mw-btn.on{background:radial-gradient(circle,#7e7c78 0 15px,transparent 15.5px);color:#f1f0ec}
 .mw-btn:focus-visible{outline:2px solid #161616;outline-offset:1px}
-.mw-bar{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(22,22,22,0.12)}
-.mw-fill{display:block;height:100%;background:#161616}
+@media (prefers-reduced-motion:reduce){.mw-fill{transition:none}}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
 /* Weather: its own component (Weather.dc.html), filling the square cell */
@@ -96,7 +96,7 @@ body{margin:0}
 
 /* Logo: the mark on its cream rounded square, read as an app icon */
 .hx-logo{position:relative;align-items:center;justify-content:center;border-radius:20px;background:#f1f0ec}
-.hx-logo img{display:block;width:56px;height:auto}
+.hx-logo img{display:block;width:auto;height:92%;max-width:92%}
 </style>
 </helmet>
 <div class="hx">
@@ -107,7 +107,7 @@ body{margin:0}
 <div class="hx-row">
 
 <div class="hx-intro">
-<p class="hx-statement">I'm a creative director and UX designer. <span class="hx-dim">I've also worked as a web developer and a digital strategy analyst.</span></p>
+<p class="hx-statement">I'm a product designer and web developer. <span class="hx-dim">I've also worked to build brand identity and creative strategy.</span></p>
 
 </div>
 
@@ -121,12 +121,13 @@ body{margin:0}
 <div class="mw-side">
 <div class="mw-head">
 <div class="mw-text"><span class="mw-title" title="{{track.title}}">{{track.title}}</span><sc-if value="{{track.artist}}" hint-placeholder-val="{{ true }}"><span class="mw-artist">{{track.artist}}</span></sc-if></div>
-<a href="{{badge.href}}" target="_blank" rel="noopener" class="mw-badge {{badge.cls}}"><sc-if value="{{badge.src}}" hint-placeholder-val="{{ false }}"><img src="{{badge.src}}" alt="Listen on Apple Music"></sc-if><sc-if value="{{badge.noSrc}}" hint-placeholder-val="{{ true }}"><span>Apple Music</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"></path></svg></sc-if><span class="sr-only">(opens in a new tab)</span></a>
 </div>
+<sc-if value="{{ready}}" hint-placeholder-val="{{ true }}">
+<span class="mw-prog" role="progressbar" aria-label="Track progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{pct}}"><span class="mw-fill" style="width: {{pct}}%"></span></span>
+</sc-if>
 <sc-if value="{{ready}}" hint-placeholder-val="{{ true }}">
 <div class="mw-ctrls">
 <!-- Icons in this widget are from Lucide (lucide.dev), ISC license -->
-<button type="button" class="mw-btn {{shuffleCls}}" aria-label="Shuffle" aria-pressed="{{shufflePressed}}" onClick="{{toggleShuffle}}"><svg class="hx-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 14l4 4-4 4M18 2l4 4-4 4M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22M2 6h1.972a4 4 0 0 1 3.6 2.2M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"></path></svg></button>
 <button type="button" class="mw-btn" aria-label="Previous track" onClick="{{prev}}"><svg class="hx-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 20L9 12l10-8v16ZM5 19V5"></path></svg></button>
 <button type="button" class="mw-btn" aria-label="{{playLabel}}" onClick="{{toggle}}"><sc-if value="{{playing}}" hint-placeholder-val="{{ false }}"><svg class="hx-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h4v16h-4zM6 4h4v16H6z"></path></svg></sc-if><sc-if value="{{paused}}" hint-placeholder-val="{{ true }}"><svg class="hx-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l14 9-14 9V3Z"></path></svg></sc-if></button>
 <button type="button" class="mw-btn" aria-label="Next track" onClick="{{next}}"><svg class="hx-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4l10 8-10 8V4ZM19 5v14"></path></svg></button>
@@ -134,7 +135,7 @@ body{margin:0}
 </sc-if>
 </div>
 </div>
-<sc-if value="{{ready}}" hint-placeholder-val="{{ true }}"><span class="mw-bar" role="progressbar" aria-label="Track progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{pct}}"><span class="mw-fill" style="width: {{pct}}%"></span></span></sc-if>
+<a href="{{playlistUrl}}" target="_blank" rel="noopener" class="mw-link" aria-label="Listen on Apple Music (opens in a new tab)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"></path></svg></a>
 </div>
 
 <div class="hx-weather"><dc-import name="Weather" weather="{{weather}}" night="{{night}}" layout="wide" style="display: block; width: 100%; height: 100%" hint-size="100%,100%"></dc-import></div>
@@ -171,8 +172,6 @@ const SONGS = [
   { title: 'You Mean Well', artist: 'Begum', album: 'Are You Ok?' },
   { title: 'Raj D-Minor', artist: 'Begum', album: 'Bagh' }
 ];
-// Apple's official "Listen on Apple Music" badge, as an uploaded image url. Until it's added, the link shows as a small text pill.
-const BADGE_SRC = '';
 // The exported site always fetches. (In the design canvas this was limited, because the canvas blocks network calls.)
 const LIVE = true;
 
@@ -223,10 +222,9 @@ const PHOTO = {
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    // The "playing" preview starts with shuffle on. Nothing plays until someone presses play.
+    // Songs play in playlist order. Nothing plays until someone presses play.
     const order = SONGS.map((_, i) => i);
-    const demo = props.music === 'playing';
-    this.state = { order, pos: 0, playing: false, shuffle: demo, t: 0, dur: 30, tracks: {}, status: LIVE ? 'loading' : 'failed', shape: '' };
+    this.state = { order, pos: 0, playing: false, t: 0, dur: 30, tracks: {}, status: LIVE ? 'loading' : 'failed', shape: '' };
     this.photoId = 'hx-photo-' + Math.random().toString(36).slice(2, 9);
   }
   componentDidMount() {
@@ -314,25 +312,12 @@ class Component extends DCLogic {
       if (playing) this.start(true);
     });
   }
-  toggleShuffle() {
-    const current = this.state.order[this.state.pos];
-    if (!this.state.shuffle) {
-      const rest = SONGS.map((_, i) => i).filter((i) => i !== current);
-      for (let i = rest.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        const x = rest[i]; rest[i] = rest[j]; rest[j] = x;
-      }
-      this.setState({ shuffle: true, order: [current].concat(rest), pos: 0 });
-    } else {
-      this.setState({ shuffle: false, order: SONGS.map((_, i) => i), pos: current });
-    }
-  }
   renderVals() {
     const s = this.state;
     const i = s.order[s.pos];
     const found = s.tracks[i];
     const ready = s.status === 'ready';
-    // If nothing loads, the widget shows the playlist name with the badge. It never shows placeholder text.
+    // If nothing loads, the widget shows the playlist name with the Apple Music link. It never shows placeholder text.
     const track = s.status === 'failed' ? { title: PLAYLIST_NAME, artist: '', cover: '' }
       : found ? found : { title: SONGS[i].title, artist: SONGS[i].artist, cover: '' };
     return {
@@ -344,11 +329,8 @@ class Component extends DCLogic {
       toggle: () => (this.state.playing ? this.pause() : this.play()),
       prev: () => this.step(-1, false),
       next: () => this.step(1, false),
-      shuffleCls: s.shuffle ? 'on' : '',
-      shufflePressed: s.shuffle ? 'true' : 'false',
-      toggleShuffle: () => this.toggleShuffle(),
       pct: Math.min(100, Math.round((s.t / (s.dur || 30)) * 1000) / 10),
-      badge: { href: PLAYLIST_URL, src: BADGE_SRC, noSrc: !BADGE_SRC, cls: BADGE_SRC ? 'has-img' : '' },
+      playlistUrl: PLAYLIST_URL,
       weather: this.props.weather || 'auto',
       night: this.props.night || 'no',
       photo: { id: this.photoId, src: s.shape ? PHOTO[s.shape] : '', alt: PHOTO.alt, caption: PHOTO.caption }

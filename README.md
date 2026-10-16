@@ -35,18 +35,16 @@ Then open http://localhost:8000.
 
 These are still placeholders:
 
-- LinkedIn and Instagram link to `#linkedin` and `#instagram`.
 - The Currently cards on About show photo labels, and the first card is titled "Lorem ipsum", until they're filled in the `NOW` list in `AboutPage.dc.html`.
 - Hovering a tool in the Toolkit dock on About shows "[What you use it for]" under its name.
 - The confirmation line after sending a message on Contact is in brackets.
-- The music widget links to the playlist with a small "Apple Music" text pill. To use Apple's official "Listen on Apple Music" badge instead, add the badge image to `assets/` and put its address in `BADGE_SRC` in `Hero.dc.html`.
 
 The contact form doesn't send anything yet. On a static host it only shows the "Message sent." state. Before launch, connect it to a form service such as Formspree, or swap it for an email link.
 
 ## Good to know
 
 - The weather widget fetches New York's weather from Open-Meteo once on page load. It needs no key, and the footer carries the credit Open-Meteo asks for.
-- The music widget plays 30-second previews from the "la di da" playlist. It looks up one song at a time with Apple's iTunes Search API: the first when the page loads, then the next while the current one plays. Audio only loads when someone presses play. To change the songs, edit the `SONGS` list in `Hero.dc.html`.
+- The music widget plays 30-second previews from the "la di da" playlist. It looks up one song at a time with Apple's iTunes Search API: the first when the page loads, then the next while the current one plays. Audio only loads when someone presses play. The arrow in its top right corner opens the playlist in Apple Music. To change the songs, edit the `SONGS` list in `Hero.dc.html`.
 - Every Resume link opens `assets/Mannat-Pardasani-Resume-UX-UI.pdf`, and Download resume on About saves it under that name. To update your resume, replace that file and keep the name.
 - Fonts load from Google Fonts.
 - Each page is plain HTML. Its layout sits inside `<x-dc>`, and its behaviour is in the script at the bottom of the file.
