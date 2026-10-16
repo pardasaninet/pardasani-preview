@@ -30,6 +30,9 @@
 .now-card .card-t{display:block;margin:8px 2px 0;font-size:14px;font-weight:700;line-height:1.2}
 .now-card .card-m{display:block;margin:2px 2px 2px;color:var(--muted)}
 .now-card img{pointer-events:none}
+/* Toolkit dock: each app icon fills its key and takes the key's rounded corners */
+.dock .dock-btn{overflow:hidden;background:none}
+.dock .dock-btn img{display:block;width:100%;height:100%;pointer-events:none}
 </style>
 </helmet>
 <div id="top" class="root {{rootClass}}" style="font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; color: #161616">
@@ -91,19 +94,10 @@
 <div class="dock-group">
 <ul class="dock-icons" aria-label="Every day">
 <sc-for list="{{daily}}" as="d" hint-placeholder-count="6">
-<li class="dock-item"><button type="button" class="dock-btn {{d.cls}}" aria-label="{{d.name}}" onMouseEnter="{{d.enter}}" onFocus="{{d.enter}}" onBlur="{{dockLeave}}" style="transform: translateY({{d.lift}}px) scale({{d.s}})">{{d.label}}</button><sc-if value="{{d.tip}}" hint-placeholder-val="{{ false }}"><span class="dock-tip glass-i"><span style="font-size: 13px; font-weight: 700">{{d.name}}</span><span style="font-size: 12px; color: var(--body)">[What you use it for]</span></span></sc-if></li>
+<li class="dock-item"><button type="button" class="dock-btn {{d.cls}}" aria-label="{{d.name}}" onMouseEnter="{{d.enter}}" onFocus="{{d.enter}}" onBlur="{{dockLeave}}" style="transform: translateY({{d.lift}}px) scale({{d.s}})"><img src="{{d.src}}" alt="" width="44" height="44" decoding="async"></button><sc-if value="{{d.tip}}" hint-placeholder-val="{{ false }}"><span class="dock-tip glass-i"><span style="font-size: 13px; font-weight: 700">{{d.name}}</span><span style="font-size: 12px; color: var(--body)">[What you use it for]</span></span></sc-if></li>
 </sc-for>
 </ul>
 <p class="t-kind" style="margin: 0">Every day</p>
-</div>
-<span class="dock-div" aria-hidden="true" style="display: {{divDisplay}}"></span>
-<div class="dock-group">
-<ul class="dock-icons" aria-label="Experimenting with">
-<sc-for list="{{trying}}" as="d" hint-placeholder-count="6">
-<li class="dock-item"><button type="button" class="dock-btn {{d.cls}}" aria-label="{{d.name}}" onMouseEnter="{{d.enter}}" onFocus="{{d.enter}}" onBlur="{{dockLeave}}" style="transform: translateY({{d.lift}}px) scale({{d.s}})">{{d.label}}</button><sc-if value="{{d.tip}}" hint-placeholder-val="{{ false }}"><span class="dock-tip glass-i"><span style="font-size: 13px; font-weight: 700">{{d.name}}</span><span style="font-size: 12px; color: var(--body)">[What you use it for]</span></span></sc-if></li>
-</sc-for>
-</ul>
-<p class="t-kind" style="margin: 0">Experimenting with</p>
 </div>
 </div>
 </div>
@@ -416,13 +410,13 @@ class Component extends DCLogic {
       };
     });
 
-    const DAILY = [['Fg', 'Figma'], ['Ai', 'Illustrator'], ['Ps', 'Photoshop'], ['Id', 'InDesign'], ['Cc', 'Claude Code'], ['Cu', 'Cursor']];
-    const TRYING = [['Fm', 'Figma Make'], ['Ff', 'Adobe Firefly'], ['Fr', 'Framer'], ['Sh', 'Shopify'], ['Bl', 'Blender'], ['Os', 'OpenSCAD']];
+    // Toolkit dock: [app icon, app name]
+    const DAILY = [['assets/toolkit-figma.png', 'Figma'], ['assets/toolkit-creative-cloud.png', 'Adobe Creative Cloud'], ['assets/toolkit-vscode.png', 'VS Code'], ['assets/toolkit-framer.png', 'Framer'], ['assets/toolkit-claude.png', 'Claude'], ['assets/toolkit-github-desktop.png', 'GitHub Desktop']];
     const hov = this.state.dock;
     const tool = (pair, i) => {
       const dist = hov < 0 ? 9 : Math.abs(hov - i);
       return {
-        label: pair[0], name: pair[1], tip: hov === i, cls: narrow ? 'sm' : '',
+        src: pair[0], name: pair[1], tip: hov === i, cls: narrow ? 'sm' : '',
         s: dist === 0 ? 1.45 : dist === 1 ? 1.18 : 1,
         lift: dist === 0 ? -10 : dist === 1 ? -4 : 0,
         enter: () => this.setState({ dock: i })
@@ -465,8 +459,6 @@ class Component extends DCLogic {
       loopOff: this.state.drawn ? 0 : 100,
       snapLoop: this.state.snapLoop ? 'still' : '',
       daily: DAILY.map((p, i) => tool(p, i)),
-      trying: TRYING.map((p, i) => tool(p, i + 6)),
-      divDisplay: narrow ? 'none' : 'block',
       dockLeave: () => this.setState({ dock: -1 }),
       c0: card(POS[0]), c1: card(POS[1]), c2: card(POS[2]), c3: card(POS[3]),
       fanCls: narrow ? 'stack' : '',
