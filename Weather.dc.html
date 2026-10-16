@@ -67,9 +67,22 @@ body{margin:0}
 .wx-skel.temp{width:52%;height:clamp(32px,26cqi,52px);margin-top:6px}
 .wx-skel.line{width:66%;height:12px;margin-top:6px}
 .wx-skel.line.short{width:44%}
+/* Wide: the two-column layout for a short cell. City and temperature on the left, icon, condition and high and low on the right. */
+.wx.wx-wide{aspect-ratio:auto;height:100%}
+.wx-wide .wx-content{flex-direction:row;justify-content:space-between;align-items:stretch;gap:8px;padding:12px}
+.wx-wide .wx-top{justify-content:flex-start}
+.wx-wide .wx-temp{margin-top:auto;font-size:clamp(32px,18cqi,48px);line-height:0.95}
+.wx-wide .wx-time{margin-top:auto;font-size:clamp(22px,14cqi,32px)}
+.wx-wide .wx-skel.temp{margin-top:auto;width:64px;height:30px}
+.wx-wide .wx-bottom{align-items:flex-end;text-align:right}
+.wx-wide .wx-icon{width:20px;height:20px;margin-bottom:0}
+.wx-wide .wx-cond{margin-top:auto}
+.wx-wide .wx-cond,.wx-wide .wx-hl{font-size:12px;line-height:1.25}
+.wx-wide .wx-skel.line{width:56px;margin-top:auto}
+.wx-wide .wx-skel.line.short{width:40px;margin-top:6px}
 </style>
 </helmet>
-<div class="wx s-{{v.state}} {{v.nightCls}}" role="group" aria-label="Weather in New York" aria-busy="{{v.busy}}">
+<div class="wx s-{{v.state}} {{v.nightCls}} {{v.layoutCls}}" role="group" aria-label="Weather in New York" aria-busy="{{v.busy}}">
 <span class="wx-base" aria-hidden="true"></span>
 <span class="wx-sky" aria-hidden="true" style="opacity: {{v.skyOp}}"></span>
 <span class="wx-fx" aria-hidden="true" style="opacity: {{v.skyOp}}">
@@ -93,10 +106,10 @@ body{margin:0}
 </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"weather":{"editor":"enum","options":["auto","loading","failed","sunny","cloudy","rainy","snowy"],"default":"auto","section":"Preview"},"night":{"editor":"enum","options":["no","yes"],"default":"no","section":"Preview"},"$preview":{"width":214,"height":214}}'>
+<script type="text/x-dc" data-dc-script data-props='{"weather":{"editor":"enum","options":["auto","loading","failed","sunny","cloudy","rainy","snowy"],"default":"auto","section":"Preview"},"night":{"editor":"enum","options":["no","yes"],"default":"no","section":"Preview"},"layout":{"editor":"enum","options":["square","wide"],"default":"square","section":"Preview"},"$preview":{"width":214,"height":214}}'>
 // The request. It runs once, when the page loads, straight from the browser. Open-Meteo needs no key.
 const OPEN_METEO = 'https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&current=temperature_2m,weather_code,is_day&daily=temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit&timezone=America%2FNew_York&forecast_days=1';
-// The exported site always fetches once on page load. (In the design canvas this was off, because the canvas blocks network calls.)
+// The exported site always fetches. (In the design canvas this was limited, because the canvas blocks network calls.)
 const LIVE_FETCH = true;
 
 const ICON = {
@@ -211,6 +224,7 @@ class Component extends DCLogic {
     return {
       v: {
         state,
+        layoutCls: this.props.layout === 'wide' ? 'wx-wide' : '',
         nightCls: ready && night ? 'is-night' : '',
         busy: status === 'loading' ? 'true' : 'false',
         skyOp: ready && (forced || s.revealed) ? 1 : 0,

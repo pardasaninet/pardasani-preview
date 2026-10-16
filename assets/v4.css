@@ -8,6 +8,9 @@ body{margin:0}
 .page{padding:0 var(--margin)}
 .gap-w{margin-top:var(--gap-w)}
 .gap-s{margin-top:var(--gap-s)}
+/* M: between the story beats of a case study, Problem and the three decisions */
+:root{--gap-m:clamp(64px,8vw,112px)}
+.gap-m{margin-top:var(--gap-m)}
 
 /* Materials */
 .gradient{background:var(--gradient)}
@@ -26,12 +29,12 @@ body{margin:0}
 .t-tag{display:inline-flex;align-items:center;min-height:26px;padding:0 10px;box-sizing:border-box;border:1px solid currentColor;border-radius:999px;font-family:var(--mono);font-size:11px;letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap;line-height:1}
 .t-code{font-family:var(--mono);font-size:12px;letter-spacing:0;text-transform:none}
 .t-page{margin:0;font-size:clamp(88px,21vw,270px);font-weight:800;letter-spacing:-0.07em;line-height:0.78}
-.t-case{margin:0;font-size:clamp(64px,17vw,218px);font-weight:800;letter-spacing:-0.065em;line-height:0.8}
-.t-statement{margin:0;font-size:clamp(24px,2.5vw,32px);font-weight:500;letter-spacing:-0.022em;line-height:1.2}
+.t-case{margin:0;padding-bottom:0.2em;font-size:clamp(64px,17vw,218px);font-weight:800;letter-spacing:-0.065em;line-height:0.8}
+.t-statement{margin:0;font-size:clamp(24px,2.5vw,32px);font-weight:500;letter-spacing:-0.022em;line-height:1.2;text-wrap:balance}
 .t-quote{margin:0;font-size:clamp(26px,2.7vw,34px);font-weight:500;letter-spacing:-0.022em;line-height:1.2}
 .t-heading{margin:0;font-size:clamp(21px,1.9vw,24px);font-weight:700;letter-spacing:-0.025em;line-height:1.15}
 .t-body{margin:0;font-size:clamp(16px,1.42vw,18px);line-height:1.55;color:var(--body)}
-.t-summary{margin:0;font-size:clamp(20px,2vw,26px);font-weight:500;letter-spacing:-0.02em;line-height:1.25}
+.t-summary{margin:0;font-size:clamp(20px,2vw,26px);font-weight:500;letter-spacing:-0.02em;line-height:1.25;text-wrap:balance}
 .tone2{color:var(--tone2)}
 .nudge{display:inline-block;transform:translateY(-0.06em)}
 .mono-link{display:inline-flex;align-items:center;min-height:44px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink);text-underline-offset:4px}
@@ -101,6 +104,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset
 .cap-big{font-size:clamp(24px,2.6vw,34px);font-weight:700;letter-spacing:-0.02em;line-height:1.1}
 .cap-sum{font-size:13px;line-height:1.4;color:var(--body)}
 .cap-kind{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
+/* Next project card: the glass caption sits top-left, the arrow stays bottom-right */
+.card-next .cap{top:12px;bottom:auto}
 .arrow{position:absolute;right:12px;bottom:12px;width:44px;height:44px;box-sizing:border-box;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background-color 200ms var(--ease),color 200ms var(--ease),border-color 200ms var(--ease)}
 .card:hover .arrow,.card.is-hover .arrow{background:var(--ink);color:var(--ground);border-color:var(--ink)}
 
@@ -116,7 +121,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset
 /* Case study */
 .stat{flex:1 1 0;min-width:0;display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:4px;padding-left:12px;border-left:1px solid var(--ink)}
 .stat dd{margin:0;font-size:18px;font-weight:600;line-height:1.2}
-.stat dt{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
+/* The stat labels stay for screen readers only. The value and its 1px ink line show. */
+.stat dt{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .play{display:flex;align-items:center;justify-content:center;width:96px;height:96px;box-sizing:border-box;border-radius:50%;padding:0;cursor:pointer;color:var(--ink);text-decoration:none;transition:transform 260ms var(--ease)}
 .play:hover,.play.is-hover{transform:scale(1.06)}
 .credits{margin:0;padding-top:12px;border-top:1px solid var(--hairline);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:20px 12px}
@@ -167,7 +173,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset
 
 /* About: fanned skill cards */
 .fan{position:relative;height:440px}
-.fan-card{position:absolute;left:50%;top:40px;width:250px;height:330px;transition:transform 520ms var(--ease)}
+/* The fan has its own curve: a slight pull-back at the start and a slight overshoot that settles. The one exception to the site easing. */
+:root{--ease-fan:cubic-bezier(0.65,-0.12,0.35,1.12)}
+.fan-card{position:absolute;left:50%;top:40px;width:250px;height:330px;transition:transform 850ms var(--ease-fan)}
 .fan.stack{height:auto;display:flex;flex-direction:column;gap:12px}
 .fan.stack .fan-card{position:relative;left:auto;top:auto;width:100%;height:auto;min-height:300px;transform:none!important}
 .skill{position:relative;width:100%;height:100%;min-height:inherit;box-sizing:border-box;padding:22px;border-radius:var(--r-media);display:flex;flex-direction:column;gap:14px;overflow:hidden}
@@ -239,3 +247,11 @@ textarea.input{min-height:150px;resize:vertical}
 .still .hero-dup{display:none}
 @media (prefers-reduced-motion:reduce){.hero-track{animation:none!important}.hero-row{overflow-x:auto;overflow-y:hidden}.hero-dup{display:none}}
 @media (max-width:719px){.hero-line{max-width:none}.hero-track{animation:none}.hero-row{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-left:var(--wp);padding-right:var(--wp);scrollbar-width:none}.hero-row::-webkit-scrollbar{display:none}.hero-tile{width:80vw;scroll-snap-align:start}.hero-dup{display:none}}
+
+/* Link pill: every outbound link on a project page. Optional icon before, an arrow after anything that opens a new tab. */
+.link-pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;box-sizing:border-box;border:1px solid var(--ink);border-radius:999px;background:transparent;color:var(--ink);font-family:var(--sans);font-size:15px;font-weight:600;line-height:1;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color 160ms var(--ease),color 160ms var(--ease)}
+.link-pill:hover,.link-pill:focus-visible,.link-pill.is-hover{background:var(--ink);color:var(--ground)}
+.link-pill svg{display:block;flex:none;width:16px;height:16px}
+.pill-row{display:flex;flex-wrap:wrap;gap:12px}
+.hero-pill{display:flex;justify-content:center;margin-top:24px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
