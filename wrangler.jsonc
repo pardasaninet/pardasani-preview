@@ -1,0 +1,12 @@
+{
+  // pardasani.net: a static site served from the public folder by Cloudflare Workers.
+  "name": "pardasani",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    // work.html is served at /work
+    "html_handling": "auto-trailing-slash",
+    // Unknown addresses get the site's own 404 page
+    "not_found_handling": "404-page"
+  }
+}
