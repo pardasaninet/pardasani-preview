@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<title>Video</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="assets/v4.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+/* A walkthrough video on a project page, with the project images' 20px corners. Wide videos are 16:9.
+   Tall ones are 9:16, centred and 4 of 12 columns wide, with no frame: the video already shows a phone. */
+.vid{position:relative;font-family:'Funnel Sans',ui-sans-serif,system-ui,sans-serif}
+.vid-screen{position:relative;overflow:hidden;border-radius:var(--r-media);background:#161616}
+.vid-wide .vid-screen{aspect-ratio:16 / 9}
+.vid-tall .vid-frame{width:clamp(240px,calc((100% - 132px) / 3 + 36px),100%);margin:0 auto}
+.vid-tall .vid-screen{aspect-ratio:9 / 16}
+.vid-screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* Until the player loads (and on the canvas, which can't play it), the frame shows its name */
+.vid-label{position:absolute;top:14px;left:16px;right:16px;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;line-height:1.4;color:rgba(241,240,236,0.8)}
+</style>
+</helmet>
+<div class="vid {{shapeCls}}" id="{{boxId}}">
+<div class="vid-frame">
+<div class="vid-screen" id="{{slotId}}"><span class="vid-label" aria-hidden="true">{{label}}</span></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"video":{"editor":"text","default":"6o12_j6Wd_c"},"shape":{"editor":"enum","options":["wide","tall"],"default":"wide"},"title":{"editor":"text","default":"Video walkthrough"},"$preview":{"width":960,"height":540}}'>
+// The player is YouTube's privacy-enhanced embed, built by the YouTube IFrame API: muted, inline, looping, no related videos.
+// It loads only when the video gets near the screen, plays once half of it is on screen and pauses when it leaves.
+// With reduced motion it never starts on its own. YouTube's own controls stay, so people can unmute, pause or scrub.
+// The exported site always fetches. (In the design canvas this was limited, because the canvas blocks network calls.)
+const LIVE = true;
+
+// One copy of the API for the page, however many videos it has.
+let apiReady = null;
+function loadApi() {
+  if (window.YT && window.YT.Player) return Promise.resolve(window.YT);
+  if (apiReady) return apiReady;
+  apiReady = new Promise((resolve, reject) => {
+    const before = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => { if (typeof before === 'function') before(); resolve(window.YT); };
+    const el = document.createElement('script');
+    el.src = 'https://www.youtube.com/iframe_api';
+    el.async = true;
+    el.onerror = () => { apiReady = null; reject(new Error('The YouTube player did not load')); };
+    document.head.appendChild(el);
+  });
+  return apiReady;
+}
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const key = Math.random().toString(36).slice(2, 9);
+    this.boxId = 'vid-' + key;
+    this.slotId = 'vid-slot-' + key;
+    let reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    this.reduce = reduce;
+  }
+  componentDidMount() {
+    if (!LIVE || typeof IntersectionObserver === 'undefined') return;
+    const box = document.getElementById(this.boxId);
+    if (!box) return;
+    // Near the screen: load the player.
+    this.nearObs = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      this.nearObs.disconnect();
+      loadApi().then((YT) => this.build(YT)).catch(() => {});
+    }, { rootMargin: '400px 0px' });
+    this.nearObs.observe(box);
+    // Half on screen: play. Off screen: pause.
+    this.seenObs = new IntersectionObserver((entries) => {
+      const r = entries[0].intersectionRatio;
+      if (r >= 0.5) this.inView = true;
+      else if (!entries[0].isIntersecting) this.inView = false;
+      else return;
+      this.sync();
+    }, { threshold: [0, 0.5] });
+    this.seenObs.observe(box);
+  }
+  build(YT) {
+    if (this.gone || this.player) return;
+    const slot = document.getElementById(this.slotId);
+    if (!slot) return;
+    const id = this.props.video;
+    const host = document.createElement('div');
+    slot.appendChild(host);
+    this.player = new YT.Player(host, {
+      host: 'https://www.youtube-nocookie.com',
+      videoId: id,
+      width: '100%',
+      height: '100%',
+      playerVars: { mute: 1, playsinline: 1, rel: 0, loop: 1, playlist: id },
+      events: {
+        onReady: (e) => {
+          this.ready = true;
+          try { e.target.mute(); e.target.getIframe().setAttribute('title', this.props.title || 'Video walkthrough'); } catch (err) {}
+          this.sync();
+        },
+        // A pause the viewer makes is theirs: the video doesn't start again on its own until they press play.
+        onStateChange: (e) => {
+          if (e.data === 2 && !this.autoPause) this.held = true;
+          if (e.data === 1) this.held = false;
+          if (e.data !== 3) this.autoPause = false;
+        }
+      }
+    });
+  }
+  sync() {
+    if (!this.ready || !this.player) return;
+    try {
+      if (this.inView) { if (!this.reduce && !this.held) this.player.playVideo(); }
+      else if (this.player.getPlayerState() === 1) { this.autoPause = true; this.player.pauseVideo(); }
+    } catch (e) {}
+  }
+  componentWillUnmount() {
+    this.gone = true;
+    if (this.nearObs) this.nearObs.disconnect();
+    if (this.seenObs) this.seenObs.disconnect();
+    try { if (this.player) this.player.destroy(); } catch (e) {}
+  }
+  renderVals() {
+    return {
+      boxId: this.boxId,
+      slotId: this.slotId,
+      shapeCls: this.props.shape === 'tall' ? 'vid-tall' : 'vid-wide',
+      label: this.props.title || 'Video walkthrough'
+    };
+  }
+}
+</script>
+</body>
+</html>

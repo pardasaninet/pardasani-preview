@@ -1,0 +1,22 @@
+# Old export addresses -> clean addresses
+/Home.dc.html / 301
+/Home.dc / 301
+/NotFound.dc.html /404 301
+/NotFound.dc /404 301
+/Work.dc.html /work 301
+/Work.dc /work 301
+/AboutPage.dc.html /about 301
+/AboutPage.dc /about 301
+/Contact.dc.html /#contact 301
+/Contact.dc /#contact 301
+/contact /#contact 301
+/OddJobs.dc.html /odd-jobs 301
+/OddJobs.dc /odd-jobs 301
+/Thingalicious.dc.html /thingalicious 301
+/Thingalicious.dc /thingalicious 301
+/Delighto.dc.html /delighto 301
+/Delighto.dc /delighto 301
+/ChaiAndCo.dc.html /chai-and-co 301
+/ChaiAndCo.dc /chai-and-co 301
+/Doberman.dc.html /doberman 301
+/Doberman.dc /doberman 301

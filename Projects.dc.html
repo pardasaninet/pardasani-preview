@@ -12,7 +12,11 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
-<style>body{margin:0}</style>
+<style>body{margin:0}
+/* Home's two featured cards: the mockup sits just under the glass caption, and the frame is only as tall as the narrower card needs,
+   so neither card has a gap between its caption and its image. Both cards stay the same height. The script sets the height and where each image starts. */
+.feat-img{position:absolute;left:0;width:100%;object-fit:contain;object-position:50% 0}
+</style>
 </helmet>
 <div style="background: {{rootBg}}; color: #161616; font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; line-height: 1.55; text-wrap: pretty">
 
@@ -40,11 +44,11 @@
 </sc-if>
 
 <sc-if value="{{isFeatured}}" hint-placeholder-val="{{ false }}">
-<ul class="row bento" aria-label="Selected work" style="list-style: none; margin: 0; padding: 0">
+<ul class="row bento" id="{{featId}}" aria-label="Selected work" style="list-style: none; margin: 0; padding: 0">
 <sc-for list="{{featured}}" as="p" hint-placeholder-count="2">
-<li class="{{p.span}}" style="height: clamp(380px, 46vw, 600px)">
+<li class="{{p.span}}" style="height: {{featH}}">
 <a href="{{p.href}}" class="card" style="height: 100%">
-<span class="card-img" aria-hidden="true"><sc-if value="{{p.src}}" hint-placeholder-val="{{ false }}"><img src="{{p.src}}" alt="" class="{{p.fit}}"></sc-if><sc-if value="{{p.noSrc}}" hint-placeholder-val="{{ true }}"><span class="ph-label">Image: {{p.image}}</span></sc-if></span>
+<span class="card-img {{p.bg}}" aria-hidden="true" style="background: {{p.bgCss}}"><sc-if value="{{p.src}}" hint-placeholder-val="{{ false }}"><img src="{{p.src}}" alt="" class="fit feat-img" style="top: {{p.imgTop}}px; height: calc(100% - {{p.imgTop}}px)"></sc-if><sc-if value="{{p.noSrc}}" hint-placeholder-val="{{ true }}"><span class="ph-label">Image: {{p.image}}</span></sc-if></span>
 <span class="cap glass-i"><span class="cap-name">{{p.name}}</span><span class="cap-sum">{{p.summary}}</span><span class="cap-kind">{{p.featuredKind}}</span></span>
 <span class="arrow glass-i" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M5.5 4.5H11.5V10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
 </a>
@@ -56,7 +60,7 @@
 <sc-if value="{{isIndex}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; margin-bottom: var(--gap-s)">
 <h2 class="t-label">/ More work</h2>
-<a href="Work.dc.html" class="mono-link">See all projects <span aria-hidden="true" style="margin-left: 6px">→</span></a>
+<a href="work" class="mono-link">See all projects <span aria-hidden="true" style="margin-left: 6px">→</span></a>
 </div>
 <div style="position: relative" onMouseLeave="{{ixLeave}}">
 <ul class="ix">
@@ -81,26 +85,98 @@
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"view":{"editor":"enum","options":["work","featured","index","reel"],"default":"work"},"$preview":{"width":1280,"height":4300}}'>
+// The colours along an image's top edge, at nine points from left to right, read from a small copy on a canvas. Same-origin images only.
+const edgeCache = {};
+function topColours(img) {
+  if (edgeCache[img.src] !== undefined) return edgeCache[img.src];
+  try {
+    const c = document.createElement('canvas');
+    c.width = 64; c.height = 36;
+    const g = c.getContext('2d');
+    g.drawImage(img, 0, 0, 64, 36);
+    const d = g.getImageData(0, 0, 64, 2).data;
+    const row = [0, 8, 16, 24, 32, 40, 48, 56, 63].map((x) => {
+      const t = [0, 0, 0];
+      for (const y of [0, 1]) { const i = (y * 64 + x) * 4; t[0] += d[i]; t[1] += d[i + 1]; t[2] += d[i + 2]; }
+      return t.map((v) => v / 2);
+    });
+    // Where the mockup itself touches the top edge (the Odd Jobs monitor), its colour isn't backdrop: those points blend between the two ends instead.
+    const a = row[0], b = row[row.length - 1];
+    const rgb = (c) => 'rgb(' + c.map((v) => Math.round(v)).join(', ') + ')';
+    const px = (x, y) => { const p = g.getImageData(x, y, 1, 1).data; return rgb([p[0], p[1], p[2]]); };
+    edgeCache[img.src] = {
+      row: row.map((c, k) => {
+        const f = k / (row.length - 1), mid = a.map((v, j) => v + (b[j] - v) * f);
+        const off = Math.max(...c.map((v, j) => Math.abs(v - mid[j])));
+        return rgb(off > 30 ? mid : c);
+      }),
+      // Down each side, top and bottom, for the space beside a narrower image
+      left: [px(0, 0), px(0, 35)],
+      right: [px(63, 0), px(63, 35)]
+    };
+  } catch (e) { edgeCache[img.src] = null; }
+  return edgeCache[img.src];
+}
+
 class Component extends DCLogic {
   constructor(props) {
     super(props);
     this.state = { f: 'All', row: -1, lastRow: 0 };
+    this.featId = 'feat-' + Math.random().toString(36).slice(2, 9);
+  }
+  // The featured row's height: the tallest caption, a 12px gap, then the shortest card's image at its width.
+  // Each image starts 12px under its own caption, so the narrower card's image fills its space and the wider one's sits centred on its backdrop.
+  measureFeatured() {
+    const ul = document.getElementById(this.featId);
+    if (!ul) return;
+    const cards = [...ul.querySelectorAll('.card')];
+    if (!cards.length) return;
+    const tops = cards.map((c) => { const cap = c.querySelector('.cap'); return cap ? Math.round(cap.offsetTop + cap.offsetHeight + 12) : 0; });
+    const imgH = cards.map((c) => { const img = c.querySelector('img'); const r = img && img.naturalWidth ? img.naturalHeight / img.naturalWidth : 9 / 16; return c.offsetWidth * r; });
+    const featH = Math.round(Math.max(...tops) + Math.min(...imgH));
+    // Above and beside the image, the backdrop carries on the colours of the image's top edge, so the image meets it without a seam.
+    const bgs = cards.map((c, i) => {
+      const img = c.querySelector('img');
+      const e = img && img.naturalWidth ? topColours(img) : null;
+      if (!e) return '';
+      const cols = e.row;
+      const ratio = img.naturalHeight / img.naturalWidth;
+      const w = c.offsetWidth, shownW = Math.min(w, (featH - tops[i]) / ratio);
+      const side = Math.max(0, (w - shownW) / 2 / w * 100);
+      const at = (k) => (side + (k / (cols.length - 1)) * (100 - 2 * side)).toFixed(2) + '%';
+      const down = (pair) => 'linear-gradient(180deg, ' + pair[0] + ' 0px, ' + pair[0] + ' ' + tops[i] + 'px, ' + pair[1] + ' 100%)';
+      const sides = side > 0.5 ? down(e.left) + ' left top / ' + side.toFixed(2) + '% 100% no-repeat, ' + down(e.right) + ' right top / ' + side.toFixed(2) + '% 100% no-repeat, ' : '';
+      return sides + 'linear-gradient(90deg, ' + cols[0] + ' 0%, ' + cols.map((col, k) => col + ' ' + at(k)).join(', ') + ', ' + cols[cols.length - 1] + ' 100%)';
+    });
+    const same = this.state.featH === featH && (this.state.featTops || []).join() === tops.join() && (this.state.featBgs || []).join('|') === bgs.join('|');
+    if (!same) this.setState({ featH, featTops: tops, featBgs: bgs });
   }
   componentDidMount() {
+    if (this.props.view === 'featured') {
+      this.measureSoon = () => { cancelAnimationFrame(this.measureRaf); this.measureRaf = requestAnimationFrame(() => this.measureFeatured()); };
+      const ul = document.getElementById(this.featId);
+      if (ul && typeof ResizeObserver !== 'undefined') { this.featRO = new ResizeObserver(this.measureSoon); this.featRO.observe(ul); }
+      if (ul) ul.addEventListener('load', this.measureSoon, true);
+      this.measureSoon();
+    }
     let h = '';
     try { h = (window.location.hash || '').replace('#', ''); } catch (e) {}
     const fromHash = { ux: 'UX/UI', brand: 'Brand identity', development: 'Development' }[h];
     if (fromHash) this.setState({ f: fromHash });
   }
+  componentWillUnmount() {
+    if (this.featRO) this.featRO.disconnect();
+    cancelAnimationFrame(this.measureRaf);
+  }
   renderVals() {
     // The single source of project data. Adding a project is one row.
     // fit says how a card shows its image, and focus is where a hero tile crops it.
     const PROJECTS = [
-      { slug: 'odd-jobs', name: 'Odd Jobs', kind: 'UX research', filters: ['UX/UI'], image: 'oddjobs-hero.jpg', src: 'assets/oddjobs-hero.jpg', fit: 'fit fit-169 bg-oj', focus: '50% 50%', page: 'OddJobs.dc.html', featured: true, featuredKind: 'UX research, Responsive design', summary: 'Odd Jobs is a take on a job board that focuses on university students.' },
-      { slug: 'delighto', name: 'Delighto.ai', kind: 'Front-end development', filters: ['UX/UI', 'Development'], image: 'delighto-hero.jpg', src: 'assets/delighto-hero.jpg', fit: 'fit fit-169 bg-de', focus: '50% 50%', page: 'Delighto.dc.html', featured: true, featuredKind: 'Front-end development, Design-to-code', summary: "Delighto.ai is a digital business card platform, and I built the front end of its website redesign from the team's Figma designs." },
-      { slug: 'thingalicious', name: 'Thingalicious', kind: 'Brand systems', filters: ['Brand identity', 'Packaging'], image: 'thingalicious-hero.jpg', src: 'assets/thingalicious-hero.jpg', fit: 'fit fit-43 bg-th', focus: '50% 50%', page: 'Thingalicious.dc.html', featuredKind: 'Brand systems, 3D packaging', summary: 'Thingalicious is a curated fashion jewelry brand, and I lead its creative direction across every place it appears, online and offline.' },
-      { slug: 'chai-and-co', name: 'Chai & Co.', kind: 'Mobile UI', filters: ['Brand identity', 'UX/UI'], image: 'chai-hero.jpg', src: 'assets/chai-hero.jpg', fit: 'fit fit-32 bg-ch', focus: '50% 50%', page: 'ChaiAndCo.dc.html' },
-      { slug: 'doberman', name: 'Doberman', kind: 'Brand identity', filters: ['Brand identity'], image: 'doberman-hero.jpg', src: 'assets/doberman-hero.jpg', fit: 'fit fit-cover fit-do', focus: '50% 40%', page: 'Doberman.dc.html' }
+      { slug: 'odd-jobs', name: 'Odd Jobs', kind: '0 to 1', filters: ['UX/UI'], image: 'oddjobs-hero.jpg', src: 'assets/oddjobs-hero.jpg', fit: 'fit fit-169 bg-oj', focus: '50% 50%', page: 'odd-jobs', featured: true, featuredKind: '0 to 1, Responsive design', summary: 'Odd Jobs is a take on a job board that focuses on university students.' },
+      { slug: 'delighto', name: 'Delighto.ai', kind: 'Front-end development', filters: ['UX/UI', 'Development'], image: 'delighto-hero.jpg', src: 'assets/delighto-hero.jpg', fit: 'fit fit-169 bg-de', focus: '50% 50%', page: 'delighto', featured: true, featuredKind: 'Front-end development, Design-to-code', summary: "Delighto.ai is a digital business card platform, and I built the front end of its website redesign from the team's Figma designs." },
+      { slug: 'thingalicious', name: 'Thingalicious', kind: 'Brand systems', filters: ['Brand identity', 'Packaging'], image: 'thingalicious-hero.jpg', src: 'assets/thingalicious-hero.jpg', fit: 'fit fit-43 bg-th', focus: '50% 50%', page: 'thingalicious', featuredKind: 'Brand systems, 3D packaging', summary: 'Thingalicious is a curated fashion jewelry brand, and I lead its creative direction across every place it appears, online and offline.' },
+      { slug: 'chai-and-co', name: 'Chai & Co.', kind: 'Mobile UI', filters: ['Brand identity', 'UX/UI'], image: 'chai-hero.jpg', src: 'assets/chai-hero.jpg', fit: 'fit fit-32 bg-ch', focus: '50% 50%', page: 'chai-and-co' },
+      { slug: 'doberman', name: 'Doberman', kind: 'Brand identity', filters: ['Brand identity'], image: 'doberman-hero.jpg', src: 'assets/doberman-hero.jpg', fit: 'fit fit-cover fit-do', focus: '50% 40%', page: 'doberman' }
     ];
     // A chip only shows when at least one project sits under it.
     const FILTERS = ['All'].concat(['Brand identity', 'Packaging', 'UX/UI', 'Development', 'Visual design'].filter((name) => PROJECTS.some((p) => p.filters.indexOf(name) > -1)));
@@ -119,7 +195,8 @@ class Component extends DCLogic {
     const f = this.state.f;
     const chips = FILTERS.map((name) => ({ name, on: name === f ? 'true' : 'false', pick: () => this.setState({ f: name }) }));
     const shown = pairUp(PROJECTS.filter((p) => f === 'All' || p.filters.indexOf(f) > -1));
-    const featured = pairUp(PROJECTS.filter((p) => p.featured));
+    // Featured cards: the backdrop colour fills the whole card, behind the caption too, and each image starts just under its caption.
+    const featured = pairUp(PROJECTS.filter((p) => p.featured)).map((p, i) => ({ ...p, bg: (p.fit.match(/bg-\w+/) || [''])[0], imgTop: (this.state.featTops || [])[i] || 0, bgCss: (this.state.featBgs || [])[i] || '' }));
 
     // The hero row runs the five projects twice, so its drift loops without a seam.
     const reel = [0, 1].flatMap((copy) => PROJECTS.map((p) => ({ name: p.name, href: p.page, src: p.src, focus: p.focus, dup: copy ? 'hero-dup' : '', hidden: copy ? 'true' : 'false', tab: copy ? '-1' : '0' })));
@@ -150,6 +227,8 @@ class Component extends DCLogic {
       viewLabel: f === 'All' ? 'All work' : f,
       shown,
       featured,
+      featId: this.featId,
+      featH: this.state.featH ? this.state.featH + 'px' : 'clamp(380px, 46vw, 600px)',
       rows,
       prev,
       ixLeave: () => this.setState({ row: -1 })

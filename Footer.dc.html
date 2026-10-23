@@ -18,15 +18,23 @@
 .foot-credits{display:flex;flex-direction:column;align-items:center;text-align:center}
 .foot-top{justify-self:end}
 @media (max-width:719px){.foot-base{grid-template-columns:1fr 1fr}.foot-credits{grid-column:1 / -1;grid-row:1}}
+/* Every real link in the footer has a hover state. The email underline thickens. */
+.foot .email{transition:text-decoration-thickness 160ms var(--ease)}
+.foot .email:hover{text-decoration-thickness:0.08em}
+/* The Social column is never narrower than its two icons and the Resume pill, so the pill can't run into Pages. When it's wider than its share, Pages moves along.
+   On phones the Resume pill takes its own row under the icons instead, and Pages stays beside Social. */
+.foot .foot-social{min-width:max-content}
+.foot-resume{margin-left:6px}
+@media (max-width:719px){.foot .foot-social{min-width:0}.foot .foot-social ul{flex-wrap:wrap;row-gap:10px}.foot-resume{flex-basis:100%;margin-left:0}}
 </style>
 </helmet>
-<footer class="foot gradient on-dark" style="font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; color: #f1f0ec">
+<footer id="contact" class="foot gradient on-dark" style="font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; color: #f1f0ec">
 <svg width="0" height="0" aria-hidden="true" style="position: absolute"><filter id="grain-footer" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter></svg>
 <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain-footer)"></rect></svg>
 
 <div style="position: relative; display: flex; flex-direction: column; gap: 16px; max-width: clamp(230px, 46vw, 586px)">
 <h2 class="t-label">/ Contact</h2>
-<p style="margin: 0; font-size: clamp(24px, 2.3vw, 30px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.2">I'm open to full-time roles, freelance projects and contract work in UX design, design strategy and front-end development.</p>
+<p style="margin: 0; font-size: clamp(24px, 2.3vw, 30px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.2">Let's build something together.</p>
 </div>
 
 <div style="position: relative; margin-top: var(--gap-w); display: flex; flex-direction: column; align-items: flex-start; gap: 12px">
@@ -35,31 +43,26 @@
 </div>
 
 <div class="row" style="position: relative; margin-top: var(--gap-s); padding-top: 12px; border-top: 1px solid rgba(241, 240, 236, 0.5); row-gap: 24px">
-<nav class="c2" aria-label="Social">
+<nav class="c2 foot-social" aria-label="Social">
 <h3 class="t-label" style="margin: 0 0 10px">Social</h3>
 <ul style="list-style: none; margin: 0; padding: 0; display: flex; gap: 6px">
 <li><a href="https://www.linkedin.com/in/mannat-pardasani/" target="_blank" rel="noopener" class="icon-btn glass-g" aria-label="LinkedIn (opens in a new tab)"><svg width="17" height="17" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><!-- LinkedIn icon from Font Awesome Free 6.5.2 by @fontawesome, https://fontawesome.com, license CC BY 4.0 --><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg></a></li>
 <li><a href="https://www.instagram.com/pardasanidesign/" target="_blank" rel="noopener" class="icon-btn glass-g" aria-label="Instagram (opens in a new tab)"><svg width="17" height="17" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><!-- Instagram icon from Font Awesome Free 6.5.2 by @fontawesome, https://fontawesome.com, license CC BY 4.0 --><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg></a></li>
-<li style="margin-left: 6px"><a href="assets/Mannat-Pardasani-Resume-UX-UI.pdf" target="_blank" rel="noopener" class="pill glass-g"><span class="nudge">Resume</span><span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+<li class="foot-resume"><a href="assets/Mannat-Pardasani-Resume-UX-UI.pdf" target="_blank" rel="noopener" class="pill glass-g"><span class="nudge">Resume</span><span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></li>
 </ul>
 </nav>
 <nav class="c2" aria-label="Pages">
 <h3 class="t-label" style="margin: 0 0 10px">Pages</h3>
 <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
-<li><a href="Work.dc.html" class="foot-link" style="min-height: 28px">Work</a></li>
-<li><a href="AboutPage.dc.html" class="foot-link" style="min-height: 28px">About</a></li>
-<li><a href="Contact.dc.html" class="foot-link" style="min-height: 28px">Contact</a></li>
+<li><a href="work" class="foot-link" style="min-height: 28px">Work</a></li>
+<li><a href="about" class="foot-link" style="min-height: 28px">About</a></li>
 </ul>
 </nav>
-<div class="c2">
-<h3 class="t-label" style="margin: 0 0 10px">Based in</h3>
-<p style="margin: 0; font-size: 14px; line-height: 44px">New&nbsp;York</p>
-</div>
 </div>
 <div class="foot-base">
 <span class="t-kind">© 2026</span>
 <div class="foot-credits">
-<p class="t-kind" style="margin: 0">I designed and built this site with help from Claude.</p>
+<p class="t-kind" style="margin: 0">Designed and built by hand, orchestrated by Claude.</p>
 <p class="t-kind" style="margin: 0"><a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer" class="foot-link t-kind" style="font-size: 10px">Weather data by Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" class="foot-link t-kind" style="font-size: 10px">CC BY 4.0</a>)</p>
 </div>
 <a href="#top" class="foot-link t-kind foot-top" style="font-size: 10px; gap: 6px">Back to top <span aria-hidden="true">↑</span></a>
@@ -93,23 +96,45 @@ function joinAll() {
   try { document.querySelectorAll(JOIN_SELECTOR).forEach(joinLastWords); } catch (e) {}
 }
 
+// Page chrome. Every page imports the footer, so two page-wide states are set here, as classes on the page:
+// is-scrolled once the page has scrolled more than 8px (the header's shadow), and at-end while a Next project card
+// is on screen (the project bar's Next fills ink).
+function setPageClass(name, on) {
+  try { document.documentElement.classList.toggle(name, on); } catch (e) {}
+}
+
 class Component extends DCLogic {
   constructor(props) {
     super(props);
     this.state = { copied: false };
   }
   componentDidMount() {
-    this.joinSoon = () => { cancelAnimationFrame(this.joinRaf); this.joinRaf = requestAnimationFrame(joinAll); };
+    this.joinSoon = () => { cancelAnimationFrame(this.joinRaf); this.joinRaf = requestAnimationFrame(() => { joinAll(); this.watchEnd(); }); };
     this.joinSoon();
     try {
       this.joinObs = new MutationObserver(this.joinSoon);
       this.joinObs.observe(document.body, { childList: true, subtree: true, characterData: true });
     } catch (e) {}
+    this.onScroll = () => setPageClass('is-scrolled', (window.scrollY || document.documentElement.scrollTop || 0) > 8);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+  // The Next project card renders with its page, so it may not exist yet when the footer mounts. This runs again on every change until it does.
+  watchEnd() {
+    if (this.endObs || typeof IntersectionObserver === 'undefined') return;
+    const card = document.querySelector('.card-next');
+    if (!card) return;
+    this.endObs = new IntersectionObserver((entries) => setPageClass('at-end', entries[0].isIntersecting));
+    this.endObs.observe(card);
   }
   componentWillUnmount() {
     clearTimeout(this.copyTimer);
     cancelAnimationFrame(this.joinRaf);
     if (this.joinObs) this.joinObs.disconnect();
+    if (this.endObs) this.endObs.disconnect();
+    window.removeEventListener('scroll', this.onScroll);
+    setPageClass('is-scrolled', false);
+    setPageClass('at-end', false);
   }
   renderVals() {
     const copy = () => {

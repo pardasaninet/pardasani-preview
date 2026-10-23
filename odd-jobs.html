@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Odd Jobs | mannat pardasani</title>
+<meta name="description" content="Odd Jobs is a take on a job board that focuses on university students.">
+<link rel="canonical" href="https://pardasani.net/odd-jobs">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mannat pardasani">
+<meta property="og:title" content="Odd Jobs | mannat pardasani">
+<meta property="og:description" content="Odd Jobs is a take on a job board that focuses on university students.">
+<meta property="og:url" content="https://pardasani.net/odd-jobs">
+<meta property="og:image" content="https://pardasani.net/assets/oddjobs-hero.jpg">
+<meta property="og:image:width" content="2880">
+<meta property="og:image:height" content="1620">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pardasani.net/assets/oddjobs-hero.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="assets/v4.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}
+/* Hero: 12:5 on wider screens, 2:1 on phones. The mockup has almost no empty space above the monitor, so rather than crop
+   into the screens it sits whole on the bottom edge, with the sage backdrop carried out to the sides in its own edge colours. */
+.hero-oj{aspect-ratio:12 / 5;background:linear-gradient(180deg,rgb(235,242,211),rgb(232,239,205)) left / 50% 100% no-repeat,linear-gradient(180deg,rgb(246,248,235),rgb(239,244,222)) right / 50% 100% no-repeat}
+.hero-oj img{position:absolute;left:50%;bottom:0;height:100%;width:auto;max-width:none;transform:translateX(-50%);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+@media (max-width:719px){.hero-oj{aspect-ratio:2 / 1}}
+/* Decision 03, the gig page: one sage panel with the desktop page in a browser frame and the phone rising over its lower right, in the same flat ink outlines as the devices */
+.gig-panel{position:relative;overflow:hidden;border-radius:20px;padding:clamp(20px,4vw,48px) clamp(20px,4vw,48px) 0;background:linear-gradient(180deg,#ebf2d3,#e8efcd)}
+.gig-browser{width:76%;border:2px solid var(--ink);border-radius:14px;background:var(--surface);overflow:hidden}
+.gig-bar{display:flex;gap:6px;padding:8px 10px;border-bottom:2px solid var(--ink)}
+.gig-bar span{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--ink)}
+.gig-browser img,.gig-screen img{display:block;width:100%;height:auto}
+.gig-space{height:clamp(70px,9vw,120px)}
+.gig-phone{position:absolute;right:clamp(20px,5vw,64px);bottom:0;width:30%;padding:8px 8px 0;box-sizing:border-box;border:2px solid var(--ink);border-bottom:0;border-radius:28px 28px 0 0;background:var(--surface)}
+.gig-screen{border-radius:20px 20px 0 0;overflow:hidden}
+@media (max-width:719px){.gig-browser{width:100%}.gig-phone{width:52%;right:16px}.gig-space{height:150px}}
+/* Decision 03: the same screen on a monitor, a tablet and a phone, flat ink outlines, bottom-aligned, with numbered markers */
+.devices{display:grid;grid-template-columns:5fr 3fr 2fr;grid-template-rows:auto auto;column-gap:12px;row-gap:20px;align-items:end}
+.device{display:grid;grid-row:span 2;grid-template-rows:subgrid;margin:0}
+.dev-art{align-self:end}
+.screen{position:relative;overflow:hidden;background:#ffffff}
+.screen img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.mon{border:2px solid var(--ink);border-radius:12px;padding:8px;background:var(--surface)}
+.mon .screen{aspect-ratio:1512 / 1350;border-radius:4px}
+.mon-neck{display:block;width:14%;height:clamp(20px,3.6vw,44px);margin:0 auto;border:2px solid var(--ink);border-top:0;border-bottom:0;box-sizing:border-box}
+.mon-base{display:block;width:38%;height:10px;margin:0 auto;border:2px solid var(--ink);border-radius:6px;box-sizing:border-box}
+.tab{border:2px solid var(--ink);border-radius:22px;padding:12px;background:var(--surface)}
+.tab .screen{aspect-ratio:1194 / 1592;border-radius:8px}
+.pho{border:2px solid var(--ink);border-radius:28px;padding:8px;background:var(--surface)}
+.pho .screen{aspect-ratio:786 / 1703;border-radius:20px}
+.mk{position:absolute;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--ground);font-family:var(--mono);font-size:11px;font-weight:500;line-height:1;transform:translate(-50%,-50%)}
+.dev-notes{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;counter-reset:mk}
+.dev-notes li{position:relative;padding-left:30px;font-size:15px;line-height:1.45;color:var(--body);counter-increment:mk}
+.dev-notes li::before{content:counter(mk);position:absolute;left:0;top:0.1em;display:flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--ink);color:var(--ground);font-family:var(--mono);font-size:10px;font-weight:500}
+/* Information architecture, Wireframes and User flow: three label-only sections, laid out to the reference board */
+.oj-sec{--wire:#8f8d86;--accent:#2c5ea8;--band:#e3e6ea}
+.oj-body{margin-top:32px}
+.oj-mono{margin:0;font-family:var(--mono);font-size:12px;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;line-height:1.35;color:var(--muted)}
+
+/* Information architecture: the hand-drawn diagram, kept as drawn. Five sections in a row, Job info under Browse and Post, Profile under How it works. */
+.ia{position:relative;display:grid;align-items:start;grid-template-columns:auto 1fr 1fr 1fr 1.15fr;column-gap:28px;row-gap:44px;max-width:1120px;width:100%;margin:0 auto}
+.ia-col{min-width:0}
+.ia-c-home{grid-column:1;grid-row:1}
+.ia-c-browse{grid-column:2;grid-row:1}
+.ia-c-post{grid-column:3;grid-row:1}
+.ia-c-how{grid-column:4;grid-row:1}
+.ia-c-acct{grid-column:5;grid-row:1 / span 2}
+.ia-p-job{grid-column:2 / span 2;grid-row:2}
+.ia-p-prof{grid-column:4;grid-row:2}
+.ia-node{display:block;width:max-content;max-width:100%;position:relative;z-index:1;margin:0;box-sizing:border-box;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;line-height:1.2;padding:8px 12px 7px;border:1.5px solid var(--ink);border-radius:6px;color:var(--ink);background:var(--ground)}
+.ia-node.pg{background:var(--ink);color:var(--ground)}
+.ia-tree{list-style:none;margin:0 0 0 13px;padding:8px 0 0;font-size:14px;line-height:21px;color:var(--body)}
+.ia-tree > li{position:relative;padding-left:18px}
+.ia-tree > li::before{content:"";position:absolute;left:0;top:10.5px;width:11px;border-top:1px solid var(--wire)}
+.ia-tree > li::after{content:"";position:absolute;left:0;top:0;bottom:0;border-left:1px solid var(--wire)}
+.ia-tree > li:first-child::after{top:-8px}
+.ia-tree > li:last-child::after{bottom:auto;height:10.5px}
+.ia-tree > li:first-child:last-child::after{height:18.5px}
+.ia-tree .ia-tree{margin-left:2px;padding-top:0;font-size:13px;color:var(--muted)}
+.ia-tree .ia-tree > li:first-child::after{top:-3px}
+.ia-tree .ia-tree > li:first-child:last-child::after{height:13.5px}
+.ia-tree > li.sep{padding-top:10px}
+.ia-tree > li.sep::before{top:20.5px}
+.ia-tree .sub{display:block;font-size:12.5px;line-height:17px;color:var(--muted);padding-bottom:3px}
+.ia-groups{position:relative;display:grid;grid-template-columns:1fr 1fr;column-gap:24px;margin-left:13px;padding-top:18px}
+.ia-groups::before{content:"";position:absolute;left:0;top:0;height:9px;border-left:1px solid var(--wire)}
+.ia-groups::after{content:"";position:absolute;left:0;top:9px;width:calc(50% + 12px);border-top:1px solid var(--wire)}
+.ia-grp{min-width:0}
+.ia-grp .ia-tree{margin-left:0;padding-top:0}
+.ia-grp .ia-tree > li:first-child::after{top:-9px}
+.ia-tree > li.gl{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent)}
+.ia-tree > li.gl::before{display:none}
+.ia-from{display:none}
+/* Connectors, here and in the user flow: 1.25px, muted, rounded elbows, placed by the script from the elements' positions */
+.oj-wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.oj-wires path{fill:none;stroke:var(--wire);stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#oj-arw);transition:stroke 200ms var(--ease)}
+.oj-wires path.hot{stroke:var(--accent);marker-end:url(#oj-arw-hot)}
+.oj-wires path.pending{marker-end:none}
+.oj-wires path.drawing{transition:stroke-dashoffset 900ms var(--ease),stroke 200ms var(--ease)}
+
+/* Wireframes: one tinted band, a row of hand-drawn sketches and a row of mid-fidelity screens */
+.wf-band{background:var(--band);border-radius:20px;padding:32px 32px 28px;display:grid;gap:40px}
+.wf-fid{display:grid;gap:18px}
+.wf-row{display:flex;gap:24px;justify-content:space-between;align-items:flex-end;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}
+.wf-row figure{display:grid;gap:10px;justify-items:start;flex:0 0 auto;margin:0;scroll-snap-align:start}
+.wf-row figcaption{font-size:11px}
+/* The sketches are black ink on white, blended into the band */
+.wf-sk img{display:block;height:250px;width:auto;max-width:none;mix-blend-mode:multiply}
+.wf-mid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;overflow:visible}
+.wf-mid figure{justify-items:stretch}
+.wf-frame{border:1px solid var(--hairline);border-radius:12px;overflow:hidden;background:#ffffff}
+.wf-frame img{display:block;width:100%;height:auto}
+
+/* User flow: Landing, then Hire and Earn, then the job post */
+.fl-board{position:relative}
+.fl-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:96px;align-items:center;max-width:980px;margin:0 auto}
+.fl-stack{display:grid;gap:44px}
+.fl-step{display:grid;gap:12px;align-content:start;margin:0}
+.fl-num{margin:0;display:flex;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink)}
+.fl-num b{font-weight:500;color:var(--accent)}
+.fl-device{border:1px solid var(--hairline);border-radius:30px;overflow:hidden;background:#ffffff;transition:border-color 200ms var(--ease)}
+.fl-device.crop{border-radius:20px}
+.fl-device img{display:block;width:100%;height:auto}
+.fl-step:hover .fl-device,.fl-step:focus-visible .fl-device{border-color:var(--accent)}
+.fl-step:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:8px}
+
+@media (max-width:999px){
+.ia{display:block;columns:2;column-gap:28px}
+.ia-col{break-inside:avoid;margin-bottom:26px}
+.ia-c-how{break-before:column}
+.ia .oj-wires{display:none}
+.ia-from{display:block;margin:6px 0 0;font-size:12.5px;line-height:17px;color:var(--muted)}
+.ia-groups{grid-template-columns:1fr;padding-top:8px}
+.ia-groups::before,.ia-groups::after{display:none}
+.ia-grp:first-child .ia-tree > li:first-child::after{top:-8px}
+.ia-grp:first-child .ia-tree > li:last-child::after{height:auto;bottom:0}
+.ia-grp + .ia-grp .ia-tree > li:first-child::after{top:0}
+.ia-grp + .ia-grp .ia-tree > li.gl{padding-top:8px}
+}
+@media (max-width:899px){
+.ia-tree{font-size:13px;line-height:19px}
+.ia-tree > li::before{top:9.5px}
+.ia-tree > li:last-child::after{height:9.5px}
+.ia-tree > li:first-child:last-child::after{height:17.5px}
+.ia-tree .ia-tree{font-size:12px}
+.ia-tree > li.sep{padding-top:8px}
+.ia-tree > li.sep::before{top:17.5px}
+.ia-node{font-size:11px;padding:7px 10px 6px}
+.oj-body{margin-top:24px}
+.wf-band{padding:20px 16px 18px;gap:28px}
+.wf-sk img{height:200px}
+.wf-mid{display:flex;overflow-x:auto}
+.wf-mid figure{flex:0 0 62%}
+.fl-grid{grid-template-columns:1fr 1fr;column-gap:16px;row-gap:56px}
+.st-landing,.st-job{grid-column:1 / -1;justify-self:center;width:min(64%,260px)}
+.fl-stack{display:contents}
+}
+@media (prefers-reduced-motion:reduce){.oj-wires path.drawing,.fl-device{transition:none}}
+@media (max-width:719px){
+.devices{grid-template-columns:1fr;row-gap:48px}
+.device{grid-row:auto;display:flex;flex-direction:column;gap:20px}
+/* The phone keeps a phone's proportions next to the full-width monitor and tablet */
+.dev-art .pho{width:60%}
+}
+</style>
+</helmet>
+<div id="top" class="root" style="font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; color: #161616">
+
+<div class="frost nav-bar">
+<nav class="nav" aria-label="Main">
+<a href="./" class="nav-home" aria-label="mannat pardasani, home"><img src="assets/logo-mark.svg" alt="" width="27" height="28"><span class="nav-name">mannat pardasani</span></a>
+<div class="nav-links"><a href="work" class="nav-link" aria-current="page">Work</a><a href="about" class="nav-link">About</a><a href="#contact" class="nav-link">Contact</a><a href="assets/Mannat-Pardasani-Resume-UX-UI.pdf" target="_blank" rel="noopener" class="nav-link">Resume<span class="sr-only"> (opens in a new tab)</span></a></div>
+</nav>
+</div>
+
+<main class="page">
+
+<section aria-labelledby="cs-title" style="padding-top: 12px">
+<h1 id="cs-title" class="t-case">Odd Jobs</h1>
+<div class="split" style="margin-top: 12px; align-items: flex-end; row-gap: 20px">
+<p class="t-summary c5">Odd Jobs is a take on a job board that focuses on university students.</p>
+<dl class="c5" style="margin: 0; display: flex; gap: 12px">
+<div class="stat"><dt>Year</dt><dd>2026</dd></div>
+<div class="stat"><dt>Context</dt><dd>Course project</dd></div>
+<div class="stat"><dt>Tool</dt><dd>Figma</dd></div>
+</dl>
+</div>
+<div class="ph hero-oj" style="margin-top: 12px">
+<img src="assets/oddjobs-hero.jpg" alt="" width="2880" height="1620">
+</div>
+<div style="margin-top: 12px"><dc-import name="Video" video="6o12_j6Wd_c" shape="wide" title="Odd Jobs video walkthrough" hint-size="100%,720px"></dc-import></div>
+</section>
+
+<section class="split gap-w" aria-label="Problem">
+<div class="c5"><p class="t-label">/ Problem</p></div>
+<div class="c5"><p class="t-statement">Students need things done and don't have money to spare: cleaning, laundry pickup, watching cats, watering plants, help moving. <span class="tone2">Students also need money, but often can't commit to a regular job because the hours don't fit around classes. The informal version of this already happens on campus.</span></p></div>
+</section>
+
+<section class="gap-w oj-sec" aria-label="Information architecture">
+<p class="t-label">/ Information architecture</p>
+<div class="oj-body">
+<svg width="0" height="0" aria-hidden="true" style="position: absolute"><defs><marker id="oj-arw" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1.5 1.5 L8.5 5 L1.5 8.5" fill="none" stroke="#8f8d86" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path></marker><marker id="oj-arw-hot" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1.5 1.5 L8.5 5 L1.5 8.5" fill="none" stroke="#2c5ea8" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path></marker></defs></svg>
+<div class="ia" id="oj-ia" role="img" aria-label="Information architecture for Odd Jobs. Five sections: Home, Browse gigs, Post a gig, How it works and My account. Search and Your posts both lead to the Job info page, split into primary and secondary details. Profile in My account leads to the Profile page.">
+<div class="ia-col ia-c-home"><p class="ia-node">Home</p></div>
+<div class="ia-col ia-c-browse"><p class="ia-node">Browse gigs</p><ul class="ia-tree"><li>Earn</li><li>Hire</li><li>University-specific</li><li><span id="oj-ia-search">Search</span></li></ul></div>
+<div class="ia-col ia-c-post"><p class="ia-node">Post a gig</p><ul class="ia-tree"><li>Post as hirer</li><li>Post as doer</li><li><span id="oj-ia-posts">Your posts</span></li></ul></div>
+<div class="ia-col ia-p-job"><p class="ia-node pg" id="oj-ia-job">Job info</p><p class="ia-from">From Search and Your posts</p>
+<div class="ia-groups">
+<div class="ia-grp"><ul class="ia-tree"><li class="gl">Primary</li><li>Title</li><li>Category</li><li>Pay or budget</li><li>Location</li><li>Date and time</li><li>Poster<span class="sub">Name, photo, rating, hirer/doer</span></li></ul></div>
+<div class="ia-grp"><ul class="ia-tree"><li class="gl">Secondary</li><li>Images</li><li>Full description</li><li>Skills and requirements</li><li>Estimated duration</li><li>Accept, offer or chat</li><li>University verified badge</li></ul></div>
+</div>
+</div>
+<div class="ia-col ia-c-how"><p class="ia-node">How it works</p><ul class="ia-tree"><li>For earners</li><li>For hirers</li><li>Verification</li><li>FAQ</li></ul></div>
+<div class="ia-col ia-c-acct"><p class="ia-node">My account</p><ul class="ia-tree"><li>Sign up / in<ul class="ia-tree"><li>Student</li><li>University</li><li>Log out</li></ul></li><li id="oj-ia-acct-profile">Profile</li><li>Notifications</li><li>History<ul class="ia-tree"><li>Active</li><li>Past</li><li>Archive</li></ul></li><li>Upcoming</li><li>Wallet</li><li>Privacy and security</li><li>Help and FAQ</li></ul></div>
+<div class="ia-col ia-p-prof"><p class="ia-node pg" id="oj-ia-prof">Profile</p><p class="ia-from">From My account</p><ul class="ia-tree"><li>Name</li><li>Profile picture</li><li>University and year</li><li>Badges</li><li>Average rating</li><li>Hirer, doer or both</li><li class="sep">Short bio</li><li>Skills</li><li>Active since</li><li>Activity<ul class="ia-tree"><li>Jobs posted</li><li>Jobs done</li></ul></li><li>Reviews</li><li>Review summary</li><li>Chat</li><li>Offer a gig</li></ul></div>
+<svg class="oj-wires" aria-hidden="true" viewBox="{{iaBox}}"><sc-for list="{{iaWires}}" as="w" hint-placeholder-count="3"><path d="{{w.d}}"></path></sc-for></svg>
+</div>
+</div>
+</section>
+
+<section class="gap-m" aria-labelledby="d1">
+<div class="split">
+<div class="c5"><p class="t-label">/ Decision 01</p></div>
+<div class="c5" style="display: flex; flex-direction: column; gap: 12px"><h2 id="d1" class="t-heading">Verification.</h2><p class="t-body">The first decision was how to make a job board that actually works for university students with difficult schedules. Sign-up is linked to a university email, so everyone on the platform is a verified student. That keeps it trustworthy.</p></div>
+</div>
+</section>
+
+<section class="gap-m" aria-labelledby="d2">
+<div class="split">
+<div class="c5"><p class="t-label">/ Decision 02</p></div>
+<div class="c5" style="display: flex; flex-direction: column; gap: 12px"><h2 id="d2" class="t-heading">Familiarity.</h2><p class="t-body">Traditional job boards are formal and high pressure. I took a different approach, drawing on the bulletin boards and chore charts of classrooms, a familiar system where everyone contributes. It signals trust and shared contribution over competition, and reframes the platform as low stakes and community-driven.</p></div>
+</div>
+<div class="row gap-s"><img class="c5 o5" src="assets/oddjobs-familiarity-steps.jpg" alt="" width="2400" height="936" style="display: block; height: auto; border-radius: 20px; outline: 1px solid rgba(22, 22, 22, 0.14); outline-offset: -1px"></div>
+</section>
+
+<section class="gap-m" aria-labelledby="d3">
+<div class="split">
+<div class="c5"><p class="t-label">/ Decision 03</p></div>
+<div class="c5" style="display: flex; flex-direction: column; gap: 12px"><h2 id="d3" class="t-heading">Responsive design across three breakpoints.</h2><p class="t-body">Each component was adapted into desktop, tablet, and mobile variants to optimize the same content for different forms of interaction. Decisions at each breakpoint covered column structure, navigation, information hierarchy, and type scale. Card grids go from three columns to two to one, filters move from a sidebar into dropdowns, and navigation collapses into a hamburger menu on mobile.</p></div>
+</div>
+<div class="devices gap-s">
+<figure class="device">
+<div class="dev-art"><div class="mon"><div class="screen"><img src="assets/oddjobs-earn-desktop.jpg" alt="The Odd Jobs Browse Gigs page on a desktop monitor, with the full navigation across the top, filters in a sidebar on the left and gig cards in three columns." width="1512" height="1350" decoding="async"><span class="mk" style="left: 57.5%; top: 7%" aria-hidden="true">1</span><span class="mk" style="left: 21.5%; top: 71%" aria-hidden="true">2</span><span class="mk" style="left: 46%; top: 77%" aria-hidden="true">3</span></div></div><span class="mon-neck" aria-hidden="true"></span><span class="mon-base" aria-hidden="true"></span></div>
+<figcaption><p class="t-label" style="margin: 0">Desktop</p><ol class="dev-notes"><li>The full navigation runs across the top.</li><li>The filters sit in a sidebar.</li><li>The gig cards sit in a three-column grid.</li></ol></figcaption>
+</figure>
+<figure class="device">
+<div class="dev-art"><div class="tab"><div class="screen"><img src="assets/oddjobs-earn-tablet.jpg" alt="The same Browse Gigs page on a tablet, with a smaller navigation bar across the top, the categories in one row and gig cards in two columns." width="1194" height="1592" decoding="async"><span class="mk" style="left: 42%; top: 3.5%" aria-hidden="true">1</span><span class="mk" style="left: 60%; top: 61%" aria-hidden="true">2</span></div></div></div>
+<figcaption><p class="t-label" style="margin: 0">Tablet</p><ol class="dev-notes"><li>The top and bottom bars keep their layout but get smaller and better spaced.</li><li>The card grid drops to two columns.</li></ol></figcaption>
+</figure>
+<figure class="device">
+<div class="dev-art"><div class="pho"><div class="screen"><img src="assets/oddjobs-earn-mobile.jpg" alt="The same Browse Gigs page on a phone, with a hamburger menu, Filter by and Sort by dropdowns and the gig cards stacked in one column." width="786" height="1703" decoding="async"><span class="mk" style="left: 81%; top: 10.7%" aria-hidden="true">1</span><span class="mk" style="left: 51%; top: 58%" aria-hidden="true">2</span><span class="mk" style="left: 81%; top: 64.6%" aria-hidden="true">3</span></div></div></div>
+<figcaption><p class="t-label" style="margin: 0">Mobile</p><ol class="dev-notes"><li>The navigation collapses into a hamburger menu.</li><li>The filters move into dropdowns.</li><li>The cards stack in one column.</li></ol></figcaption>
+</figure>
+</div>
+<div class="gig-panel gap-s">
+<div class="gig-browser"><div class="gig-bar" aria-hidden="true"><span></span><span></span><span></span></div><img src="assets/oddjobs-02.jpg" alt="" width="1600" height="657"></div>
+<div class="gig-space"></div>
+<div class="gig-phone"><div class="gig-screen"><img src="assets/oddjobs-03.jpg" alt="" width="786" height="860"></div></div>
+</div>
+</section>
+
+<section class="gap-w oj-sec" aria-label="Wireframes">
+<p class="t-label">/ Wireframes</p>
+<div class="oj-body wf-band">
+<div class="wf-fid">
+<p class="oj-mono">Low fidelity</p>
+<div class="wf-row" tabindex="0" aria-label="Low-fidelity wireframes">
+<figure class="wf-sk"><img src="assets/oddjobs-sketch-landing.png" alt="Hand-drawn wireframe of the landing page." width="560" height="891"><figcaption class="oj-mono">Landing</figcaption></figure>
+<figure class="wf-sk"><img src="assets/oddjobs-sketch-signup.png" alt="Hand-drawn wireframe of the sign up page." width="560" height="950"><figcaption class="oj-mono">Sign up</figcaption></figure>
+<figure class="wf-sk"><img src="assets/oddjobs-sketch-how-it-works.png" alt="Hand-drawn wireframe of the How it works page." width="560" height="1313"><figcaption class="oj-mono">How it works</figcaption></figure>
+<figure class="wf-sk"><img src="assets/oddjobs-sketch-browse.png" alt="Hand-drawn wireframe of the Browse gigs page." width="560" height="977"><figcaption class="oj-mono">Browse gigs</figcaption></figure>
+<figure class="wf-sk"><img src="assets/oddjobs-sketch-job-post.png" alt="Hand-drawn wireframe of the job post page." width="560" height="950"><figcaption class="oj-mono">Job post</figcaption></figure>
+<figure class="wf-sk"><img src="assets/oddjobs-sketch-post-a-gig.png" alt="Hand-drawn wireframe of the Post a gig page." width="560" height="689"><figcaption class="oj-mono">Post a gig</figcaption></figure>
+</div>
+</div>
+<div class="wf-fid">
+<p class="oj-mono">Mid fidelity</p>
+<div class="wf-row wf-mid" tabindex="0" aria-label="Mid-fidelity wireframes">
+<figure><div class="wf-frame"><img src="assets/oddjobs-midfi-landing.jpg" alt="Mid-fidelity wireframe of the landing page." width="800" height="1000"></div><figcaption class="oj-mono">Landing</figcaption></figure>
+<figure><div class="wf-frame"><img src="assets/oddjobs-midfi-signup.jpg" alt="Mid-fidelity wireframe of the sign up page." width="800" height="1000"></div><figcaption class="oj-mono">Sign up</figcaption></figure>
+<figure><div class="wf-frame"><img src="assets/oddjobs-midfi-how-it-works.jpg" alt="Mid-fidelity wireframe of the How it works page." width="800" height="1000"></div><figcaption class="oj-mono">How it works</figcaption></figure>
+</div>
+</div>
+</div>
+</section>
+
+<section class="gap-w oj-sec" aria-label="User flow">
+<p class="t-label">/ User flow</p>
+<div class="oj-body fl-board" id="oj-flow">
+<div class="fl-grid">
+<figure class="fl-step st-landing" tabindex="0" onMouseEnter="{{hot.landing}}" onMouseLeave="{{cool}}" onFocus="{{hot.landing}}" onBlur="{{cool}}">
+<p class="fl-num"><b>01</b> Landing</p>
+<div class="fl-device"><img src="assets/oddjobs-flow-landing-mobile.jpg" width="786" height="1704" alt="The Odd Jobs landing page on mobile, showing gigs posted at Purdue."></div>
+</figure>
+<div class="fl-stack">
+<figure class="fl-step st-hire" tabindex="0" onMouseEnter="{{hot.hire}}" onMouseLeave="{{cool}}" onFocus="{{hot.hire}}" onBlur="{{cool}}">
+<p class="fl-num"><b>02A</b> Hire</p>
+<div class="fl-device crop"><img src="assets/oddjobs-flow-hire-mobile.jpg" width="786" height="880" alt="The Hire page on mobile, with a search bar and a button to make a new post."></div>
+</figure>
+<figure class="fl-step st-earn" tabindex="0" onMouseEnter="{{hot.earn}}" onMouseLeave="{{cool}}" onFocus="{{hot.earn}}" onBlur="{{cool}}">
+<p class="fl-num"><b>02B</b> Earn</p>
+<div class="fl-device crop"><img src="assets/oddjobs-flow-earn-mobile.jpg" width="786" height="880" alt="The Earn page on mobile, with a search bar and a button to make a new post."></div>
+</figure>
+</div>
+<figure class="fl-step st-job" tabindex="0" onMouseEnter="{{hot.job}}" onMouseLeave="{{cool}}" onFocus="{{hot.job}}" onBlur="{{cool}}">
+<p class="fl-num"><b>03</b> Job post</p>
+<div class="fl-device"><img src="assets/oddjobs-flow-job-post-mobile.jpg" width="786" height="1704" alt="A Cat Sitting job post on mobile, with dates, hours, location, pay, Accept and Make Offer buttons, and the poster's card."></div>
+</figure>
+</div>
+<svg class="oj-wires" aria-hidden="true" viewBox="{{flowBox}}"><sc-for list="{{flowWires}}" as="w" hint-placeholder-count="4"><path d="{{w.d}}" class="{{w.cls}}" style="stroke-dasharray: {{w.dash}}; stroke-dashoffset: {{w.off}}; transition-delay: {{w.delay}}"></path></sc-for></svg>
+</div>
+</section>
+
+<section class="gap-w" aria-label="Outcomes">
+<div class="split">
+<div class="c5"><p class="t-label">/ Outcomes</p></div>
+<div class="c5"><p class="t-statement">The result is a high-fidelity responsive prototype across desktop, tablet, and mobile, with a recorded walkthrough.</p></div>
+</div>
+<div class="c5 o5 gap-s">
+<dl class="credits">
+<div><dt>Context</dt><dd>Course project, AD 319, Purdue, Spring 2026</dd></div>
+<div><dt>Skills</dt><dd style="display: flex; flex-wrap: wrap; gap: 6px"><span class="t-tag">0 to 1</span><span class="t-tag">information architecture</span><span class="t-tag">personas</span><span class="t-tag">user flows</span><span class="t-tag">wireframing</span></dd></div>
+</dl>
+<div class="pill-row" style="margin-top: 20px"><a href="https://youtu.be/6o12_j6Wd_c" target="_blank" rel="noopener" class="link-pill"><svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l14 9-14 9V3Z"></path></svg><span class="nudge">Video walkthrough</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"></path></svg><span class="sr-only">(opens in a new tab)</span></a></div>
+</div>
+</section>
+
+<a href="delighto" class="card card-next gap-m" style="height: clamp(320px, 33vw, 420px)">
+<span class="card-img" aria-hidden="true"><img src="assets/delighto-hero.jpg" alt="" class="fit bg-de"></span>
+<span class="cap glass-i"><span class="cap-kind">Next project</span><span class="cap-big">Delighto.ai</span></span>
+<span class="arrow glass-i" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M5.5 4.5H11.5V10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</a>
+
+<div class="bar-wrap" style="margin-top: 12px">
+<nav aria-label="Project" class="bar glass-i">
+<a href="doberman" class="bar-link"><span class="t-kind bar-kind">Back</span><span class="bar-name">Doberman</span></a>
+<a href="work" class="bar-home" aria-label="All work"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 9L10 3.5L16.5 9V16.5H12V12H8V16.5H3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg><span class="bar-tip glass-i" aria-hidden="true">All work</span></a>
+<a href="delighto" class="bar-link bar-next"><span class="t-kind bar-kind">Next</span><span class="bar-name">Delighto.ai</span></a>
+</nav>
+</div>
+
+</main>
+
+<div class="gap-w"><dc-import name="Footer" hint-size="100%,1000px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":9620}}'>
+// The connectors in the information architecture and the user flow, worked out from where the elements sit, so they stay attached at every width.
+// The flow's connectors draw in one after another when the flow scrolls into view; if it's already on screen at load they're shown at rest.
+function rounded(pts, rad) {
+  let d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+  for (let i = 1; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1], p1 = pts[i], p2 = pts[i + 1];
+    const l1 = Math.hypot(p1[0] - p0[0], p1[1] - p0[1]), l2 = Math.hypot(p2[0] - p1[0], p2[1] - p1[1]);
+    const r = Math.min(rad, l1 / 2, l2 / 2);
+    if (r < 1) { d += ' L' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1); continue; }
+    const a = [p1[0] + (p0[0] - p1[0]) * r / l1, p1[1] + (p0[1] - p1[1]) * r / l1];
+    const b = [p1[0] + (p2[0] - p1[0]) * r / l2, p1[1] + (p2[1] - p1[1]) * r / l2];
+    d += ' L' + a[0].toFixed(1) + ' ' + a[1].toFixed(1) + ' Q' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1) + ' ' + b[0].toFixed(1) + ' ' + b[1].toFixed(1);
+  }
+  const e = pts[pts.length - 1];
+  return d + ' L' + e[0].toFixed(1) + ' ' + e[1].toFixed(1);
+}
+function length(pts) {
+  let n = 0;
+  for (let i = 1; i < pts.length; i++) n += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
+  return Math.ceil(n);
+}
+function rel(el, host) {
+  const r = el.getBoundingClientRect(), h = host.getBoundingClientRect();
+  return { l: r.left - h.left, t: r.top - h.top, r: r.right - h.left, b: r.bottom - h.top, cx: r.left - h.left + r.width / 2, cy: r.top - h.top + r.height / 2 };
+}
+const FLOW = [['landing', 'hire'], ['landing', 'earn'], ['hire', 'job'], ['earn', 'job']];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    let reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    this.reduce = reduce;
+    this.state = { iaWires: [], iaBox: '0 0 1 1', flowWires: [], flowBox: '0 0 1 1', mode: 'rest', hot: '' };
+  }
+  componentDidMount() {
+    this.soon = () => { clearTimeout(this.soonTimer); this.soonTimer = setTimeout(() => this.measure(), 60); };
+    const ia = document.getElementById('oj-ia'), board = document.getElementById('oj-flow');
+    if (typeof ResizeObserver !== 'undefined') {
+      this.ro = new ResizeObserver(this.soon);
+      if (ia) this.ro.observe(ia);
+      if (board) this.ro.observe(board);
+    }
+    window.addEventListener('resize', this.soon);
+    if (board) board.addEventListener('load', this.soon, true);
+    try { document.fonts.ready.then(this.soon); } catch (e) {}
+    // Below the fold at load: the connectors wait, hidden, and draw in once a quarter of the flow is on screen.
+    if (board && !this.reduce && typeof IntersectionObserver !== 'undefined' && board.getBoundingClientRect().top > window.innerHeight * 0.9) {
+      this.setState({ mode: 'hidden' });
+      this.io = new IntersectionObserver((entries) => {
+        if (!entries[0].isIntersecting) return;
+        this.io.disconnect();
+        this.setState({ mode: 'drawing' });
+        this.doneTimer = setTimeout(() => this.setState({ mode: 'rest' }), 900 + 160 * (FLOW.length - 1) + 100);
+      }, { threshold: 0.25 });
+      this.io.observe(board);
+    }
+    this.measure();
+  }
+  componentWillUnmount() {
+    clearTimeout(this.soonTimer);
+    clearTimeout(this.doneTimer);
+    if (this.ro) this.ro.disconnect();
+    if (this.io) this.io.disconnect();
+    window.removeEventListener('resize', this.soon);
+  }
+  measure() {
+    const next = {};
+    const ia = document.getElementById('oj-ia');
+    if (ia) {
+      next.iaBox = '0 0 ' + ia.clientWidth + ' ' + ia.clientHeight;
+      next.iaWires = [];
+      const wide = !window.matchMedia('(max-width: 999px)').matches;
+      const get = (id) => document.getElementById(id);
+      if (wide && get('oj-ia-search') && get('oj-ia-job')) {
+        const S = rel(get('oj-ia-search'), ia), Y = rel(get('oj-ia-posts'), ia), J = rel(get('oj-ia-job'), ia), N = rel(get('oj-ia-prof'), ia);
+        const pEl = get('oj-ia-acct-profile'), P = rel(pEl, ia);
+        const sx = Math.min(Math.max(S.l + 12, J.l + 14), J.r - 14);
+        const tickY = P.t + (parseFloat(getComputedStyle(pEl, '::before').top) || 10.5);
+        const tx = N.r - 22;
+        // Search straight down into Job info; Your posts down to Job info's middle, then left into it; Profile in My account left, then down into the Profile page.
+        next.iaWires = [
+          [[sx, S.b + 5], [sx, J.t - 8]],
+          [[Y.l + 12, Y.b + 5], [Y.l + 12, J.cy], [J.r + 8, J.cy]],
+          [[P.l, tickY], [tx, tickY], [tx, N.t - 8]]
+        ].map((pts) => ({ d: rounded(pts, 10) }));
+      }
+    }
+    const board = document.getElementById('oj-flow');
+    if (board) {
+      next.flowBox = '0 0 ' + board.clientWidth + ' ' + board.clientHeight;
+      const phone = window.matchMedia('(max-width: 899px)').matches;
+      next.flowWires = FLOW.map(([a, b]) => {
+        const A = board.querySelector('.st-' + a + (phone ? '' : ' .fl-device')), B = board.querySelector('.st-' + b + (phone ? '' : ' .fl-device'));
+        if (!A || !B) return null;
+        const p = rel(A, board), q = rel(B, board);
+        let pts;
+        if (phone) { const sy = p.b + 6, ey = q.t - 8, my = (sy + ey) / 2; pts = [[p.cx, sy], [p.cx, my], [q.cx, my], [q.cx, ey]]; }
+        else { const x1 = p.r + 10, x2 = q.l - 10, mx = (x1 + x2) / 2; pts = [[x1, p.cy], [mx, p.cy], [mx, q.cy], [x2, q.cy]]; }
+        return { d: rounded(pts, 12), len: length(pts), k: a + ' ' + b };
+      }).filter(Boolean);
+    }
+    const same = JSON.stringify([this.state.iaWires, this.state.iaBox, this.state.flowWires, this.state.flowBox]) === JSON.stringify([next.iaWires, next.iaBox, next.flowWires, next.flowBox]);
+    if (!same) this.setState(next);
+  }
+  renderVals() {
+    const s = this.state;
+    const hotFor = (k) => () => this.setState({ hot: k });
+    return {
+      iaBox: s.iaBox,
+      iaWires: s.iaWires,
+      flowBox: s.flowBox,
+      flowWires: s.flowWires.map((w, i) => ({
+        d: w.d,
+        cls: [s.hot && w.k.split(' ').indexOf(s.hot) > -1 ? 'hot' : '', s.mode !== 'rest' ? 'pending' : '', s.mode === 'drawing' ? 'drawing' : ''].join(' ').trim(),
+        dash: s.mode === 'rest' ? 'none' : String(w.len),
+        off: s.mode === 'hidden' ? String(w.len) : '0',
+        delay: s.mode === 'drawing' ? 160 * i + 'ms' : '0ms'
+      })),
+      hot: { landing: hotFor('landing'), hire: hotFor('hire'), earn: hotFor('earn'), job: hotFor('job') },
+      cool: () => this.setState({ hot: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>

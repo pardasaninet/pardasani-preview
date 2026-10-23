@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>About | mannat pardasani</title>
+<meta name="description" content="I&#x27;m a design engineer working across product, user experience and visual strategy. I have a B.S. and a B.F.A. from Purdue.">
+<link rel="canonical" href="https://pardasani.net/about">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mannat pardasani">
+<meta property="og:title" content="About | mannat pardasani">
+<meta property="og:description" content="I&#x27;m a design engineer working across product, user experience and visual strategy. I have a B.S. and a B.F.A. from Purdue.">
+<meta property="og:url" content="https://pardasani.net/about">
+<meta property="og:image" content="https://pardasani.net/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pardasani.net/assets/og-image.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<script src="./support.js"></script>
+<link rel="stylesheet" href="assets/v4.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}
+/* Photos are printed snaps, the one thing on the page that tilts: a white border, a slight tilt and a soft shadow.
+   The hero photos and the Currently cards share the border, the shadow and the 4:3 crop. Cards and containers stay straight. */
+.root{--snap-shadow:0 1px 2px rgba(22,22,22,0.08),0 8px 16px -6px rgba(22,22,22,0.2)}
+.lab-card{box-shadow:var(--snap-shadow)}
+.photo{position:relative;width:68px;height:auto;padding:4px;box-sizing:border-box;border-radius:8px;background:var(--surface);border:1px solid var(--outline);box-shadow:var(--snap-shadow)}
+.photo img{display:block;width:100%;height:auto;aspect-ratio:4 / 3;border-radius:4px;object-fit:cover}
+/* The orbit moves its circles with transforms only. They fade in together once fonts and images are ready. */
+.orbit .photo-wrap{left:0;top:0;transform:translate3d(-200px,-200px,0);will-change:transform;opacity:0;transition:opacity 400ms var(--ease)}
+.orbit .photo-wrap.is-big{z-index:3}
+.orbit.is-in .photo-wrap,.photo-row.is-in .row-item{opacity:1}
+.photo-row .row-item{flex:none;opacity:0;transition:opacity 400ms var(--ease)}
+/* On phones the snaps sit in a row that scrolls sideways. The row leaves room round them for the tilt and the shadow. */
+.photo-row{gap:14px;padding:14px 6px 22px;margin:20px -6px 0}
+.still .orbit .photo-wrap,.still .photo-row .row-item{transition:none}
+@media (prefers-reduced-motion:reduce){.orbit .photo-wrap,.photo-row .row-item{transition:none}}
+/* Currently: the photo cards can be moved around the tile like prints on a desk */
+.now-card{display:block;padding:8px;font:inherit;color:inherit;text-align:left;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;transition:scale 160ms var(--ease)}
+.now-card.is-held{cursor:grabbing;scale:1.02}
+.now-card .card-t{display:block;margin:8px 2px 0;font-size:14px;font-weight:700;line-height:1.2;text-wrap:balance}
+.now-card .card-m{display:block;margin:2px 2px 2px;color:var(--muted)}
+.now-card img{pointer-events:none}
+/* Experience: a company name that wraps on a phone splits evenly instead of leaving one word on its own line */
+.acc-org{text-wrap:balance}
+/* Card titles all use the Purdue University style */
+.tile-title{margin:0;font-size:clamp(28px,2.8vw,36px);font-weight:800;letter-spacing:-0.035em;line-height:1}
+/* Range: four straight cards on the bento grid. Four across, two by two once the row is under 1000px, one per row under 720px like the bento. */
+.range-row>.tile{min-height:0;display:flex;flex-direction:column;gap:8px;width:clamp(calc((100% - 42px) / 4),calc((1000px - 100%) * 999),clamp(calc((100% - 14px) / 2),calc((720px - 100%) * 999),100%))}
+.range-row ul{position:relative;list-style:none;margin:0;padding:0;font-size:15px;line-height:1.55}
+/* This site: the paragraph keeps to the left of the drawn browser. On phones it takes the full width and leaves room under it for the drawing. */
+.site-copy{position:relative;z-index:1;margin:18px 0 0;max-width:min(36ch,46%);font-size:clamp(17px,1.5vw,20px);font-weight:500;letter-spacing:-0.015em;line-height:1.35}
+@media (max-width:719px){.site-copy{max-width:none;margin-bottom:32%}}
+</style>
+</helmet>
+<div id="top" class="root {{rootClass}}" style="font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; color: #161616">
+<svg width="0" height="0" aria-hidden="true" style="position: absolute"><filter id="grain-aboutpage" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter></svg>
+
+<div class="frost nav-bar">
+<nav class="nav" aria-label="Main">
+<a href="./" class="nav-home" aria-label="mannat pardasani, home"><img src="assets/logo-mark.svg" alt="" width="27" height="28"><span class="nav-name">mannat pardasani</span></a>
+<div class="nav-links"><a href="work" class="nav-link">Work</a><a href="about" class="nav-link" aria-current="page">About</a><a href="#contact" class="nav-link">Contact</a><a href="assets/Mannat-Pardasani-Resume-UX-UI.pdf" target="_blank" rel="noopener" class="nav-link">Resume<span class="sr-only"> (opens in a new tab)</span></a></div>
+</nav>
+</div>
+
+<main class="page">
+
+<sc-if value="{{wide}}" hint-placeholder-val="{{ true }}">
+<section class="orbit {{orbitCls}}" aria-label="Intro" style="margin-top: 12px">
+<sc-for list="{{photos}}" as="p" hint-placeholder-count="7">
+<div class="photo-wrap {{p.bigCls}}" data-i="{{p.i}}">
+<button type="button" class="photo" aria-expanded="{{p.expanded}}" onMouseEnter="{{p.enter}}" onMouseLeave="{{p.leave}}" onFocus="{{p.enter}}" onBlur="{{p.leave}}" onClick="{{p.toggle}}" style="transform: rotate({{p.r}}deg) scale({{p.s}})"><img src="{{p.src}}" alt="{{p.alt}}" width="58" height="44" decoding="async"></button>
+<sc-if value="{{p.showCap}}" hint-placeholder-val="{{ false }}"><span class="photo-cap glass-i">{{p.caption}}</span></sc-if>
+</div>
+</sc-for>
+<h1 class="capsule">
+<span class="cw"><span class="nudge">I studied</span></span>
+<span class="cw cp gradient" style="color: var(--ground)"><span class="nudge">design</span></span>
+<span class="cw"><span class="nudge">and</span></span>
+<span class="cw cp" style="border: 2px solid var(--ink)"><span class="nudge">programming</span></span>
+<span class="cw"><span class="nudge">at the same time,</span></span>
+<span class="cw"><span class="nudge" style="position: relative">on purpose.<svg class="loop {{snapLoop}}" viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M 24 66 C 8 30, 66 8, 118 9 C 172 11, 199 38, 188 64 C 176 92, 92 99, 46 88 C 12 80, 4 54, 34 34" pathLength="100" fill="none" stroke="#74b0df" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" stroke-dasharray="100" style="stroke-dashoffset: {{loopOff}}"></path></svg></span></span>
+</h1>
+</section>
+</sc-if>
+<sc-if value="{{narrow}}" hint-placeholder-val="{{ false }}">
+<section aria-label="Intro" style="padding-top: 16px">
+<h1 class="capsule" style="justify-content: flex-start">
+<span class="cw"><span class="nudge">I studied</span></span>
+<span class="cw cp gradient" style="color: var(--ground)"><span class="nudge">design</span></span>
+<span class="cw"><span class="nudge">and</span></span>
+<span class="cw cp" style="border: 2px solid var(--ink)"><span class="nudge">programming</span></span>
+<span class="cw"><span class="nudge">at the same time,</span></span>
+<span class="cw"><span class="nudge" style="position: relative">on purpose.<svg class="loop {{snapLoop}}" viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M 24 66 C 8 30, 66 8, 118 9 C 172 11, 199 38, 188 64 C 176 92, 92 99, 46 88 C 12 80, 4 54, 34 34" pathLength="100" fill="none" stroke="#74b0df" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" stroke-dasharray="100" style="stroke-dashoffset: {{loopOff}}"></path></svg></span></span>
+</h1>
+<div class="photo-row {{orbitCls}}" role="list" aria-label="Photos">
+<sc-for list="{{photos}}" as="p" hint-placeholder-count="7">
+<div role="listitem" class="row-item"><button type="button" class="photo" aria-expanded="{{p.expanded}}" onClick="{{p.toggle}}" style="transform: rotate({{p.r}}deg)"><img src="{{p.src}}" alt="{{p.alt}}" width="58" height="44" decoding="async"></button></div>
+</sc-for>
+</div>
+<p class="t-kind" aria-live="polite" style="margin: 4px 0 0; min-height: 14px; color: var(--muted)">{{rowCaption}}</p>
+</section>
+</sc-if>
+
+<section class="row bento gap-m" aria-label="Bits and pieces">
+<div class="tile c6 gradient on-dark" style="color: var(--ground); display: flex; flex-direction: column; justify-content: space-between; gap: 96px">
+<svg class="grain" aria-hidden="true" style="border-radius: 20px"><rect width="100%" height="100%" filter="url(#grain-aboutpage)"></rect></svg>
+<h2 class="t-label" style="position: relative">/ Toolkit</h2>
+<div style="position: relative; align-self: center"><dc-import name="Dock" hint-size="400px,90px"></dc-import></div>
+</div>
+<div class="tile c4" style="background: var(--tile); display: flex; flex-direction: column; justify-content: space-between; gap: 48px">
+<h2 class="t-label">/ Education</h2>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p class="tile-title">Purdue University</p>
+<p style="margin: 0; font-size: 15px; color: var(--body)">B.F.A. in Visual Communications Design<br>B.S. in Web Programming and Design</p>
+<p class="t-label" style="margin-top: 6px; color: var(--muted)">Class of 2026</p>
+</div>
+</div>
+<div class="tile c4 now-tile" style="background: var(--tile); overflow: hidden">
+<sc-if value="{{isCurrently}}" hint-placeholder-val="{{ true }}">
+<h2 class="t-label">/ Currently</h2>
+<p class="sr-only">Drag a card to move it, or press an arrow key to move the selected card.</p>
+<div style="position: absolute; left: 22px; right: 22px; top: calc(50% + 11px); transform: translateY(-50%)">
+<sc-for list="{{now}}" as="n" hint-placeholder-count="2">
+<button type="button" class="lab-card now-card" data-k="{{n.k}}" style="position: {{n.p}}; left: {{n.l}}; top: {{n.t}}; margin: {{n.m}}; transform: rotate({{n.r}}deg)"><span class="ph" style="display: block; aspect-ratio: 4 / 3; border-radius: 10px"><sc-if value="{{n.src}}" hint-placeholder-val="{{ false }}"><img src="{{n.src}}" alt="{{n.alt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%"></sc-if><sc-if value="{{n.noSrc}}" hint-placeholder-val="{{ true }}"><span class="ph-label">Photo: {{n.file}}</span></sc-if></span><span class="card-t">{{n.title}}</span><span class="t-kind card-m">{{n.mono}}</span></button>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{isLab}}" hint-placeholder-val="{{ false }}">
+<h2 class="t-label">/ Lab</h2>
+<div style="position: absolute; left: 22px; right: 22px; top: calc(50% + 11px); transform: translateY(-50%)">
+<div class="lab-card" style="left: 0; top: 0; transform: rotate(-5deg)"><div class="ph" style="aspect-ratio: 4 / 3; border-radius: 10px"></div><p style="margin: 8px 2px 0; font-size: 14px; font-weight: 700; line-height: 1.2">3D-printed keychain</p><p class="t-kind" style="margin: 2px 2px 2px; color: var(--muted)">OpenSCAD</p></div>
+<div class="lab-card" style="left: 54%; top: 22px; transform: rotate(4deg)"><div class="ph" style="aspect-ratio: 4 / 3; border-radius: 10px"></div><p style="margin: 8px 2px 0; font-size: 14px; font-weight: 700; line-height: 1.2">Charms</p><p class="t-kind" style="margin: 2px 2px 2px; color: var(--muted)">Blender</p></div>
+<div class="lab-card" style="position: relative; margin: 94px 0 0 27%; transform: rotate(-2deg)"><div class="ph" style="aspect-ratio: 4 / 3; border-radius: 10px"></div><p style="margin: 8px 2px 0; font-size: 14px; font-weight: 700; line-height: 1.2">[Next experiment]</p><p class="t-kind" style="margin: 2px 2px 2px; color: var(--muted)">[Tool]</p></div>
+</div>
+</sc-if>
+</div>
+<div class="tile c6 on-dark" style="background: var(--ink); color: var(--ground); overflow: hidden">
+<h2 class="t-label">/ This site</h2>
+<p class="site-copy">Every decision on this site is mine, from the grid and the type to how each widget behaves. I used Claude for the busywork, like turning my notes into build specs, preparing images and automating repetitive fixes, so I could spend my time on the design.</p>
+<div aria-hidden="true" style="position: absolute; right: -6%; bottom: -18%; width: 58%; aspect-ratio: 16 / 10; border-radius: 14px; background: var(--ground); overflow: hidden">
+<div style="display: flex; align-items: center; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--hairline)"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--hairline)"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--hairline)"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--hairline)"></span><img src="assets/logo-mark.svg" alt="" style="width: 14px; height: 14px; margin-left: 10px"></div>
+<div class="gradient" style="margin: 10px; height: 46%; border-radius: 8px"></div>
+<div style="display: flex; gap: 6px; margin: 0 10px"><div style="flex: 3; height: 54px; border-radius: 6px; background: var(--placeholder)"></div><div style="flex: 2; height: 54px; border-radius: 6px; background: var(--placeholder)"></div></div>
+</div>
+</div>
+</section>
+
+<section class="gap-m" aria-labelledby="about-range">
+<h2 id="about-range" class="t-label">/ Range</h2>
+<div class="row bento range-row" style="margin-top: 24px">
+<div class="tile" style="background: var(--surface)"><h3 class="tile-title">Product</h3><ul><li>UX research</li><li>Information architecture</li><li>Responsive design</li><li>Prototyping</li><li>Wireframing</li><li>Figma</li></ul></div>
+<div class="tile gradient on-dark" style="color: var(--ground)"><svg class="grain" aria-hidden="true" style="border-radius: 20px"><rect width="100%" height="100%" filter="url(#grain-aboutpage)"></rect></svg><h3 class="tile-title" style="position: relative">Brand</h3><ul><li>Brand identity</li><li>Packaging design</li><li>Art direction</li><li>Print production</li><li>Illustrator, Photoshop and InDesign</li></ul></div>
+<div class="tile on-dark" style="background: var(--ink); color: var(--ground)"><h3 class="tile-title">Code</h3><ul><li>HTML and CSS</li><li>JavaScript</li><li>TypeScript</li><li>React</li><li>Tailwind CSS</li></ul></div>
+<div class="tile" style="background: var(--tile)"><h3 class="tile-title">AI proficiency</h3><ul><li>Claude Code</li><li>Cursor</li><li>Figma Make</li><li>Adobe Firefly</li></ul></div>
+</div>
+</section>
+
+<section class="gap-m" aria-labelledby="about-exp">
+<h2 id="about-exp" class="t-label">/ Experience</h2>
+<ul class="acc" style="margin-top: 24px">
+<sc-for list="{{jobs}}" as="e" hint-placeholder-count="8">
+<li class="acc-item">
+<button type="button" class="acc-btn" aria-expanded="{{e.expanded}}" onClick="{{e.toggle}}"><span class="acc-role">{{e.role}}</span><span class="acc-org">{{e.org}}</span><span class="acc-dates t-label">{{e.dates}}</span><span class="acc-sign" aria-hidden="true">{{e.sign}}</span></button>
+<sc-if value="{{e.isOpen}}" hint-placeholder-val="{{ false }}"><div class="acc-panel"><p style="margin: 0; max-width: 72ch">{{e.desc}}</p></div></sc-if>
+</li>
+</sc-for>
+</ul>
+<div style="display: flex; justify-content: flex-end; margin-top: 40px"><a href="{{resume.href}}" download="{{resume.file}}" class="link-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"></path></svg><span class="nudge">Download resume</span></a></div>
+</section>
+
+</main>
+
+<div class="gap-w"><dc-import name="Footer" hint-size="100%,860px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"bentoTile":{"editor":"enum","options":["Currently","Lab"],"default":"Currently","section":"Variant"},"reducedMotion":{"editor":"boolean","default":false,"section":"Preview"},"reducedTransparency":{"editor":"boolean","default":false,"section":"Preview"},"$preview":{"width":1280,"height":3950}}'>
+// Orbit photos, in order round the orbit from the first position. Give one a caption and it shows when that photo is hovered or tapped.
+const PHOTOS = [
+  { src: 'assets/about-circle-01-flowers-160.jpg', alt: 'A bouquet of bright summer flowers wrapped in brown paper.', caption: '' },
+  { src: 'assets/about-circle-02-skyline-night-160.jpg', alt: 'A city skyline lit up at night across the water.', caption: '' },
+  { src: 'assets/about-circle-03-street-160.jpg', alt: 'A narrow cobblestone street lined with old brick row houses.', caption: '' },
+  { src: 'assets/about-circle-04-bookshop-160.jpg', alt: 'Tall wooden shelves full of colourful books in a bookshop.', caption: '' },
+  { src: 'assets/about-circle-05-bookshelf-160.jpg', alt: 'A wall of lit shelves stacked with art and design books.', caption: '' },
+  { src: 'assets/about-circle-06-beach-160.jpg', alt: 'A pebble beach and a blue sea on a sunny afternoon.', caption: '' },
+  { src: 'assets/about-circle-07-hollywood-160.jpg', alt: 'The Hollywood sign on a hillside under a cloudy sky.', caption: '' }
+];
+
+// Each snap sits a fixed few pixels off the ellipse, so they feel placed by hand. The nudge travels with the snap. In px, in photo order.
+const NUDGE = [[3, -4], [-5, 0], [4, 3], [-3, 4], [0, -5], [-4, -3], [4, -3]];
+// Each snap's slight tilt, in degrees, in photo order.
+const TILT = [-5, 3, -2, 4, -4, 2, -3];
+// The resume PDF, as an uploaded file url.
+const RESUME_URL = 'assets/Mannat-Pardasani-Resume-UX-UI.pdf';
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    let reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    this.sysReduce = reduce;
+    const r = !!(props.reducedMotion || reduce);
+    this.state = { photo: -1, drawn: r, snapLoop: false, open: 0, narrow: this.isNarrow(), orbitIn: false };
+    this.angle = 0;
+    this.target = 0;
+  }
+  isNarrow() {
+    try { return window.innerWidth < 760; } catch (e) { return false; }
+  }
+  reduced() {
+    return !!(this.props.reducedMotion || this.sysReduce);
+  }
+  componentDidMount() {
+    this.onResize = () => {
+      const n = this.isNarrow();
+      if (n !== this.state.narrow) this.setState({ narrow: n });
+    };
+    window.addEventListener('resize', this.onResize);
+    // The scroll listener only stores where the orbit should be. One animation loop eases the drawn angle toward it.
+    this.onScroll = () => {
+      if (this.reduced()) return;
+      this.target = (window.scrollY || 0) * 0.12;
+      this.runOrbit();
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    // The loop around "on purpose." and the circles wait for the fonts, so nothing draws around the fallback font and then jumps.
+    this.fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready.catch(() => {}) : Promise.resolve();
+    this.fontsReady.then(() => { if (!this.gone) this.drawLoop(); });
+    this.setupOrbit();
+    this.setupCards();
+  }
+  componentDidUpdate(prev, prevState) {
+    if (prevState && prevState.narrow !== this.state.narrow) this.setupOrbit();
+    if (prev.reducedMotion !== this.props.reducedMotion) {
+      this.angle = this.target = this.reduced() ? 0 : (window.scrollY || 0) * 0.12;
+      this.placeOrbit();
+      this.drawLoop();
+    }
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    this.gone = true;
+    cancelAnimationFrame(this.orbitRaf);
+    if (this.orbitRO) this.orbitRO.disconnect();
+    (this.loopTimers || []).forEach(clearTimeout);
+    if (this.cardTile) {
+      this.cardTile.removeEventListener('pointerdown', this.onCardDown);
+      this.cardTile.removeEventListener('keydown', this.onCardKey);
+      this.cardTile.removeEventListener('click', this.onCardClick);
+    }
+  }
+  drawLoop() {
+    (this.loopTimers || []).forEach(clearTimeout);
+    if (this.reduced()) { this.setState({ drawn: true, snapLoop: false }); return; }
+    this.setState({ drawn: false, snapLoop: true });
+    this.loopTimers = [
+      setTimeout(() => this.setState({ snapLoop: false }), 60),
+      setTimeout(() => this.setState({ drawn: true }), 260)
+    ];
+  }
+  // The orbit is sized from its own box, not from the headline, whose width changes when the font swaps in.
+  setupOrbit() {
+    if (this.orbitRO) { this.orbitRO.disconnect(); this.orbitRO = null; }
+    const orbit = document.querySelector('.orbit');
+    const row = document.querySelector('.photo-row');
+    const box = orbit || row;
+    if (!box) return;
+    this.orbitEl = orbit;
+    if (orbit && typeof ResizeObserver !== 'undefined') {
+      this.orbitRO = new ResizeObserver((entries) => {
+        const r = entries[0].contentRect;
+        this.ow = r.width;
+        this.oh = r.height;
+        this.placeOrbit();
+      });
+      this.orbitRO.observe(orbit);
+    }
+    // Wait for the fonts and for all seven images to decode, set the angle from the current scroll, then fade them in together.
+    const imgs = Array.prototype.slice.call(box.querySelectorAll('.photo img'));
+    const decoded = imgs.map((im) => (im.decode ? im.decode().catch(() => {}) : Promise.resolve()));
+    Promise.all([this.fontsReady].concat(decoded)).then(() => {
+      if (this.gone) return;
+      this.angle = this.target = this.reduced() ? 0 : (window.scrollY || 0) * 0.12;
+      if (orbit && !this.ow) { const r = orbit.getBoundingClientRect(); this.ow = r.width; this.oh = r.height; }
+      this.placeOrbit();
+      this.setState({ orbitIn: true });
+    });
+  }
+  placeOrbit() {
+    const orbit = this.orbitEl;
+    if (!orbit || !this.ow) return;
+    const wraps = orbit.querySelectorAll('.photo-wrap');
+    const n = wraps.length;
+    for (let i = 0; i < n; i++) {
+      const phi = (30 + this.angle + i * 360 / n) * Math.PI / 180;
+      const d = NUDGE[i % NUDGE.length];
+      const x = this.ow / 2 + this.ow * 0.45 * Math.cos(phi) + d[0] - wraps[i].offsetWidth / 2;
+      const y = this.oh / 2 + this.oh * 0.41 * Math.sin(phi) + d[1] - wraps[i].offsetHeight / 2;
+      wraps[i].style.transform = 'translate3d(' + x.toFixed(2) + 'px,' + y.toFixed(2) + 'px,0)';
+    }
+  }
+  // Eases the drawn angle about 10% of the remaining distance each frame, and stops when it arrives.
+  runOrbit() {
+    if (this.orbitRaf) return;
+    const tick = () => {
+      const diff = this.target - this.angle;
+      if (Math.abs(diff) < 0.01) { this.angle = this.target; this.placeOrbit(); this.orbitRaf = 0; return; }
+      this.angle += diff * 0.1;
+      this.placeOrbit();
+      this.orbitRaf = requestAnimationFrame(tick);
+    };
+    this.orbitRaf = requestAnimationFrame(tick);
+  }
+  // Currently: drag a card around the tile, or move the focused card with the arrow keys. Pressing a card brings it to the top.
+  setupCards() {
+    const tile = document.querySelector('.now-tile');
+    if (!tile) return;
+    this.cardTile = tile;
+    this.cardPos = {};
+    this.cardZ = 10;
+    const top = (card) => { card.style.zIndex = String(++this.cardZ); };
+    const clampMove = (card, x, y) => {
+      // Never so far that less than half the card shows: its centre stays inside the tile.
+      const t = tile.getBoundingClientRect();
+      const r = card.getBoundingClientRect();
+      const k = card.getAttribute('data-k');
+      const cur = this.cardPos[k] || { x: 0, y: 0 };
+      const cx = r.left + r.width / 2 - cur.x;
+      const cy = r.top + r.height / 2 - cur.y;
+      return { x: Math.min(t.right - cx, Math.max(t.left - cx, x)), y: Math.min(t.bottom - cy, Math.max(t.top - cy, y)) };
+    };
+    const put = (card, pos) => {
+      this.cardPos[card.getAttribute('data-k')] = pos;
+      card.style.translate = pos.x + 'px ' + pos.y + 'px';
+    };
+    this.onCardDown = (e) => {
+      const card = e.target.closest && e.target.closest('.now-card');
+      if (!card || (e.button !== undefined && e.button > 0)) return;
+      top(card);
+      const k = card.getAttribute('data-k');
+      const start = this.cardPos[k] || { x: 0, y: 0 };
+      const x0 = e.clientX;
+      const y0 = e.clientY;
+      let moved = false;
+      try { card.setPointerCapture(e.pointerId); } catch (err) {}
+      const move = (ev) => {
+        const dx = ev.clientX - x0;
+        const dy = ev.clientY - y0;
+        if (!moved && Math.hypot(dx, dy) < 4) return;
+        moved = true;
+        card.classList.add('is-held');
+        put(card, clampMove(card, start.x + dx, start.y + dy));
+      };
+      const up = () => {
+        card.removeEventListener('pointermove', move);
+        card.removeEventListener('pointerup', up);
+        card.removeEventListener('pointercancel', up);
+        card.classList.remove('is-held');
+      };
+      card.addEventListener('pointermove', move);
+      card.addEventListener('pointerup', up);
+      card.addEventListener('pointercancel', up);
+    };
+    // Enter or Space brings a card to the top. The arrow keys move it 16px.
+    this.onCardClick = (e) => { const card = e.target.closest && e.target.closest('.now-card'); if (card) top(card); };
+    this.onCardKey = (e) => {
+      const card = e.target.closest && e.target.closest('.now-card');
+      const step = { ArrowLeft: [-16, 0], ArrowRight: [16, 0], ArrowUp: [0, -16], ArrowDown: [0, 16] }[e.key];
+      if (!card || !step) return;
+      e.preventDefault();
+      top(card);
+      const cur = this.cardPos[card.getAttribute('data-k')] || { x: 0, y: 0 };
+      put(card, clampMove(card, cur.x + step[0], cur.y + step[1]));
+    };
+    tile.addEventListener('pointerdown', this.onCardDown);
+    tile.addEventListener('keydown', this.onCardKey);
+    tile.addEventListener('click', this.onCardClick);
+  }
+  renderVals() {
+    const reduced = this.reduced();
+    const narrow = this.state.narrow;
+
+    // Seven photos spaced evenly round the orbit, the first one where it has always started. The script moves them.
+    const photos = PHOTOS.map((ph, i) => {
+      const big = this.state.photo === i;
+      return {
+        i, src: ph.src, alt: ph.alt, caption: ph.caption, showCap: big && !!ph.caption, r: TILT[i % TILT.length],
+        big, bigCls: big ? 'is-big' : '',
+        s: big ? 1.5 : 1,
+        expanded: ph.caption ? (big ? 'true' : 'false') : undefined,
+        enter: () => this.setState({ photo: i }),
+        leave: () => this.setState({ photo: -1 }),
+        toggle: () => this.setState({ photo: this.state.photo === i ? -1 : i })
+      };
+    });
+
+    const JOBS = [
+      ['Thingalicious', 'Creative Director', '2026 to present', 'I lead creative direction for the jewelry brand across every place it appears, from the logo, packaging and labels to social media, in-store displays and the catalog.'],
+      ['Purdue RecWell', 'Outreach Specialist', 'May 2026 to June 2026', 'I ran social media content strategy and production, planning and executing a full content calendar to grow student participation. I used Meta engagement data to decide what we posted.'],
+      ['Delighto.ai', 'Web Developer', 'Aug 2025 to May 2026', "I built the front end for Delighto.ai's website redesign in TypeScript, React and Tailwind CSS, turning hi-fi Figma screens into fully responsive layouts with microinteractions. I worked in a capstone team across design and development."],
+      ['Communique Marketing Services', 'UX Design Intern', 'Dec 2025 to Jan 2026', 'I researched low-digital-literacy users in tier 2 and 3 Indian cities, then built journey maps and wireframes for the YouTube SpottedOnShorts bootcamp site, which won the 2026 ET Trendies Award in Education. I also came up with 100+ experiential concepts for Google Gemini activations and took 15+ to pitch.'],
+      ['Purdue Student Life Marketing', 'Graphic Design Intern', 'Oct 2024 to Aug 2025', 'I designed 200+ print and digital assets reaching 50,000+ students and kept a shared design system consistent across 30+ newsletters. I built the FSCL 150th Anniversary identity system, which was chosen over concepts from senior designers.'],
+      ['peopleHum', 'Marketing Intern', 'May 2024 to July 2024', 'I designed recurring B2B formats for an HR tech brand, including LinkedIn creatives, carousels and blog infographics, from a weekly content calendar.'],
+      ['KPMG', 'Digital Strategy Analyst', 'May 2023 to July 2023', "I designed the conversational UI for KPMG's internal chatbot and mapped AR/VR experience concepts for Samsung for stakeholder review."],
+      ['AIGA Purdue', 'Vice President', 'Aug 2024 to May 2026', 'I organized professional development events for design students, including talks, panels, workshops and peer-to-peer networking.']
+    ];
+    // Currently cards. Each photo is cropped to the card's 4:3 around its subject.
+    // Two cards: the first high on the left, the second lower on the right, with even margins.
+    const NOW = [
+      { title: 'I played Scrabble at a New York product design community game night.', mono: 'Playing', file: 'currently-1.jpg', src: 'assets/currently-1.jpg', alt: 'A finished game of Scrabble on a Harry Potter edition board.', p: 'absolute', l: '2%', t: '0', m: '0', r: -5 },
+      { title: "I've started collecting matchbooks.", mono: 'Collecting', file: 'currently-3.jpg', src: 'assets/currently-3.jpg', alt: 'A green Caffe Reggio matchbook held up outside the café.', p: 'relative', l: 'auto', t: 'auto', m: '56px 0 0 52%', r: -2 }
+    ];
+
+    const open = this.state.open;
+    const jobs = JOBS.map(([org, role, dates, desc], i) => {
+      const isOpen = open === i;
+      return { org, role, dates, desc, isOpen, expanded: isOpen ? 'true' : 'false', sign: isOpen ? '−' : '+', toggle: () => this.setState({ open: isOpen ? -1 : i }) };
+    });
+
+    return {
+      rootClass: [this.props.reducedTransparency ? 'solid' : '', this.props.reducedMotion ? 'still' : ''].join(' '),
+      wide: !narrow,
+      narrow,
+      photos,
+      rowCaption: this.state.photo < 0 ? '' : PHOTOS[this.state.photo].caption,
+      loopOff: this.state.drawn ? 0 : 100,
+      snapLoop: this.state.snapLoop ? 'still' : '',
+      jobs,
+      now: NOW.map((n, k) => ({ ...n, k, noSrc: !n.src })),
+      orbitCls: this.state.orbitIn || reduced ? 'is-in' : '',
+      resume: { href: RESUME_URL || '#resume', file: RESUME_URL ? 'Mannat-Pardasani-Resume-UX-UI.pdf' : undefined },
+      isCurrently: this.props.bentoTile !== 'Lab',
+      isLab: this.props.bentoTile === 'Lab'
+    };
+  }
+}
+</script>
+</body>
+</html>

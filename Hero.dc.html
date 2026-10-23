@@ -15,91 +15,162 @@
 <style>
 body{margin:0}
 /* The box: the home gradient window. Everything inside responds to the box's width, not the window's. */
-.hx{position:relative;container:hx / inline-size;box-sizing:border-box;display:flex;flex-direction:column;gap:20px;padding:24px;border-radius:20px;overflow:hidden;color:#f1f0ec;font-family:'Funnel Sans',ui-sans-serif,system-ui,sans-serif;background:radial-gradient(90% 85% at 0% 100%,#b49d91 0%,rgba(180,157,145,0) 62%),radial-gradient(70% 80% at 100% 10%,#74b0df 0%,rgba(116,176,223,0) 65%),radial-gradient(60% 70% at 100% 100%,#8fb9d2 0%,rgba(143,185,210,0) 70%),linear-gradient(135deg,#2456ac 0%,#3f7fc8 45%,#8fb9d2 100%)}
+.hx{position:relative;container:hx / inline-size;box-sizing:border-box;display:flex;flex-direction:column;gap:20px;padding:24px;border-radius:20px;overflow:hidden;color:#f1f0ec;font-family:'Funnel Sans',ui-sans-serif,system-ui,sans-serif;background:radial-gradient(90% 85% at 0% 100%,#b49d91 0%,rgba(180,157,145,0) 62%),radial-gradient(70% 80% at calc(100% + var(--hx-dx, 0%)) calc(10% + var(--hx-dy, 0%)),#74b0df 0%,rgba(116,176,223,0) 65%),radial-gradient(60% 70% at 100% 100%,#8fb9d2 0%,rgba(143,185,210,0) 70%),linear-gradient(135deg,#2456ac 0%,#3f7fc8 45%,#8fb9d2 100%);transition:--hx-dx 1600ms var(--ease),--hx-dy 1600ms var(--ease)}
+/* The light spot (top right) drifts slowly toward the pointer, by up to 4% of the box, and eases back when the pointer leaves */
+@property --hx-dx{syntax:'<percentage>';inherits:false;initial-value:0%}
+@property --hx-dy{syntax:'<percentage>';inherits:false;initial-value:0%}
 .hx-grain{position:absolute;inset:0;width:100%;height:100%;opacity:0.04;pointer-events:none}
 .hx-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .hx-name{position:relative;margin:0;line-height:0}
 
 /* Intro and widgets. Phone and tablet: the intro sits above the widgets, both on the left.
    Desktop and laptop: the intro takes the left, the widgets sit on the right, tops lined up. */
-.hx-row{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+/* The widget group's sizes are set on the row, so the dock can line up with the widgets' second row. */
+.hx-row{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:24px;--cell:min((100cqi - 14px) / 2,160px);--row:clamp(96px,calc(var(--cell) * 0.45),120px)}
 .hx-intro{min-width:0;display:flex;flex-direction:column;gap:16px}
 
 /* The widget group: columns stop growing at 160px, rows are shorter than the columns, 14px gaps. Phone 2 by 2, tablet 4 by 2, desktop 3 by 2. */
-.hx-grid{flex:none;display:grid;gap:14px;--cell:min((100cqi - 14px) / 2,160px);--row:clamp(96px,calc(var(--cell) * 0.45),120px);grid-template-columns:repeat(2,var(--cell));grid-template-rows:repeat(2,var(--row))}
+.hx-grid{flex:none;display:grid;gap:14px;grid-template-columns:repeat(2,var(--cell));grid-template-rows:repeat(2,var(--row))}
 .hx-music{grid-column:1 / 3;grid-row:1}
 .hx-weather{grid-column:1;grid-row:2}
 .hx-photo{grid-column:2;grid-row:2}
 .hx-logo{display:none}
+/* The Toolkit dock from About. Phone and tablet: after the widgets, full width, icons wrapping onto a second row if they don't fit. */
+.hx-dock{position:relative;align-self:stretch;min-width:0}
+.hx-dock .dock{width:100%}
 @container hx (min-width:520px){
-.hx-grid{--cell:min((100cqi - 42px) / 4,160px);grid-template-columns:repeat(4,var(--cell))}
+.hx-row{--cell:min((100cqi - 42px) / 4,160px)}
+.hx-grid{grid-template-columns:repeat(4,var(--cell))}
 .hx-photo{grid-column:3 / 5;grid-row:1 / 3}
 .hx-logo{display:flex;grid-column:2;grid-row:2}
 }
+/* Desktop and laptop: the intro on the left over the widgets' first row, the dock under it, bottom-left, level with the second row.
+   The rows are the widget rows, so the hero is no taller than the widgets. */
 @container hx (min-width:880px){
-.hx-row{flex-direction:row}
-.hx-intro{flex:1}
-.hx-grid{--cell:min((100cqi - 70px) / 6,160px);grid-template-columns:repeat(3,var(--cell))}
+.hx-row{--cell:min((100cqi - 70px) / 6,160px);display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:var(--row) var(--row);column-gap:24px;row-gap:14px}
+.hx-intro{grid-column:1;grid-row:1}
+.hx-grid{grid-column:2;grid-row:1 / 3;grid-template-columns:repeat(3,var(--cell))}
+.hx-dock{grid-column:1;grid-row:2;align-self:end;justify-self:start}
+.hx-dock .dock{width:max-content}
 .hx-weather{grid-column:3;grid-row:1}
 .hx-logo{grid-column:1;grid-row:2}
 .hx-photo{grid-column:2 / 4;grid-row:2}
 }
 
 /* Intro text, straight on the gradient over the deep blue on the left */
-.hx-statement{margin:0;max-width:34ch;font-size:clamp(24px,2.6cqw,34px);font-weight:500;letter-spacing:-0.022em;line-height:1.2;color:#f1f0ec}
+.hx-statement{margin:0;max-width:42ch;font-size:clamp(24px,2.6cqw,34px);font-weight:500;letter-spacing:-0.022em;line-height:1.2;color:#f1f0ec}
 .hx-dim{color:rgba(241,240,236,0.72)}
 .hx-body{margin:0;max-width:56ch;font-size:clamp(15px,1.35cqw,17px);line-height:1.55;color:rgba(241,240,236,0.9)}
 
 /* Widgets: light glass with ink text, 20px corners, 16px padding */
 .hx-w{position:relative;container-type:size;box-sizing:border-box;min-width:0;min-height:0;padding:16px;border-radius:20px;overflow:hidden;color:#161616;background:rgba(241,240,236,0.72);border:1px solid rgba(255,255,255,0.8);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%)}
-.solid .hx-w,.solid .hx-cap{background:#f1f0ec;-webkit-backdrop-filter:none;backdrop-filter:none}
-@media (prefers-reduced-transparency:reduce){.hx-w,.hx-cap{background:#f1f0ec;-webkit-backdrop-filter:none;backdrop-filter:none}}
+.solid .hx-w{background:#f1f0ec;-webkit-backdrop-filter:none;backdrop-filter:none}
+@media (prefers-reduced-transparency:reduce){.hx-w{background:#f1f0ec;-webkit-backdrop-filter:none;backdrop-filter:none}}
 .hx-icon{display:block;flex:none}
 /* The raised glass edge from the stylesheet: the softest shadow underneath and a hairline of light inside */
-.hx-w,.hx-logo{box-shadow:var(--raise)}
-.hx-w::after,.hx-logo::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:var(--raise-in);pointer-events:none}
+.hx-w,.hx-logo,.mw-card{box-shadow:var(--raise)}
+.hx-w::after,.hx-logo::after,.mw-card::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:var(--raise-in);pointer-events:none;z-index:2}
+
+/* Hover, as on the project cards: the whole widget grows to 1.03 over the cards' 520ms, with a light ring. Nothing inside zooms on its own.
+   Only where there's a real pointer, so touch screens don't get stuck in a hover. With reduced motion only the ring shows. */
+.hx-hov,.hx-dock .dock{position:relative;border-radius:20px;outline:2px solid rgba(255,255,255,0);outline-offset:0;transition:transform 520ms var(--ease),outline-color 200ms var(--ease)}
+.hx-dock .dock{border-radius:22px}
+@media (hover:hover){
+.hx-hov:hover,.hx-dock .dock:hover{transform:scale(1.03);outline-color:rgba(255,255,255,0.7);z-index:3}
+.hx-music:hover .mw-link{background:#161616}
+}
+@media (hover:hover) and (prefers-reduced-motion:reduce){.hx-hov:hover,.hx-dock .dock:hover{transform:none}}
+.still .hx-hov:hover,.still .hx-dock .dock:hover{transform:none}
+
+/* The flip, shared by the music and weather widgets: a 500ms turn on the vertical axis. The faces swap as the card passes edge-on,
+   which with this curve is 65ms in. The back face is mirrored once more so it reads the right way round. With reduced motion the faces crossfade. */
+.hx-card{position:relative;display:block;width:100%;height:100%;box-sizing:border-box;border-radius:20px;transform:perspective(900px) rotateY(0deg);transition:transform 500ms var(--ease)}
+.hx-card.is-flipped{transform:perspective(900px) rotateY(180deg)}
+.hx-face{position:absolute;inset:0;border-radius:inherit;overflow:hidden;transition:visibility 0s linear 65ms}
+.hx-back{transform:scaleX(-1)}
+.hx-card.is-flipped .hx-front,.hx-card:not(.is-flipped) .hx-back{visibility:hidden}
+@media (prefers-reduced-motion:reduce){
+.hx-card,.hx-card.is-flipped{transform:none}
+.hx-back{transform:none}
+.hx-card .hx-face{transition:opacity 300ms var(--ease),visibility 300ms!important}
+.hx-card.is-flipped .hx-front,.hx-card:not(.is-flipped) .hx-back{opacity:0}
+}
+.still .hx-card,.still .hx-card.is-flipped,.still .hx-back{transform:none}
+.still .hx-card .hx-face{transition:opacity 300ms var(--ease),visibility 300ms!important}
+.still .hx-card.is-flipped .hx-front,.still .hx-card:not(.is-flipped) .hx-back{opacity:0}
 
 /* Music: the album art fills the widget's height. Title and artist sit to its right, a progress bar runs under them,
-   and the controls run along the bottom with 44px hit areas over the padding. The Apple Music link is a small arrow in the top right corner. */
-.hx-music{padding:0}
+   and the controls run along the bottom with 44px hit areas over the padding. The Apple Music link is a small arrow in the top right corner.
+   The glass takes a 25% tint from the album art (set by the script), changing over 600ms. */
+.hx-music{min-width:0;min-height:0}
+.mw-card{color:#161616;background:var(--mw-bg,rgba(241,240,236,0.72));border:1px solid rgba(255,255,255,0.8);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);transition:transform 500ms var(--ease),background-color 600ms var(--ease)}
+.solid .mw-card{background:var(--mw-solid,#f1f0ec);-webkit-backdrop-filter:none;backdrop-filter:none}
+@media (prefers-reduced-transparency:reduce){.mw-card{background:var(--mw-solid,#f1f0ec);-webkit-backdrop-filter:none;backdrop-filter:none}}
 .mw{display:flex;height:100%}
-.mw-art{position:relative;flex:none;height:100%;aspect-ratio:1 / 1;overflow:hidden;background:#d3d1ca}
+/* The art is a button: it flips the widget to the track list */
+.mw-art{position:relative;flex:none;height:100%;aspect-ratio:1 / 1;overflow:hidden;margin:0;padding:0;border:0;background:#d3d1ca;cursor:pointer}
 .mw-art img{display:block;width:100%;height:100%;object-fit:cover}
+.mw-art:focus-visible{outline:2px solid #161616;outline-offset:-4px}
 .mw-side{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between;padding:10px 12px 0}
 .mw-head{position:relative;min-width:0}
 .mw-text{display:flex;flex-direction:column;gap:1px;min-width:0;padding-right:22px}
 .mw-title{font-size:14px;font-weight:600;letter-spacing:-0.01em;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mw-artist{font-size:13px;line-height:1.3;color:#5f5e5a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mw-artist{font-size:13px;line-height:1.3;color:#383734;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* The link: a white arrow on a grey dot, the same grey as the controls, with a 44px hit area */
-.mw-link{position:absolute;top:8px;right:8px;z-index:1;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:#7e7c78;color:#ffffff;transition:background-color 160ms cubic-bezier(0.2,0.8,0.2,1)}
+.mw-link{position:absolute;top:8px;right:8px;z-index:1;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:#52514d;color:#ffffff;transition:background-color 160ms cubic-bezier(0.2,0.8,0.2,1)}
 .mw-link::before{content:'';position:absolute;inset:-11px}
-.mw-link:hover{background:#5f5e5a}
+.mw-link:hover{background:#3b3a37}
 .mw-link svg{display:block;width:12px;height:12px}
 .mw-link:focus-visible{outline:2px solid #161616;outline-offset:2px}
 .mw-prog{display:block;height:4px;border-radius:999px;background:rgba(22,22,22,0.12);overflow:hidden}
 .mw-fill{display:block;height:100%;border-radius:inherit;background:#161616;transition:width 250ms linear}
 .mw-ctrls{display:flex;align-items:center;justify-content:space-between;height:28px;margin:0 -8px 8px}
-.mw-btn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:-8px 0;padding:0;border:0;border-radius:999px;background:transparent;color:#7e7c78;cursor:pointer;transition:background-color 160ms cubic-bezier(0.2,0.8,0.2,1)}
-/* Controls are filled glyphs in the lightest grey that still reads at 3:1 on the glass. */
+.mw-btn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:-8px 0;padding:0;border:0;border-radius:999px;background:transparent;color:#52514d;cursor:pointer;transition:background-color 160ms cubic-bezier(0.2,0.8,0.2,1)}
+/* The artist line and the controls are dark enough that the glass can take a 25% tint from any of the playlist's covers,
+   even the black one, and the artist line still reads at 4.5:1 and the controls at 3:1. */
 .mw-btn:hover{background:rgba(22,22,22,0.08)}
 .mw-btn:focus-visible{outline:2px solid #161616;outline-offset:1px}
 @media (prefers-reduced-motion:reduce){.mw-fill{transition:none}}
+/* The back: the art as a small button that flips back, and the playlist, one song per line, scrolling inside the widget */
+.mw-back{display:flex;gap:6px;padding:6px}
+.mw-thumb{flex:none;width:44px;height:44px;margin:0;padding:0;border:0;border-radius:10px;overflow:hidden;background:#d3d1ca;cursor:pointer}
+.mw-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.mw-thumb:focus-visible{outline:2px solid #161616;outline-offset:2px}
+.mw-list{flex:1;min-width:0;margin:0;padding:0;list-style:none;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.mw-row{display:flex;align-items:center;gap:6px;width:100%;min-height:44px;margin:0;padding:0 8px;box-sizing:border-box;border:0;border-radius:10px;background:transparent;color:#161616;font:inherit;font-size:13px;line-height:1.25;text-align:left;cursor:pointer;transition:background-color 160ms var(--ease)}
+.mw-row:hover{background:rgba(22,22,22,0.08)}
+.mw-row:focus-visible{outline:2px solid #161616;outline-offset:-2px}
+.mw-row-text{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mw-row-t{font-weight:600}
+.mw-row-a{color:#383734}
+.mw-row svg{display:block;flex:none;width:10px;height:10px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
-/* Weather: its own component (Weather.dc.html), filling the square cell */
+/* Weather: its own component (Weather.dc.html), filling the cell. The whole widget is a button that flips to the time in New York. */
 .hx-weather{min-width:0;min-height:0}
+.wx-card{margin:0;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.wx-card .sc-host{width:100%;height:100%}
+.wx-card:focus-visible{outline:2px solid #f1f0ec;outline-offset:3px}
+.wx-back{box-sizing:border-box;display:flex;align-items:flex-end;padding:12px;border:1px solid rgba(255,255,255,0.35);background:linear-gradient(180deg,#1b5ba8,#3a72b8);color:#ffffff;box-shadow:var(--raise)}
+.wx-now{margin:0;font-size:15px;font-weight:600;letter-spacing:-0.01em;line-height:1.25}
 
-/* Photo: fills the widget, anchored low so the skyline and the water stay in the band. A glass caption shows only once there is caption text. */
-.hx-photo{padding:0;border:0}
-.hx-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 80%}
-.hx-cap{position:absolute;left:16px;bottom:16px;max-width:calc(100% - 32px);box-sizing:border-box;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;line-height:1.3;color:#161616;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(241,240,236,0.72);border:1px solid rgba(255,255,255,0.8);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%)}
+/* Photo: a button that moves to the next photo with a 400ms crossfade. Each photo fills the widget around its own focal point. */
+.hx-photo{padding:0;border:0;margin:0;font:inherit;color:inherit;cursor:pointer}
+.hx-photo:focus-visible{outline:2px solid #f1f0ec;outline-offset:3px}
+.hx-ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 400ms var(--ease)}
+.hx-ph.is-on{opacity:1}
 
-/* Logo: the mark on its cream rounded square, read as an app icon */
-.hx-logo{position:relative;align-items:center;justify-content:center;border-radius:20px;background:#f1f0ec}
-.hx-logo img{display:block;width:auto;height:92%;max-width:92%}
+/* Logo: the mark on its cream rounded square, read as an app icon. On hover the tile fills with the site's gradient and the linework turns white, over 520ms. */
+.hx-logo{position:relative;align-items:center;justify-content:center;border-radius:20px;background:#f1f0ec;overflow:hidden}
+.hx-logo::before{content:'';position:absolute;inset:0;border-radius:inherit;background:var(--gradient);opacity:0;transition:opacity 520ms var(--ease)}
+.hx-logo img{position:relative;z-index:1;display:block;width:auto;height:92%;max-width:92%;transition:filter 520ms var(--ease)}
+@media (hover:hover){
+.hx-logo:hover::before{opacity:1}
+.hx-logo:hover img{filter:brightness(0) invert(1)}
+}
 </style>
 </helmet>
-<div class="hx">
+<div class="hx" onMouseMove="{{drift}}" onMouseLeave="{{driftBack}}">
 <svg width="0" height="0" aria-hidden="true" style="position: absolute"><filter id="grain-hero" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter></svg>
 <svg class="hx-grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain-hero)"></rect></svg>
 <h1 class="hx-name"><span class="hx-sr">mannat pardasani</span><svg viewBox="70 -849 8719 1089" width="100%" aria-hidden="true" style="display: block; overflow: visible"><text x="0" y="0" font-size="1200" textLength="8850" lengthAdjust="spacing" font-family="Funnel Sans, ui-sans-serif, sans-serif" font-weight="800" fill="#f1f0ec">mannat pardasani</text></svg></h1>
@@ -107,17 +178,16 @@ body{margin:0}
 <div class="hx-row">
 
 <div class="hx-intro">
-<p class="hx-statement">I'm a product designer and web developer. <span class="hx-dim">I've also worked to build brand identity and creative strategy.</span></p>
-
+<p class="hx-statement">I'm a design engineer working across product, user experience and visual strategy. <span class="hx-dim">I have a B.S. and a B.F.A. from Purdue.</span></p>
 </div>
 
 <div class="hx-grid">
 
-<div class="hx-w hx-music" role="group" aria-label="Music player">
+<div class="hx-music hx-hov" id="{{musicId}}" role="group" aria-label="Music player" onKeyDown="{{musicKey}}">
+<div class="hx-card mw-card {{flipCls}}" style="--mw-bg: {{tint.glass}}; --mw-solid: {{tint.solid}}">
+<div class="hx-face hx-front">
 <div class="mw">
-<div class="mw-art">
-<sc-if value="{{track.cover}}" hint-placeholder-val="{{ false }}"><img src="{{track.cover}}" alt="" width="600" height="600"></sc-if>
-</div>
+<button type="button" class="mw-art" id="{{artId}}" aria-label="Show the track list" aria-expanded="{{listOpen}}" onClick="{{openList}}"><sc-if value="{{track.cover}}" hint-placeholder-val="{{ false }}"><img src="{{track.cover}}" alt="" width="600" height="600"></sc-if></button>
 <div class="mw-side">
 <div class="mw-head">
 <div class="mw-text"><span class="mw-title" title="{{track.title}}">{{track.title}}</span><sc-if value="{{track.artist}}" hint-placeholder-val="{{ true }}"><span class="mw-artist">{{track.artist}}</span></sc-if></div>
@@ -137,17 +207,34 @@ body{margin:0}
 </div>
 <a href="{{playlistUrl}}" target="_blank" rel="noopener" class="mw-link" aria-label="Listen on Apple Music (opens in a new tab)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"></path></svg></a>
 </div>
+<div class="hx-face hx-back mw-back">
+<button type="button" class="mw-thumb" id="{{thumbId}}" aria-label="Hide the track list" onClick="{{closeList}}"><sc-if value="{{track.cover}}" hint-placeholder-val="{{ false }}"><img src="{{track.cover}}" alt="" width="600" height="600"></sc-if></button>
+<ul class="mw-list" id="{{listId}}" aria-label="Track list">
+<sc-for list="{{songs}}" as="s" hint-placeholder-count="13">
+<li><button type="button" class="mw-row" id="{{s.id}}" aria-current="{{s.current}}" onClick="{{s.play}}"><sc-if value="{{s.isCurrent}}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3l14 9-14 9V3Z"></path></svg></sc-if><span class="mw-row-text"><span class="mw-row-t">{{s.title}}</span> <span class="mw-row-a">{{s.artist}}</span></span></button></li>
+</sc-for>
+</ul>
+</div>
+</div>
+</div>
 
-<div class="hx-weather"><dc-import name="Weather" weather="{{weather}}" night="{{night}}" layout="wide" style="display: block; width: 100%; height: 100%" hint-size="100%,100%"></dc-import></div>
+<div class="hx-weather hx-hov">
+<button type="button" class="hx-card wx-card {{wxFlipCls}}" onClick="{{flipWeather}}">
+<span class="hx-face hx-front"><dc-import name="Weather" weather="{{weather}}" night="{{night}}" layout="wide" style="display: block; width: 100%; height: 100%" hint-size="100%,100%"></dc-import></span>
+<span class="hx-face hx-back wx-back"><span class="wx-now">{{nyNow}}</span></span>
+</button>
+</div>
 
-<figure id="{{photo.id}}" class="hx-w hx-photo" style="margin: 0">
-<sc-if value="{{photo.src}}" hint-placeholder-val="{{ true }}"><img src="{{photo.src}}" alt="{{photo.alt}}" decoding="async"></sc-if>
-<sc-if value="{{photo.caption}}" hint-placeholder-val="{{ false }}"><figcaption class="hx-cap">{{photo.caption}}</figcaption></sc-if>
-</figure>
+<button type="button" class="hx-w hx-photo hx-hov" id="{{photoId}}" onClick="{{nextPhoto}}">
+<sc-if value="{{layerA.src}}" hint-placeholder-val="{{ true }}"><img class="hx-ph {{layerA.cls}}" src="{{layerA.src}}" alt="{{layerA.alt}}" aria-hidden="{{layerA.hidden}}" style="object-position: {{layerA.pos}}" decoding="async"></sc-if>
+<sc-if value="{{layerB.src}}" hint-placeholder-val="{{ false }}"><img class="hx-ph {{layerB.cls}}" src="{{layerB.src}}" alt="{{layerB.alt}}" aria-hidden="{{layerB.hidden}}" style="object-position: {{layerB.pos}}" decoding="async"></sc-if>
+</button>
 
-<div class="hx-logo"><img src="assets/logo-14.svg" alt="" width="56" height="56"></div>
+<div class="hx-logo hx-hov"><img src="assets/logo-14.svg" alt="" width="56" height="56"></div>
 
 </div>
+
+<div class="hx-dock"><dc-import name="Dock" caption="off" hint-size="100%,70px"></dc-import></div>
 </div>
 </div>
 </x-dc>
@@ -155,7 +242,6 @@ body{margin:0}
 // Music: my playlist, "la di da" on Apple Music. Add a song by adding a row, in playlist order.
 // A website can't stream full songs from Apple Music without the visitor signing in, so the widget looks each song up
 // on Apple's iTunes Search API (no key needed) and plays Apple's 30-second preview.
-const PLAYLIST_NAME = 'la di da';
 const PLAYLIST_URL = 'https://music.apple.com/us/playlist/la-di-da/pl.u-zPyLAb6uZMJgmoX';
 const SONGS = [
   { title: "I'm This", artist: 'Peter Cat Recording Co.', album: 'Bismillah' },
@@ -210,37 +296,195 @@ function lookUp(i) {
   return lookups[i];
 }
 
-// Photo. The wide crop (1600 x 800) is for the wide widget, the square one (1200 x 1200) for the large one on tablets.
-// The widget's own shape picks one, so only that one downloads. The glass caption stays off until caption has text.
-const PHOTO = {
-  wide: 'assets/home-photo-wide.jpg',
-  square: 'assets/home-photo-square.jpg',
-  alt: 'A city skyline at golden hour, seen from the water.',
-  caption: ''
-};
+// The tint. The art's main colour is the most common colour among its pixels, read from a small copy on a canvas.
+// If the browser won't let the page read the image, there's no tint.
+const GLASS = [241, 240, 236];
+const GLASS_ALPHA = 0.72;
+const INK = [22, 22, 22];
+const MUTED = [56, 55, 52];
+const CONTROL = [82, 81, 77];
+const artColours = {};
+function mainColour(url) {
+  if (artColours[url]) return artColours[url];
+  artColours[url] = new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      try {
+        const c = document.createElement('canvas');
+        c.width = 24; c.height = 24;
+        const g = c.getContext('2d');
+        g.drawImage(img, 0, 0, 24, 24);
+        const d = g.getImageData(0, 0, 24, 24).data;
+        const bins = {};
+        for (let i = 0; i < d.length; i += 4) {
+          const k = (d[i] >> 4) + '-' + (d[i + 1] >> 4) + '-' + (d[i + 2] >> 4);
+          const b = bins[k] || (bins[k] = [0, 0, 0, 0]);
+          b[0] += d[i]; b[1] += d[i + 1]; b[2] += d[i + 2]; b[3] += 1;
+        }
+        const top = Object.values(bins).reduce((a, b) => (b[3] > a[3] ? b : a));
+        resolve([top[0] / top[3], top[1] / top[3], top[2] / top[3]]);
+      } catch (e) { resolve(null); }
+    };
+    img.onerror = () => resolve(null);
+    img.src = url.replace('600x600', '48x48');
+  });
+  return artColours[url];
+}
+function lin(v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }
+function lum(c) { return 0.2126 * lin(c[0]) + 0.7152 * lin(c[1]) + 0.0722 * lin(c[2]); }
+function ratio(a, b) { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+function mix(a, b, t) { return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t]; }
+// The hero's gradient at a point in the box, worked out from the same four layers as the CSS, so the tint can be checked against what's behind the glass.
+function heroColour(x, y, w, h) {
+  const lineLen = (w + h) * Math.SQRT1_2;
+  const t = Math.max(0, Math.min(1, ((x - w / 2) * Math.SQRT1_2 + (y - h / 2) * Math.SQRT1_2) / lineLen + 0.5));
+  let c = t < 0.45 ? mix([36, 86, 172], [63, 127, 200], t / 0.45) : mix([63, 127, 200], [143, 185, 210], (t - 0.45) / 0.55);
+  const spot = (cx, cy, rx, ry, stop, col) => {
+    const r = Math.hypot((x - cx) / rx, (y - cy) / ry);
+    const a = Math.max(0, 1 - r / stop);
+    c = mix(c, col, a);
+  };
+  spot(w, h, 0.6 * w, 0.7 * h, 0.7, [143, 185, 210]);
+  spot(w, 0.1 * h, 0.7 * w, 0.8 * h, 0.65, [116, 176, 223]);
+  spot(0, h, 0.9 * w, 0.85 * h, 0.62, [180, 157, 145]);
+  return c;
+}
+function toHsl(c) {
+  const r = c[0] / 255, g = c[1] / 255, b = c[2] / 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b), l = (max + min) / 2;
+  if (max === min) return [0, 0, l];
+  const d = max - min, s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+  const h = max === r ? (g - b) / d + (g < b ? 6 : 0) : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+  return [h / 6, s, l];
+}
+function fromHsl(h, s, l) {
+  if (!s) return [l * 255, l * 255, l * 255];
+  const q = l < 0.5 ? l * (1 + s) : l + s - l * s, p = 2 * l - q;
+  const f = (t) => { t = (t + 1) % 1; return 255 * (t < 1 / 6 ? p + (q - p) * 6 * t : t < 0.5 ? q : t < 2 / 3 ? p + (q - p) * (2 / 3 - t) * 6 : p); };
+  return [f(h + 1 / 3), f(h), f(h - 1 / 3)];
+}
+// The tint is the art's colour mixed into the glass at 25%. If the widget's text would fall below 4.5:1 (3:1 for the control icons)
+// anywhere over the gradient behind it, the tint is lightened step by step, keeping its hue, until it passes.
+function tintFor(art, behind) {
+  const passes = (glass) => behind.every((bg) => {
+    const seen = mix(bg, glass, GLASS_ALPHA);
+    return ratio(INK, seen) >= 4.5 && ratio(MUTED, seen) >= 4.5 && ratio(CONTROL, seen) >= 3;
+  });
+  const [h, sat, l0] = toHsl(mix(GLASS, art, 0.25));
+  let glass = fromHsl(h, sat, l0);
+  for (let l = l0; l <= 1 && !passes(glass); l = Math.min(1, l + 0.01)) { glass = fromHsl(h, sat, l); if (l === 1) break; }
+  const rgb = glass.map((v) => Math.round(v)).join(', ');
+  return { glass: 'rgba(' + rgb + ', ' + GLASS_ALPHA + ')', solid: 'rgb(' + rgb + ')' };
+}
+const NO_TINT = { glass: 'rgba(241, 240, 236, 0.72)', solid: '#f1f0ec' };
+
+// Photos. The skyline comes first: its wide crop (1600 x 800) is for the wide widget, the square one (1200 x 1200) for the large one on tablets,
+// and the widget's own shape picks one. Then the seven About photos, at full size. Each crops to the widget around its own focal point.
+const SKYLINE = { wide: 'assets/home-photo-wide.jpg', square: 'assets/home-photo-square.jpg', alt: 'A city skyline at golden hour, seen from the water.', pos: '50% 80%' };
+const PHOTOS = [
+  { src: 'assets/about-circle-01-flowers.jpg', alt: 'A bouquet of bright summer flowers wrapped in brown paper.', pos: '50% 50%' },
+  { src: 'assets/about-circle-02-skyline-night.jpg', alt: 'A city skyline lit up at night across the water.', pos: '50% 62%' },
+  { src: 'assets/about-circle-03-street.jpg', alt: 'A narrow cobblestone street lined with old brick row houses.', pos: '50% 55%' },
+  { src: 'assets/about-circle-04-bookshop.jpg', alt: 'Tall wooden shelves full of colourful books in a bookshop.', pos: '50% 50%' },
+  { src: 'assets/about-circle-05-bookshelf.jpg', alt: 'A wall of lit shelves stacked with art and design books.', pos: '50% 55%' },
+  { src: 'assets/about-circle-06-beach.jpg', alt: 'A pebble beach and a blue sea on a sunny afternoon.', pos: '50% 65%' },
+  { src: 'assets/about-circle-07-hollywood.jpg', alt: 'The Hollywood sign on a hillside under a cloudy sky.', pos: '47% 48%' }
+];
+
+// Weather's back: the time in New York, in one sentence, updated every minute.
+const NY_TIME = (() => { try { return new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit' }); } catch (e) { return null; } })();
+function nyNow() {
+  if (!NY_TIME) return '';
+  return "It's " + NY_TIME.format(new Date()).replace(/\s?([AP])M$/i, (m, p) => ' ' + p.toLowerCase() + 'm') + ' in New York.';
+}
 
 class Component extends DCLogic {
   constructor(props) {
     super(props);
     // Songs play in playlist order. Nothing plays until someone presses play.
     const order = SONGS.map((_, i) => i);
-    this.state = { order, pos: 0, playing: false, t: 0, dur: 30, tracks: {}, status: LIVE ? 'loading' : 'failed', shape: '' };
-    this.photoId = 'hx-photo-' + Math.random().toString(36).slice(2, 9);
+    const key = Math.random().toString(36).slice(2, 9);
+    this.ids = { music: 'hx-music-' + key, art: 'hx-art-' + key, thumb: 'hx-thumb-' + key, list: 'hx-list-' + key, photo: 'hx-photo-' + key };
+    this.state = {
+      order, pos: 0, playing: false, t: 0, dur: 30, tracks: {}, status: LIVE ? 'loading' : 'failed', shape: '',
+      listOpen: false, tint: NO_TINT, wxBack: false, nyNow: nyNow(),
+      photo: 0, layer: 'a', a: 0, b: -1
+    };
   }
   componentDidMount() {
     this.watchPhoto();
     // On page load, only the first song is looked up, so the widget shows its artwork, title and artist at rest.
     if (LIVE) this.settle(0, 1).then((pos) => { if (!this.gone) this.setState(pos < 0 ? { status: 'failed' } : { status: 'ready', pos }); });
+    // The time on the weather's back, on the minute.
+    const tick = () => this.setState({ nyNow: nyNow() });
+    this.minuteTimer = setTimeout(() => { tick(); this.minuteLoop = setInterval(tick, 60000); }, 60000 - (Date.now() % 60000) + 50);
+  }
+  componentDidUpdate(prevProps, prevState) {
+    // A new song's art: work out its tint.
+    const cover = this.coverNow();
+    if (cover !== this.tintedFor) {
+      this.tintedFor = cover;
+      if (!cover) { if (this.state.tint !== NO_TINT) this.setState({ tint: NO_TINT }); return; }
+      mainColour(cover).then((art) => {
+        if (this.gone || this.tintedFor !== cover) return;
+        this.setState({ tint: art ? tintFor(art, this.behindMusic()) : NO_TINT });
+      });
+    }
+  }
+  coverNow() {
+    const s = this.state;
+    const found = s.tracks[s.order[s.pos]];
+    return s.status === 'ready' && found ? found.cover : '';
+  }
+  // The gradient behind the widget's text, for the contrast check: the area right of the art, where the title, artist, controls and track list sit.
+  behindMusic() {
+    try {
+      const box = document.getElementById(this.ids.music);
+      const hx = box && box.closest('.hx');
+      if (!hx) return [[36, 86, 172]];
+      const H = hx.getBoundingClientRect();
+      const b = box.getBoundingClientRect();
+      const r = { left: b.left + Math.min(b.height, b.width / 3), right: b.right, top: b.top, bottom: b.bottom };
+      const pts = [[r.left + 8, r.top + 8], [r.right - 8, r.top + 8], [r.left + 8, r.bottom - 8], [r.right - 8, r.bottom - 8], [(r.left + r.right) / 2, (r.top + r.bottom) / 2]];
+      return pts.map(([x, y]) => heroColour(x - H.left, y - H.top, H.width, H.height));
+    } catch (e) { return [[36, 86, 172]]; }
+  }
+  // The light spot follows the pointer from its corner (100%, 10%): the offset points at the pointer, grows with the distance and stops at 4% of the box.
+  // Only with a real pointer and without reduced motion. The style changes directly, so the hero doesn't re-render as the pointer moves.
+  driftTo(e) {
+    if (this.noDrift === undefined) {
+      try { this.noDrift = !window.matchMedia('(hover: hover)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (err) { this.noDrift = true; }
+    }
+    const el = e && e.currentTarget;
+    if (this.noDrift || !el || el.closest('.still')) return;
+    const r = el.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    const x = (e.clientX - r.left) / r.width - 1;
+    const y = (e.clientY - r.top) / r.height - 0.1;
+    const len = Math.hypot(x, y);
+    const k = len ? Math.min(0.04, len * 0.06) / len : 0;
+    el.style.setProperty('--hx-dx', (x * k * 100).toFixed(2) + '%');
+    el.style.setProperty('--hx-dy', (y * k * 100).toFixed(2) + '%');
+  }
+  driftHome(e) {
+    const el = e && e.currentTarget;
+    if (!el) return;
+    el.style.setProperty('--hx-dx', '0%');
+    el.style.setProperty('--hx-dy', '0%');
   }
   componentWillUnmount() {
     this.gone = true;
+    clearTimeout(this.minuteTimer);
+    clearInterval(this.minuteLoop);
+    clearTimeout(this.focusTimer);
     if (this.photoRO) this.photoRO.disconnect();
     if (this.audio) { this.audio.pause(); this.audio.removeAttribute('src'); }
   }
   // Wide when the widget is about twice as wide as it is tall, square otherwise. Follows the widget if it changes shape.
   watchPhoto() {
     let el = null;
-    try { el = document.getElementById(this.photoId); } catch (e) {}
+    try { el = document.getElementById(this.ids.photo); } catch (e) {}
     if (!el || typeof ResizeObserver === 'undefined') { this.setState({ shape: 'wide' }); return; }
     this.photoRO = new ResizeObserver((entries) => {
       const r = entries[0].contentRect;
@@ -249,6 +493,45 @@ class Component extends DCLogic {
       if (shape !== this.state.shape) this.setState({ shape });
     });
     this.photoRO.observe(el);
+  }
+  photoAt(i) {
+    if (i < 0) return { src: '', alt: '', pos: '50% 50%' };
+    if (i === 0) return { src: this.state.shape ? SKYLINE[this.state.shape] : '', alt: SKYLINE.alt, pos: SKYLINE.pos };
+    return PHOTOS[i - 1];
+  }
+  // Clicking the photo moves to the next one, loading it first so the crossfade never shows a blank.
+  nextPhoto() {
+    const next = (this.state.photo + 1) % (PHOTOS.length + 1);
+    const src = this.photoAt(next).src;
+    const go = () => {
+      if (this.gone) return;
+      const layer = this.state.layer === 'a' ? 'b' : 'a';
+      this.setState({ photo: next, layer, [layer]: next });
+    };
+    const img = new Image();
+    img.onload = go;
+    img.onerror = go;
+    img.src = src;
+  }
+  focusSoon(id) {
+    clearTimeout(this.focusTimer);
+    this.focusTimer = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); }
+      if (id !== this.ids.art && id !== this.ids.thumb) {
+        const list = document.getElementById(this.ids.list);
+        if (list) list.scrollTop = Math.max(0, el.offsetTop - 6);
+      }
+    }, 80);
+  }
+  openList() {
+    this.setState({ listOpen: true });
+    this.focusSoon(this.ids.list + '-' + this.state.order[this.state.pos]);
+  }
+  closeList() {
+    this.setState({ listOpen: false });
+    this.focusSoon(this.ids.art);
   }
   // From a position in the play order, finds the next song with a preview, skipping any with no match. -1 if none has one.
   settle(pos, dir) {
@@ -312,14 +595,34 @@ class Component extends DCLogic {
       if (playing) this.start(true);
     });
   }
+  // A song picked from the track list plays from the start (or the next song with a preview), and the widget flips back.
+  playAt(p) {
+    this.closeList();
+    if (!LIVE) return;
+    if (this.audio) this.audio.pause();
+    const seq = (this.seq || 0) + 1;
+    this.seq = seq;
+    this.setState({ pos: p, t: 0, dur: 30, playing: true });
+    this.settle(p, 1).then((pos) => {
+      if (this.gone || seq !== this.seq) return;
+      if (pos < 0) { this.setState({ status: 'failed', playing: false }); return; }
+      this.setState({ pos, status: 'ready' });
+      this.start(true);
+    });
+  }
   renderVals() {
     const s = this.state;
     const i = s.order[s.pos];
     const found = s.tracks[i];
     const ready = s.status === 'ready';
-    // If nothing loads, the widget shows the playlist name with the Apple Music link. It never shows placeholder text.
-    const track = s.status === 'failed' ? { title: PLAYLIST_NAME, artist: '', cover: '' }
-      : found ? found : { title: SONGS[i].title, artist: SONGS[i].artist, cover: '' };
+    // If nothing loads, the widget shows the song's title and artist from the playlist, with the Apple Music link. It never shows placeholder text.
+    const track = found && s.status !== 'failed' ? found : { title: SONGS[i].title, artist: SONGS[i].artist, cover: '' };
+    const layer = (which) => {
+      const idx = s[which];
+      const ph = this.photoAt(idx);
+      const on = s.layer === which;
+      return { src: ph.src, alt: on ? ph.alt : '', pos: ph.pos, cls: on ? 'is-on' : '', hidden: on ? 'false' : 'true' };
+    };
     return {
       track,
       ready,
@@ -331,9 +634,31 @@ class Component extends DCLogic {
       next: () => this.step(1, false),
       pct: Math.min(100, Math.round((s.t / (s.dur || 30)) * 1000) / 10),
       playlistUrl: PLAYLIST_URL,
+      musicId: this.ids.music,
+      artId: this.ids.art,
+      thumbId: this.ids.thumb,
+      listId: this.ids.list,
+      listOpen: s.listOpen ? 'true' : 'false',
+      flipCls: s.listOpen ? 'is-flipped' : '',
+      tint: s.tint,
+      openList: () => this.openList(),
+      closeList: () => this.closeList(),
+      musicKey: (e) => { if (e && e.key === 'Escape' && this.state.listOpen) { e.preventDefault(); this.closeList(); } },
+      songs: SONGS.map((song, k) => {
+        const current = s.order[s.pos] === k;
+        return { id: this.ids.list + '-' + k, title: song.title, artist: song.artist, current: current ? 'true' : 'false', isCurrent: current, play: () => this.playAt(s.order.indexOf(k)) };
+      }),
+      drift: (e) => this.driftTo(e),
+      driftBack: (e) => this.driftHome(e),
       weather: this.props.weather || 'auto',
       night: this.props.night || 'no',
-      photo: { id: this.photoId, src: s.shape ? PHOTO[s.shape] : '', alt: PHOTO.alt, caption: PHOTO.caption }
+      wxFlipCls: s.wxBack ? 'is-flipped' : '',
+      flipWeather: () => this.setState({ wxBack: !this.state.wxBack, nyNow: nyNow() }),
+      nyNow: s.nyNow,
+      photoId: this.ids.photo,
+      layerA: layer('a'),
+      layerB: layer('b'),
+      nextPhoto: () => this.nextPhoto()
     };
   }
 }

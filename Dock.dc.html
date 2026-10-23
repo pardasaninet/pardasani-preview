@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<title>Toolkit dock</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="assets/v4.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+/* The Toolkit dock, shared by About and the home hero. It sits on the gradient, as wide as its icons; the icons wrap onto a second row when they don't fit. */
+.dock{position:relative;box-sizing:border-box;width:max-content;max-width:100%;font-family:'Funnel Sans',ui-sans-serif,system-ui,sans-serif}
+.dock-group{min-width:0}
+.dock-icons{flex-wrap:wrap;justify-content:center}
+/* Each app icon fills its key and takes the key's rounded corners */
+.dock .dock-btn{overflow:hidden;background:none}
+.dock .dock-btn img{display:block;width:100%;height:100%;pointer-events:none}
+/* The tooltip's line about each tool wraps at a readable width */
+.dock-use{font-size:12px;line-height:1.35;color:var(--body);white-space:normal;width:max-content;max-width:220px}
+/* The outer tooltips open toward the middle of the dock, so they stay inside the hero and the tile */
+.dock-tip.tip-start{left:0;transform:none}
+.dock-tip.tip-end{left:auto;right:0;transform:none}
+/* Phones: seven keys fit on one row. The keys scale with the screen, up to 40px, with 5px between them and a slimmer pill. */
+@media (max-width:759px){
+.dock{--key:clamp(28px,calc((100vw - 130px) / 7),40px);padding-left:10px;padding-right:10px}
+.dock-icons{gap:5px}
+.dock .dock-btn.sm{width:var(--key);height:var(--key);border-radius:calc(var(--key) * 0.275)}
+}
+</style>
+</helmet>
+<div class="dock glass-g" onMouseLeave="{{leave}}">
+<div class="dock-group">
+<ul class="dock-icons" aria-label="Every day">
+<sc-for list="{{tools}}" as="d" hint-placeholder-count="7">
+<li class="dock-item"><button type="button" class="dock-btn {{d.cls}}" aria-label="{{d.name}}" onMouseEnter="{{d.point}}" onFocus="{{d.enter}}" onBlur="{{leave}}" style="transform: translateY({{d.lift}}px) scale({{d.s}})"><img src="{{d.src}}" alt="" width="44" height="44" decoding="async"></button><sc-if value="{{d.tip}}" hint-placeholder-val="{{ false }}"><span class="dock-tip glass-i {{d.tipCls}}"><span style="font-size: 13px; font-weight: 700">{{d.name}}</span><span class="dock-use">{{d.use}}</span></span></sc-if></li>
+</sc-for>
+</ul>
+<sc-if value="{{caption}}" hint-placeholder-val="{{ true }}"><p class="t-kind" style="margin: 0">Every day</p></sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"caption":{"editor":"enum","options":["on","off"],"default":"on"},"$preview":{"width":420,"height":120}}'>
+// Toolkit dock: [app icon, app name, what I use it for]. Adding a tool is one row.
+const TOOLS = [
+  ['assets/toolkit-figma.png', 'Figma', 'I use Figma to wireframe, design and prototype interfaces, and FigJam for whiteboarding.'],
+  ['assets/toolkit-creative-cloud.png', 'Adobe Creative Cloud', 'I use Illustrator, Photoshop and InDesign for brand, print and packaging work.'],
+  ['assets/toolkit-vscode.png', 'VS Code', 'I write and edit code here.'],
+  ['assets/dock-notion.png', 'Notion', 'I use Notion for documentation and project planning.'],
+  ['assets/toolkit-claude.png', 'Claude', 'I use Claude for busywork, research and automation, while I make the decisions.'],
+  ['assets/toolkit-github-desktop.png', 'GitHub Desktop', 'I keep my code here, and it hosts this site.'],
+  ['assets/dock-slack.png', 'Slack', 'I use Slack for day-to-day communication on projects.']
+];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { hov: -1, narrow: this.isNarrow() };
+    // The pointer only grows the keys where there's a real pointer, so a tap doesn't leave one stuck.
+    // With reduced motion the keys stay their size; the name still shows.
+    try {
+      this.canHover = window.matchMedia('(hover: hover)').matches;
+      this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    } catch (e) { this.canHover = true; this.reduce = false; }
+  }
+  // Below 760px wide the keys are smaller: up to 40px, scaling with the screen so all seven fit on one row.
+  isNarrow() {
+    try { return window.innerWidth < 760; } catch (e) { return false; }
+  }
+  componentDidMount() {
+    this.onResize = () => { const n = this.isNarrow(); if (n !== this.state.narrow) this.setState({ narrow: n }); };
+    window.addEventListener('resize', this.onResize);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+  }
+  renderVals() {
+    const hov = this.state.hov;
+    const narrow = this.state.narrow;
+    // The key under the pointer grows most and its neighbours a little, like a dock.
+    const tools = TOOLS.map((pair, i) => {
+      const dist = hov < 0 || this.reduce ? 9 : Math.abs(hov - i);
+      return {
+        src: pair[0], name: pair[1], use: pair[2], tip: hov === i, tipCls: i < 2 ? 'tip-start' : i > TOOLS.length - 3 ? 'tip-end' : '', cls: narrow ? 'sm' : '',
+        s: dist === 0 ? 1.45 : dist === 1 ? 1.18 : 1,
+        lift: dist === 0 ? -10 : dist === 1 ? -4 : 0,
+        enter: () => this.setState({ hov: i }),
+        point: () => { if (this.canHover) this.setState({ hov: i }); }
+      };
+    });
+    return {
+      tools,
+      caption: this.props.caption !== 'off',
+      leave: () => this.setState({ hov: -1 })
+    };
+  }
+}
+</script>
+</body>
+</html>
