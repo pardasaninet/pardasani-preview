@@ -43,11 +43,13 @@
 /* Currently: the photo cards can be moved around the tile like prints on a desk */
 .now-card{display:block;padding:8px;font:inherit;color:inherit;text-align:left;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;transition:scale 160ms var(--ease)}
 .now-card.is-held{cursor:grabbing;scale:1.02}
-.now-card .card-t{display:block;margin:8px 2px 0;font-size:14px;font-weight:700;line-height:1.2;text-wrap:balance}
-.now-card .card-m{display:block;margin:2px 2px 2px;color:var(--muted)}
+.now-card .card-t{display:block;margin:8px 2px 0;font-size:14px;font-weight:400;line-height:1.2;text-wrap:balance}
 .now-card img{pointer-events:none}
 /* Experience: a company name that wraps on a phone splits evenly instead of leaving one word on its own line */
 .acc-org{text-wrap:balance}
+/* Experience: a role with no description yet sits in the same grid as the others, but isn't a button and doesn't open */
+.acc-static{cursor:default}
+.acc-static:hover .acc-role{text-decoration:none}
 /* Card titles all use the Purdue University style */
 .tile-title{margin:0;font-size:clamp(28px,2.8vw,36px);font-weight:800;letter-spacing:-0.035em;line-height:1}
 /* Range: four straight cards on the bento grid. Four across, two by two once the row is under 1000px, one per row under 720px like the bento. */
@@ -127,7 +129,7 @@
 <p class="sr-only">Drag a card to move it, or press an arrow key to move the selected card.</p>
 <div style="position: absolute; left: 22px; right: 22px; top: calc(50% + 11px); transform: translateY(-50%)">
 <sc-for list="{{now}}" as="n" hint-placeholder-count="2">
-<button type="button" class="lab-card now-card" data-k="{{n.k}}" style="position: {{n.p}}; left: {{n.l}}; top: {{n.t}}; margin: {{n.m}}; transform: rotate({{n.r}}deg)"><span class="ph" style="display: block; aspect-ratio: 4 / 3; border-radius: 10px"><sc-if value="{{n.src}}" hint-placeholder-val="{{ false }}"><img src="{{n.src}}" alt="{{n.alt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%"></sc-if><sc-if value="{{n.noSrc}}" hint-placeholder-val="{{ true }}"><span class="ph-label">Photo: {{n.file}}</span></sc-if></span><span class="card-t">{{n.title}}</span><span class="t-kind card-m">{{n.mono}}</span></button>
+<button type="button" class="lab-card now-card" data-k="{{n.k}}" style="position: {{n.p}}; left: {{n.l}}; top: {{n.t}}; margin: {{n.m}}; transform: rotate({{n.r}}deg)"><span class="ph" style="display: block; aspect-ratio: 4 / 3; border-radius: 10px"><sc-if value="{{n.src}}" hint-placeholder-val="{{ false }}"><img src="{{n.src}}" alt="{{n.alt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%"></sc-if><sc-if value="{{n.noSrc}}" hint-placeholder-val="{{ true }}"><span class="ph-label">Photo: {{n.file}}</span></sc-if></span><span class="card-t">{{n.title}}</span></button>
 </sc-for>
 </div>
 </sc-if>
@@ -143,7 +145,7 @@
 <div class="tile c6 on-dark" style="background: var(--ink); color: var(--ground); overflow: hidden">
 <h2 class="t-label">/ This site</h2>
 <p class="site-copy">Every decision on this site is mine, from the grid and the type to how each widget behaves. I used Claude for the busywork, like turning my notes into build specs, preparing images and automating repetitive fixes, so I could spend my time on the design.</p>
-<div aria-hidden="true" style="position: absolute; right: -6%; bottom: -18%; width: 58%; aspect-ratio: 16 / 10; border-radius: 14px; background: var(--ground); overflow: hidden">
+<div aria-hidden="true" style="position: absolute; right: -6%; bottom: -18%; width: 58%; aspect-ratio: 16 / 10; border-radius: 14px; background: var(--ground); overflow: hidden; transform: rotate(-6deg)">
 <div style="display: flex; align-items: center; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--hairline)"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--hairline)"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--hairline)"></span><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--hairline)"></span><img src="assets/logo-mark.svg" alt="" style="width: 14px; height: 14px; margin-left: 10px"></div>
 <div class="gradient" style="margin: 10px; height: 46%; border-radius: 8px"></div>
 <div style="display: flex; gap: 6px; margin: 0 10px"><div style="flex: 3; height: 54px; border-radius: 6px; background: var(--placeholder)"></div><div style="flex: 2; height: 54px; border-radius: 6px; background: var(--placeholder)"></div></div>
@@ -154,10 +156,10 @@
 <section class="gap-m" aria-labelledby="about-range">
 <h2 id="about-range" class="t-label">/ Range</h2>
 <div class="row bento range-row" style="margin-top: 24px">
-<div class="tile" style="background: var(--surface)"><h3 class="tile-title">Product</h3><ul><li>UX research</li><li>Information architecture</li><li>Responsive design</li><li>Prototyping</li><li>Wireframing</li><li>Figma</li></ul></div>
-<div class="tile gradient on-dark" style="color: var(--ground)"><svg class="grain" aria-hidden="true" style="border-radius: 20px"><rect width="100%" height="100%" filter="url(#grain-aboutpage)"></rect></svg><h3 class="tile-title" style="position: relative">Brand</h3><ul><li>Brand identity</li><li>Packaging design</li><li>Art direction</li><li>Print production</li><li>Illustrator, Photoshop and InDesign</li></ul></div>
-<div class="tile on-dark" style="background: var(--ink); color: var(--ground)"><h3 class="tile-title">Code</h3><ul><li>HTML and CSS</li><li>JavaScript</li><li>TypeScript</li><li>React</li><li>Tailwind CSS</li></ul></div>
-<div class="tile" style="background: var(--tile)"><h3 class="tile-title">AI proficiency</h3><ul><li>Claude Code</li><li>Cursor</li><li>Figma Make</li><li>Adobe Firefly</li></ul></div>
+<div class="tile" style="background: var(--surface)"><h3 class="tile-title">Product</h3><ul><li>User research</li><li>Usability testing</li><li>Journey mapping</li><li>Information architecture</li><li>Wireframing and prototyping</li><li>Accessibility</li></ul></div>
+<div class="tile gradient on-dark" style="color: var(--ground)"><svg class="grain" aria-hidden="true" style="border-radius: 20px"><rect width="100%" height="100%" filter="url(#grain-aboutpage)"></rect></svg><h3 class="tile-title" style="position: relative">Visual strategy</h3><ul><li>Brand identity</li><li>Creative direction</li><li>Design systems</li><li>Social media strategy</li><li>Print and digital collateral</li><li>Experiential marketing</li></ul></div>
+<div class="tile on-dark" style="background: var(--ink); color: var(--ground)"><h3 class="tile-title">Front end</h3><ul><li>HTML and CSS</li><li>JavaScript</li><li>TypeScript</li><li>React</li><li>Tailwind CSS</li><li>Responsive design</li></ul></div>
+<div class="tile" style="background: var(--tile)"><h3 class="tile-title">AI workflow</h3><ul><li>Claude Code</li><li>Cursor</li><li>Figma Make</li><li>Figma MCP</li><li>Adobe Firefly</li></ul></div>
 </div>
 </section>
 
@@ -166,7 +168,8 @@
 <ul class="acc" style="margin-top: 24px">
 <sc-for list="{{jobs}}" as="e" hint-placeholder-count="8">
 <li class="acc-item">
-<button type="button" class="acc-btn" aria-expanded="{{e.expanded}}" onClick="{{e.toggle}}"><span class="acc-role">{{e.role}}</span><span class="acc-org">{{e.org}}</span><span class="acc-dates t-label">{{e.dates}}</span><span class="acc-sign" aria-hidden="true">{{e.sign}}</span></button>
+<sc-if value="{{e.hasDesc}}" hint-placeholder-val="{{ true }}"><button type="button" class="acc-btn" aria-expanded="{{e.expanded}}" onClick="{{e.toggle}}"><span class="acc-role">{{e.role}}</span><span class="acc-org">{{e.org}}</span><span class="acc-dates t-label">{{e.dates}}</span><span class="acc-sign" aria-hidden="true">{{e.sign}}</span></button></sc-if>
+<sc-if value="{{e.noDesc}}" hint-placeholder-val="{{ false }}"><div class="acc-btn acc-static"><span class="acc-role">{{e.role}}</span><span class="acc-org">{{e.org}}</span><span class="acc-dates t-label">{{e.dates}}</span><span class="acc-sign" aria-hidden="true"></span></div></sc-if>
 <sc-if value="{{e.isOpen}}" hint-placeholder-val="{{ false }}"><div class="acc-panel"><p style="margin: 0; max-width: 72ch">{{e.desc}}</p></div></sc-if>
 </li>
 </sc-for>
@@ -205,7 +208,7 @@ class Component extends DCLogic {
     try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
     this.sysReduce = reduce;
     const r = !!(props.reducedMotion || reduce);
-    this.state = { photo: -1, drawn: r, snapLoop: false, open: 0, narrow: this.isNarrow(), orbitIn: false };
+    this.state = { photo: -1, drawn: r, snapLoop: false, open: 1, narrow: this.isNarrow(), orbitIn: false };
     this.angle = 0;
     this.target = 0;
   }
@@ -400,27 +403,30 @@ class Component extends DCLogic {
       };
     });
 
+    // Experience: [organisation, role, dates, description]. A row with no description shows no + sign and doesn't open.
     const JOBS = [
-      ['Thingalicious', 'Creative Director', '2026 to present', 'I lead creative direction for the jewelry brand across every place it appears, from the logo, packaging and labels to social media, in-store displays and the catalog.'],
-      ['Purdue RecWell', 'Outreach Specialist', 'May 2026 to June 2026', 'I ran social media content strategy and production, planning and executing a full content calendar to grow student participation. I used Meta engagement data to decide what we posted.'],
-      ['Delighto.ai', 'Web Developer', 'Aug 2025 to May 2026', "I built the front end for Delighto.ai's website redesign in TypeScript, React and Tailwind CSS, turning hi-fi Figma screens into fully responsive layouts with microinteractions. I worked in a capstone team across design and development."],
-      ['Communique Marketing Services', 'UX Design Intern', 'Dec 2025 to Jan 2026', 'I researched low-digital-literacy users in tier 2 and 3 Indian cities, then built journey maps and wireframes for the YouTube SpottedOnShorts bootcamp site, which won the 2026 ET Trendies Award in Education. I also came up with 100+ experiential concepts for Google Gemini activations and took 15+ to pitch.'],
-      ['Purdue Student Life Marketing', 'Graphic Design Intern', 'Oct 2024 to Aug 2025', 'I designed 200+ print and digital assets reaching 50,000+ students and kept a shared design system consistent across 30+ newsletters. I built the FSCL 150th Anniversary identity system, which was chosen over concepts from senior designers.'],
-      ['peopleHum', 'Marketing Intern', 'May 2024 to July 2024', 'I designed recurring B2B formats for an HR tech brand, including LinkedIn creatives, carousels and blog infographics, from a weekly content calendar.'],
-      ['KPMG', 'Digital Strategy Analyst', 'May 2023 to July 2023', "I designed the conversational UI for KPMG's internal chatbot and mapped AR/VR experience concepts for Samsung for stakeholder review."],
-      ['AIGA Purdue', 'Vice President', 'Aug 2024 to May 2026', 'I organized professional development events for design students, including talks, panels, workshops and peer-to-peer networking.']
+      ['Printfresh', 'Graphic Design Intern', 'Oct 2026 to present', ''],
+      ['Thingalicious', 'Creative Director', '2026 to present', 'Leading creative direction for a fashion jewelry brand across every touchpoint, online and offline. Extended the identity into labels, packaging, social media, a product catalog and in-store displays for a retail stockist. Redesigning the Shopify store.'],
+      ['Purdue RecWell', 'Outreach Specialist', 'May 2026 to June 2026', "Spearheaded social media content strategy and production for Purdue's campus recreation and wellness department, running a full content calendar to increase student participation. Used Meta engagement dashboards to shape the strategy and developed a distinct brand voice for students."],
+      ['Delighto.ai', 'Web Developer', 'Aug 2025 to May 2026', 'Built the production front end for the website and app redesign in TypeScript, React and Tailwind CSS, turning hi-fi Figma screens into fully responsive layouts with hover and click microinteractions. Led the design-to-code handoff in a nine-person capstone team, using Claude Code and Figma Make to hold pixel-level fidelity from Figma to production.'],
+      ['Communique Marketing Services', 'UX Design Intern', 'Dec 2025 to Jan 2026', 'Conducted secondary research on low-digital-literacy users and turned the insights into journey maps and wireframes for the YouTube SpottedOnShorts bootcamp site. This campaign went on to win awards in EdTech. Ideated 100+ experiential marketing concepts for Google Gemini activations, advancing 15+ to pitch.'],
+      ['Purdue Student Life Marketing', 'Graphic Design Intern', 'Oct 2024 to Aug 2025', 'Maintained a shared design system across 30+ departmental newsletters and 200+ print and digital assets reaching 50,000+ students. Built a milestone celebration identity system with color variants, use-case adaptations and a usage guidebook.'],
+      ['peopleHum', 'Marketing Intern', 'May 2024 to July 2024', 'Designed recurring B2B marketing formats for an HR tech brand, including graphics, carousels and blog infographics, from a weekly content calendar. Worked with the CEO on marketing strategy and an SEO specialist on content optimization.'],
+      ['KPMG', 'Digital Strategy Analyst', 'May 2023 to July 2023', 'Designed the conversational UI for an internal chatbot, translating functional requirements into interface design. Mapped AR/VR experience concepts for Samsung.'],
+      ['AIGA Purdue', 'Vice President', 'Aug 2024 to May 2026', 'Organized professional development events for design students, including talks, panels, workshops and peer-to-peer networking.']
     ];
     // Currently cards. Each photo is cropped to the card's 4:3 around its subject.
     // Two cards: the first high on the left, the second lower on the right, with even margins.
     const NOW = [
-      { title: 'I played Scrabble at a New York product design community game night.', mono: 'Playing', file: 'currently-1.jpg', src: 'assets/currently-1.jpg', alt: 'A finished game of Scrabble on a Harry Potter edition board.', p: 'absolute', l: '2%', t: '0', m: '0', r: -5 },
-      { title: "I've started collecting matchbooks.", mono: 'Collecting', file: 'currently-3.jpg', src: 'assets/currently-3.jpg', alt: 'A green Caffe Reggio matchbook held up outside the café.', p: 'relative', l: 'auto', t: 'auto', m: '56px 0 0 52%', r: -2 }
+      { title: 'I played Scrabble at a New York product design community game night.', file: 'currently-1.jpg', src: 'assets/currently-1.jpg', alt: 'A finished game of Scrabble on a Harry Potter edition board.', p: 'absolute', l: '2%', t: '0', m: '0', r: -5 },
+      { title: "I've started collecting matchbooks.", file: 'currently-3.jpg', src: 'assets/currently-3.jpg', alt: 'A green Caffe Reggio matchbook held up outside the café.', p: 'relative', l: 'auto', t: 'auto', m: '56px 0 0 52%', r: -2 }
     ];
 
     const open = this.state.open;
     const jobs = JOBS.map(([org, role, dates, desc], i) => {
-      const isOpen = open === i;
-      return { org, role, dates, desc, isOpen, expanded: isOpen ? 'true' : 'false', sign: isOpen ? '−' : '+', toggle: () => this.setState({ open: isOpen ? -1 : i }) };
+      const hasDesc = !!desc;
+      const isOpen = hasDesc && open === i;
+      return { org, role, dates, desc, hasDesc, noDesc: !hasDesc, isOpen, expanded: isOpen ? 'true' : 'false', sign: isOpen ? '−' : '+', toggle: () => this.setState({ open: isOpen ? -1 : i }) };
     });
 
     return {

@@ -16,6 +16,10 @@
 /* Home's two featured cards: the mockup sits just under the glass caption, and the frame is only as tall as the narrower card needs,
    so neither card has a gap between its caption and its image. Both cards stay the same height. The script sets the height and where each image starts. */
 .feat-img{position:absolute;left:0;width:100%;object-fit:contain;object-position:50% 0}
+/* Work: the space between the heading and the first card, the same height the "/ All work" label and its margins used to take */
+.work-gap{height:calc(var(--gap-w) + var(--gap-s) + 11px * 1.35)}
+/* Thingalicious card: the photo fills the card, focused like the Next project card on the Delighto.ai page */
+.fit.fit-th{object-position:50% 60%}
 </style>
 </helmet>
 <div style="background: {{rootBg}}; color: #161616; font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; line-height: 1.55; text-wrap: pretty">
@@ -23,13 +27,8 @@
 <sc-if value="{{isWork}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; flex-wrap: wrap; align-items: flex-end; column-gap: 12px; row-gap: 24px; padding-top: 12px">
 <h1 class="t-page c6">Work</h1>
-<div class="c4 chip-row" role="group" aria-label="Filter projects">
-<sc-for list="{{chips}}" as="f" hint-placeholder-count="6">
-<button type="button" class="chip" aria-pressed="{{f.on}}" onClick="{{f.pick}}"><span class="nudge">{{f.name}}</span></button>
-</sc-for>
 </div>
-</div>
-<p class="t-label" aria-live="polite" style="margin-top: var(--gap-w); margin-bottom: var(--gap-s)">/ {{viewLabel}}</p>
+<div class="work-gap" aria-hidden="true"></div>
 <ul class="row bento" aria-label="Projects" style="list-style: none; margin: 0; padding: 0">
 <sc-for list="{{shown}}" as="p" hint-placeholder-count="8">
 <li class="{{p.span}}" style="height: clamp(300px, 36vw, 460px)">
@@ -121,7 +120,7 @@ function topColours(img) {
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { f: 'All', row: -1, lastRow: 0 };
+    this.state = { row: -1, lastRow: 0 };
     this.featId = 'feat-' + Math.random().toString(36).slice(2, 9);
   }
   // The featured row's height: the tallest caption, a 12px gap, then the shortest card's image at its width.
@@ -159,10 +158,6 @@ class Component extends DCLogic {
       if (ul) ul.addEventListener('load', this.measureSoon, true);
       this.measureSoon();
     }
-    let h = '';
-    try { h = (window.location.hash || '').replace('#', ''); } catch (e) {}
-    const fromHash = { ux: 'UX/UI', brand: 'Brand identity', development: 'Development' }[h];
-    if (fromHash) this.setState({ f: fromHash });
   }
   componentWillUnmount() {
     if (this.featRO) this.featRO.disconnect();
@@ -172,14 +167,12 @@ class Component extends DCLogic {
     // The single source of project data. Adding a project is one row.
     // fit says how a card shows its image, and focus is where a hero tile crops it.
     const PROJECTS = [
-      { slug: 'odd-jobs', name: 'Odd Jobs', kind: '0 to 1', filters: ['UX/UI'], image: 'oddjobs-hero.jpg', src: 'assets/oddjobs-hero.jpg', fit: 'fit fit-169 bg-oj', focus: '50% 50%', page: 'odd-jobs', featured: true, featuredKind: '0 to 1, Responsive design', summary: 'Odd Jobs is a take on a job board that focuses on university students.' },
-      { slug: 'delighto', name: 'Delighto.ai', kind: 'Front-end development', filters: ['UX/UI', 'Development'], image: 'delighto-hero.jpg', src: 'assets/delighto-hero.jpg', fit: 'fit fit-169 bg-de', focus: '50% 50%', page: 'delighto', featured: true, featuredKind: 'Front-end development, Design-to-code', summary: "Delighto.ai is a digital business card platform, and I built the front end of its website redesign from the team's Figma designs." },
-      { slug: 'thingalicious', name: 'Thingalicious', kind: 'Brand systems', filters: ['Brand identity', 'Packaging'], image: 'thingalicious-hero.jpg', src: 'assets/thingalicious-hero.jpg', fit: 'fit fit-43 bg-th', focus: '50% 50%', page: 'thingalicious', featuredKind: 'Brand systems, 3D packaging', summary: 'Thingalicious is a curated fashion jewelry brand, and I lead its creative direction across every place it appears, online and offline.' },
-      { slug: 'chai-and-co', name: 'Chai & Co.', kind: 'Mobile UI', filters: ['Brand identity', 'UX/UI'], image: 'chai-hero.jpg', src: 'assets/chai-hero.jpg', fit: 'fit fit-32 bg-ch', focus: '50% 50%', page: 'chai-and-co' },
-      { slug: 'doberman', name: 'Doberman', kind: 'Brand identity', filters: ['Brand identity'], image: 'doberman-hero.jpg', src: 'assets/doberman-hero.jpg', fit: 'fit fit-cover fit-do', focus: '50% 40%', page: 'doberman' }
+      { slug: 'odd-jobs', name: 'Odd Jobs', kind: '0 to 1', image: 'oddjobs-hero.jpg', src: 'assets/oddjobs-hero.jpg', fit: 'fit fit-169 bg-oj', focus: '50% 50%', page: 'odd-jobs', featured: true, featuredKind: '0 to 1, Responsive design', summary: 'Odd Jobs is a take on a job board that focuses on university students.' },
+      { slug: 'delighto', name: 'Delighto.ai', kind: 'Front-end development', image: 'delighto-hero.jpg', src: 'assets/delighto-hero.jpg', fit: 'fit fit-169 bg-de', focus: '50% 50%', page: 'delighto', featured: true, featuredKind: 'Front-end development, Design-to-code', summary: "Delighto.ai is a digital business card platform, and I built the front end of its website redesign from the team's Figma designs." },
+      { slug: 'thingalicious', name: 'Thingalicious', kind: 'Brand systems', image: 'thingalicious-hero.jpg', src: 'assets/thingalicious-hero.jpg', fit: 'fit fit-cover fit-th', focus: '50% 50%', page: 'thingalicious', featuredKind: 'Brand systems, 3D packaging', summary: 'Thingalicious is a curated fashion jewelry brand, and I lead its creative direction across every place it appears, online and offline.' },
+      { slug: 'chai-and-co', name: 'Chai & Co.', kind: 'Mobile UI', image: 'chai-hero.jpg', src: 'assets/chai-hero.jpg', fit: 'fit fit-32 bg-ch', focus: '50% 50%', page: 'chai-and-co' },
+      { slug: 'doberman', name: 'Doberman', kind: 'Brand identity', image: 'doberman-hero.jpg', src: 'assets/doberman-hero.jpg', fit: 'fit fit-cover fit-do', focus: '50% 40%', page: 'doberman' }
     ];
-    // A chip only shows when at least one project sits under it.
-    const FILTERS = ['All'].concat(['Brand identity', 'Packaging', 'UX/UI', 'Development', 'Visual design'].filter((name) => PROJECTS.some((p) => p.filters.indexOf(name) > -1)));
     const withHref = (p) => ({ ...p, href: p.page || '#' + p.slug, noSrc: !p.src });
     const pairUp = (list) => {
       const n = list.length;
@@ -192,9 +185,7 @@ class Component extends DCLogic {
     };
 
     const view = this.props.view || 'work';
-    const f = this.state.f;
-    const chips = FILTERS.map((name) => ({ name, on: name === f ? 'true' : 'false', pick: () => this.setState({ f: name }) }));
-    const shown = pairUp(PROJECTS.filter((p) => f === 'All' || p.filters.indexOf(f) > -1));
+    const shown = pairUp(PROJECTS);
     // Featured cards: the backdrop colour fills the whole card, behind the caption too, and each image starts just under its caption.
     const featured = pairUp(PROJECTS.filter((p) => p.featured)).map((p, i) => ({ ...p, bg: (p.fit.match(/bg-\w+/) || [''])[0], imgTop: (this.state.featTops || [])[i] || 0, bgCss: (this.state.featBgs || [])[i] || '' }));
 
@@ -223,8 +214,6 @@ class Component extends DCLogic {
       isReel: view === 'reel',
       rootBg: view === 'reel' ? 'transparent' : '#f1f0ec',
       reel,
-      chips,
-      viewLabel: f === 'All' ? 'All work' : f,
       shown,
       featured,
       featId: this.featId,
