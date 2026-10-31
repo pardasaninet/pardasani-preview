@@ -78,6 +78,8 @@ body{margin:0}
 @media (hover:hover){
 .hx-hov:hover,.hx-dock .dock:hover{transform:scale(1.03);outline-color:rgba(255,255,255,0.7);z-index:3}
 .hx-music:hover .mw-link{background:#161616}
+/* The dock magnifies its own keys, so the dock itself only shows the ring. Scaling it too would stack two zooms and soften the tooltip text. */
+.hx-dock .dock:hover{transform:none}
 }
 @media (hover:hover) and (prefers-reduced-motion:reduce){.hx-hov:hover,.hx-dock .dock:hover{transform:none}}
 .still .hx-hov:hover,.still .hx-dock .dock:hover{transform:none}

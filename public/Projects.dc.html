@@ -16,8 +16,8 @@
 /* Home's two featured cards: the mockup sits just under the glass caption, and the frame is only as tall as the narrower card needs,
    so neither card has a gap between its caption and its image. Both cards stay the same height. The script sets the height and where each image starts. */
 .feat-img{position:absolute;left:0;width:100%;object-fit:contain;object-position:50% 0}
-/* Work: the space between the heading and the first card, the same height the "/ All work" label and its margins used to take */
-.work-gap{height:calc(var(--gap-w) + var(--gap-s) + 11px * 1.35)}
+/* Work: the space between the heading and the first card, the same S gap used inside a section */
+.work-gap{height:var(--gap-s)}
 /* Thingalicious card: the photo fills the card, focused like the Next project card on the Delighto.ai page */
 .fit.fit-th{object-position:50% 60%}
 </style>

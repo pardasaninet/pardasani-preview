@@ -21,8 +21,15 @@ body{margin:0}
 /* Each app icon fills its key and takes the key's rounded corners */
 .dock .dock-btn{overflow:hidden;background:none}
 .dock .dock-btn img{display:block;width:100%;height:100%;pointer-events:none}
+/* Magnification: the key under the pointer and its neighbours grow, and their margins open by the same amount,
+   so the dock widens to make room and no key overlaps the next one */
+.dock-item{transition:margin 170ms var(--ease)}
+/* The tooltip is solid, not glass, so the headline behind it never shows through. Ink on cream, with a soft shadow to lift it off the gradient. */
+.dock .dock-tip{gap:3px;padding:10px 14px 11px;background:var(--surface);border:1px solid rgba(22,22,22,0.08);color:var(--ink);box-shadow:0 10px 28px rgba(22,22,22,0.22),0 2px 6px rgba(22,22,22,0.12);-webkit-backdrop-filter:none;backdrop-filter:none;animation:dock-tip-in 160ms var(--ease)}
+.dock-name{font-size:14px;font-weight:600;line-height:1.25;letter-spacing:-0.01em}
+@keyframes dock-tip-in{from{opacity:0;translate:0 4px}to{opacity:1;translate:0 0}}
 /* The tooltip's line about each tool wraps at a readable width */
-.dock-use{font-size:12px;line-height:1.35;color:var(--body);white-space:normal;width:max-content;max-width:220px}
+.dock-use{font-size:13px;line-height:1.4;color:var(--body);white-space:normal;width:max-content;max-width:230px}
 /* The outer tooltips open toward the middle of the dock, so they stay inside the hero and the tile */
 .dock-tip.tip-start{left:0;transform:none}
 .dock-tip.tip-end{left:auto;right:0;transform:none}
@@ -38,7 +45,7 @@ body{margin:0}
 <div class="dock-group">
 <ul class="dock-icons" aria-label="Every day">
 <sc-for list="{{tools}}" as="d" hint-placeholder-count="7">
-<li class="dock-item"><button type="button" class="dock-btn {{d.cls}}" aria-label="{{d.name}}" onMouseEnter="{{d.point}}" onFocus="{{d.enter}}" onBlur="{{leave}}" style="transform: translateY({{d.lift}}px) scale({{d.s}})"><img src="{{d.src}}" alt="" width="44" height="44" decoding="async"></button><sc-if value="{{d.tip}}" hint-placeholder-val="{{ false }}"><span class="dock-tip glass-i {{d.tipCls}}"><span style="font-size: 13px; font-weight: 700">{{d.name}}</span><span class="dock-use">{{d.use}}</span></span></sc-if></li>
+<li class="dock-item" style="margin: 0 {{d.gap}}px"><button type="button" class="dock-btn {{d.cls}}" aria-label="{{d.name}}" onMouseEnter="{{d.point}}" onFocus="{{d.enter}}" onBlur="{{leave}}" style="transform: translateY({{d.lift}}px) scale({{d.s}})"><img src="{{d.src}}" alt="" width="44" height="44" decoding="async"></button><sc-if value="{{d.tip}}" hint-placeholder-val="{{ false }}"><span class="dock-tip {{d.tipCls}}"><span class="dock-name">{{d.name}}</span><span class="dock-use">{{d.use}}</span></span></sc-if></li>
 </sc-for>
 </ul>
 <sc-if value="{{caption}}" hint-placeholder-val="{{ true }}"><p class="t-kind" style="margin: 0">Every day</p></sc-if>
@@ -83,12 +90,16 @@ class Component extends DCLogic {
     const hov = this.state.hov;
     const narrow = this.state.narrow;
     // The key under the pointer grows most and its neighbours a little, like a dock.
+    // Each growing key gets side margins of half its extra width, so its neighbours move aside instead of being covered.
+    const key = narrow ? 40 : 44;
     const tools = TOOLS.map((pair, i) => {
       const dist = hov < 0 || this.reduce ? 9 : Math.abs(hov - i);
+      const s = dist === 0 ? 1.36 : dist === 1 ? 1.14 : 1;
       return {
         src: pair[0], name: pair[1], use: pair[2], tip: hov === i, tipCls: i < 2 ? 'tip-start' : i > TOOLS.length - 3 ? 'tip-end' : '', cls: narrow ? 'sm' : '',
-        s: dist === 0 ? 1.45 : dist === 1 ? 1.18 : 1,
-        lift: dist === 0 ? -10 : dist === 1 ? -4 : 0,
+        s,
+        gap: ((s - 1) * key / 2).toFixed(1),
+        lift: dist === 0 ? -8 : dist === 1 ? -3 : 0,
         enter: () => this.setState({ hov: i }),
         point: () => { if (this.canHover) this.setState({ hov: i }); }
       };

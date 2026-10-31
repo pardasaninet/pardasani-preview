@@ -30,8 +30,24 @@ In a Claude Design export, `about.html` is `AboutPage.dc.html` and `delighto.htm
 2. **About, / Currently** (`about.html`): the small mono label under each card's sentence is gone (the `card-m` span, its CSS rule and the `mono` values in `NOW`), and the sentence (`.now-card .card-t`) is weight 400.
 3. **About, / This site** (`about.html`): the drawn browser after `.site-copy` has `transform: rotate(-6deg)` added to its style.
 4. **About, / Range** (`about.html`): the four tiles are now Product, Visual strategy, Front end and AI workflow, each with a new list.
-5. **Work filters** (`Projects.dc.html`): the chip row and the "/ All work" label are gone. A `.work-gap` spacer in their place keeps the space between the Work heading and the first card the same. `FILTERS`, `chips`, the `f` state, `viewLabel`, the code that read a filter from the address and each project's `filters` array are removed. Home is unchanged.
+5. **Work filters** (`Projects.dc.html`): the chip row and the "/ All work" label are gone. A `.work-gap` spacer sits in their place (made shorter on 31 October, see below). `FILTERS`, `chips`, the `f` state, `viewLabel`, the code that read a filter from the address and each project's `filters` array are removed. Home is unchanged.
 6. **Thingalicious card** (`Projects.dc.html`): its `fit` is `'fit fit-cover fit-th'`, and the new rule `.fit.fit-th{object-position:50% 60%}` sets the focus point.
 7. **Delighto.ai** (`delighto.html`): a new second line in Problem, five decisions instead of three (Research, Scope, Design to code, Design fidelity and Go-to-market, with images on 03 and 04 only), a new Outcomes line and a new Role in the credits.
 8. **About, / Experience** (`about.html`): `JOBS` has nine rows, with Printfresh first. A row with an empty description is drawn as a plain row (a `div` with the classes `acc-btn acc-static`, not a button), with no + sign, and it never opens.
 9. **About headline on phones** (`about.html`): below 760px wide, the "I studied design and programming at the same time, on purpose." headline is centred like it is on desktop. Its `h1.capsule` in the narrow layout no longer has `style="justify-content: flex-start"`.
+
+### 31 October 2026
+
+A second round of direct edits, from the Loom review of 31 October. The commit "Direct edits, 31 Oct" has every changed line: run `git log --grep "Direct edits, 31 Oct" -p` to see them.
+
+1. **Dock magnification** (`Dock.dc.html`): the hovered key grows to 1.36 and its neighbours to 1.14, and each growing key gets side margins of half its extra width, so the dock widens and no key overlaps the next. The margins ease with the keys.
+2. **Dock tooltip** (`Dock.dc.html`): the tooltip is solid cream (`--surface`) with ink text and a soft shadow instead of glass, the name is 14px at weight 600, the line under it is 13px, and it fades in over 160ms.
+3. **Dock on the home hero** (`Hero.dc.html`): hovering the dock shows the white ring but no longer scales the whole dock to 1.03, so the two zooms don't stack.
+4. **Footer** (`Footer.dc.html`): the top padding is `clamp(48px, 5.5vw, 80px)` instead of up to 128px, and the space above the email is `--gap-s` instead of `--gap-w`. At 1440 wide the footer goes from 773px to 564px tall.
+5. **Work heading** (`Projects.dc.html`): `.work-gap` is `--gap-s` (up to 40px), so the first cards sit close under the Work heading.
+6. **Odd Jobs video** (`odd-jobs.html`): the walkthrough sits in `.oj-video`, 8 of the 10 columns wide and centred, full width below 720px.
+7. **Odd Jobs, Decision 01** (`odd-jobs.html`): a `.verify-pair` under the paragraph shows `oddjobs-verified-section.png` (the landing page's Verified. Secure. band, cropped from the 2x Figma export) and `oddjobs-verified-profile-card.png` (the verified profile card from the job post, on the same blue) at the same height. They stack on phones.
+8. **Odd Jobs, Decision 03** (`odd-jobs.html`): the responsive design section moved from after Decision 02 to after User flow, just before Outcomes, with the wide gap above it.
+9. **Delighto.ai** (`delighto.html`): the presentation video under the hero is gone. The Watch presentation pill in Outcomes still opens it on YouTube.
+10. **Thingalicious, Identity** (`thingalicious.html`): the brand board is cut into its four bands (`thingalicious-brand-01` to `-04`) and shown as a 2 × 2 `.brand-grid`, one column on phones. `thingalicious-brand-board.png` is no longer used and was removed.
+11. **Thingalicious, Packaging** (`thingalicious.html`): the single packaging image is now a `.ba-pair`, with the 2016 kraft earring cards (`thingalicious-before-2016.jpg`) labelled "Before, 2016" and the 2026 packaging (`thingalicious-04.jpg`, now shown whole at 4:3) labelled "After, 2026".

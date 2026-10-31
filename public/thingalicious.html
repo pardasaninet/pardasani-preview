@@ -36,6 +36,18 @@
 .show-pair{display:flex;gap:12px;align-items:flex-start}
 .show-pair img{display:block;min-width:0;height:auto;border-radius:20px}
 @media (max-width:719px){.show-pair{flex-direction:column}.show-pair img{flex:none!important;width:100%}}
+/* Identity: the brand board's four bands (logo and palette, tagline, mood images, pattern) as a 2 × 2 grid. One column on phones. */
+.brand-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.brand-grid img{display:block;width:100%;height:auto;aspect-ratio:1241 / 434;object-fit:cover;border-radius:20px;outline:1px solid rgba(22,22,22,0.14);outline-offset:-1px}
+@media (max-width:719px){.brand-grid{grid-template-columns:1fr}}
+/* Packaging: the 2016 earring cards and the 2026 packaging side by side at the same height, each whole at its own ratio, labelled in the top-left corner */
+.ba-pair{display:flex;gap:12px;align-items:flex-start}
+.ba-pair figure{position:relative;min-width:0;margin:0}
+.ba-pair img{display:block;width:100%;height:auto;border-radius:20px}
+.ba-before{flex:0.9588 1 0}
+.ba-after{flex:1.3333 1 0}
+.ba-label{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;min-height:28px;padding:0 12px;border-radius:999px}
+@media (max-width:719px){.ba-pair{flex-direction:column}.ba-before,.ba-after{flex:none;width:100%}}
 </style>
 </helmet>
 <div id="top" class="root" style="font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; color: #161616">
@@ -84,7 +96,12 @@
 <div class="c5" style="display: flex; flex-direction: column; gap: 12px"><h2 id="d2" class="t-heading">Identity.</h2><p class="t-body">The color palette was pulled from sunset imagery that was meaningful to the founder. The logomark was built by deconstructing and rearranging the letterforms of the typeface until it resembled an earring, since jewelry is the brand's focus.</p></div>
 </div>
 <div class="construct gap-s"><img src="assets/thingalicious-03.jpg" alt="" width="1600" height="1035"></div>
-<div class="row" style="margin-top: 12px; justify-content: center"><img class="c4" src="assets/thingalicious-brand-board.png" alt="The Thingalicious brand board shows the logo, the six-color palette, the tagline and wordmark, four mood images and the brand pattern." width="1241" height="1754" style="display: block; height: auto; border-radius: 20px"></div>
+<div class="brand-grid">
+<img src="assets/thingalicious-brand-01-logo-palette.jpg" alt="The Thingalicious logomark in a deep plum rounded rectangle, beside the six-color palette, which runs from deep plum through mauve, lilac and peach to soft yellow." width="1241" height="434" decoding="async">
+<img src="assets/thingalicious-brand-02-tagline.jpg" alt="The tagline, Be Uniquely You, beside the Thingalicious Jewelry wordmark in a peach pill, on a lilac ground." width="1241" height="434" decoding="async">
+<img src="assets/thingalicious-brand-03-mood.jpg" alt="Four mood images in rounded frames show a gold pendant necklace, a painted portrait, natural linen and a woman wearing drop earrings." width="1241" height="434" decoding="async">
+<img src="assets/thingalicious-brand-04-pattern.jpg" alt="The brand pattern repeats the logo's rounded shapes and sparkles in mauve and yellow." width="1241" height="434" decoding="async">
+</div>
 </section>
 
 <section class="gap-m" aria-labelledby="d3">
@@ -92,7 +109,10 @@
 <div class="c5"><p class="t-label">/ Decision 03</p></div>
 <div class="c5" style="display: flex; flex-direction: column; gap: 12px"><h2 id="d3" class="t-heading">Packaging.</h2><p class="t-body">The brand's previous packaging was simple kraft paper boxes. I wanted to elevate it with a more architectural box and some embossing. The rounded rectangle the logo sits in worked well as a packaging shape too, so I combined the materials and mocked up the packaging in Maya.</p></div>
 </div>
-<div class="row gap-s"><img class="c10" src="assets/thingalicious-04.jpg" alt="" width="1920" height="1440" style="display: block; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 20px"></div>
+<div class="ba-pair gap-s">
+<figure class="ba-before"><img src="assets/thingalicious-before-2016.jpg" alt="Earrings on the brand's 2016 kraft paper cards, printed with the original Thingalicious logo." width="1164" height="1214" decoding="async"><figcaption class="ba-label glass-i t-label">Before, 2016</figcaption></figure>
+<figure class="ba-after"><img src="assets/thingalicious-04.jpg" alt="The 2026 packaging is an oval box with the new logomark embossed on its lid and a drawstring pouch, shown on a stone stand." width="1920" height="1440" decoding="async"><figcaption class="ba-label glass-i t-label">After, 2026</figcaption></figure>
+</div>
 </section>
 
 <section class="gap-w" aria-labelledby="fw">

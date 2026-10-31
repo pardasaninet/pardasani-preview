@@ -30,6 +30,14 @@
 .hero-oj{aspect-ratio:12 / 5;background:linear-gradient(180deg,rgb(235,242,211),rgb(232,239,205)) left / 50% 100% no-repeat,linear-gradient(180deg,rgb(246,248,235),rgb(239,244,222)) right / 50% 100% no-repeat}
 .hero-oj img{position:absolute;left:50%;bottom:0;height:100%;width:auto;max-width:none;transform:translateX(-50%);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
 @media (max-width:719px){.hero-oj{aspect-ratio:2 / 1}}
+/* The walkthrough video: 8 of the 10 columns, centred, so it sits inside the page with a margin either side. Full width below 720px. */
+.oj-video{width:clamp(calc((100% - 108px) * 0.8 + 84px),calc((720px - 100%) * 999),100%);margin:12px auto 0}
+/* Decision 01: the landing page's Verified. Secure. section and a verified profile card on the same blue, side by side at the same height, each at its own ratio */
+.verify-pair{display:flex;gap:12px;align-items:flex-start}
+.verify-pair img{display:block;min-width:0;width:100%;height:auto;border-radius:20px;outline:1px solid rgba(22,22,22,0.14);outline-offset:-1px}
+.verify-pair .vp-section{flex:3.476 1 0}
+.verify-pair .vp-card{flex:1.6 1 0}
+@media (max-width:719px){.verify-pair{flex-direction:column}.verify-pair .vp-section,.verify-pair .vp-card{flex:none;width:100%}}
 /* Decision 03, the gig page: one sage panel with the desktop page in a browser frame and the phone rising over its lower right, in the same flat ink outlines as the devices */
 .gig-panel{position:relative;overflow:hidden;border-radius:20px;padding:clamp(20px,4vw,48px) clamp(20px,4vw,48px) 0;background:linear-gradient(180deg,#ebf2d3,#e8efcd)}
 .gig-browser{width:76%;border:2px solid var(--ink);border-radius:14px;background:var(--surface);overflow:hidden}
@@ -194,7 +202,7 @@
 <div class="ph hero-oj" style="margin-top: 12px">
 <img src="assets/oddjobs-hero.jpg" alt="" width="2880" height="1620">
 </div>
-<div style="margin-top: 12px"><dc-import name="Video" video="6o12_j6Wd_c" shape="wide" title="Odd Jobs video walkthrough" hint-size="100%,720px"></dc-import></div>
+<div class="oj-video"><dc-import name="Video" video="6o12_j6Wd_c" shape="wide" title="Odd Jobs video walkthrough" hint-size="100%,720px"></dc-import></div>
 </section>
 
 <section class="split gap-w" aria-label="Problem">
@@ -229,6 +237,10 @@
 <div class="c5"><p class="t-label">/ Decision 01</p></div>
 <div class="c5" style="display: flex; flex-direction: column; gap: 12px"><h2 id="d1" class="t-heading">Verification.</h2><p class="t-body">The first decision was how to make a job board that actually works for university students with difficult schedules. Sign-up is linked to a university email, so everyone on the platform is a verified student. That keeps it trustworthy.</p></div>
 </div>
+<div class="verify-pair gap-s">
+<div class="vp-section"><img src="assets/oddjobs-verified-section.png" alt="The Verified. Secure. section of the landing page. Users must be verified by a partner institution, log in securely through campus portals, have their data protected and get paid through university payroll." width="3024" height="870" decoding="async"></div>
+<div class="vp-card"><img src="assets/oddjobs-verified-profile-card.png" alt="A poster's profile card on a job post shows her university, a green verified badge, 21 jobs and a 4.8 star rating." width="896" height="560" decoding="async"></div>
+</div>
 </section>
 
 <section class="gap-m" aria-labelledby="d2">
@@ -237,32 +249,6 @@
 <div class="c5" style="display: flex; flex-direction: column; gap: 12px"><h2 id="d2" class="t-heading">Familiarity.</h2><p class="t-body">Traditional job boards are formal and high pressure. I took a different approach, drawing on the bulletin boards and chore charts of classrooms, a familiar system where everyone contributes. It signals trust and shared contribution over competition, and reframes the platform as low stakes and community-driven.</p></div>
 </div>
 <div class="row gap-s"><img class="c5 o5" src="assets/oddjobs-familiarity-steps.jpg" alt="" width="2400" height="936" style="display: block; height: auto; border-radius: 20px; outline: 1px solid rgba(22, 22, 22, 0.14); outline-offset: -1px"></div>
-</section>
-
-<section class="gap-m" aria-labelledby="d3">
-<div class="split">
-<div class="c5"><p class="t-label">/ Decision 03</p></div>
-<div class="c5" style="display: flex; flex-direction: column; gap: 12px"><h2 id="d3" class="t-heading">Responsive design across three breakpoints.</h2><p class="t-body">Each component was adapted into desktop, tablet, and mobile variants to optimize the same content for different forms of interaction. Decisions at each breakpoint covered column structure, navigation, information hierarchy, and type scale. Card grids go from three columns to two to one, filters move from a sidebar into dropdowns, and navigation collapses into a hamburger menu on mobile.</p></div>
-</div>
-<div class="devices gap-s">
-<figure class="device">
-<div class="dev-art"><div class="mon"><div class="screen"><img src="assets/oddjobs-earn-desktop.jpg" alt="The Odd Jobs Browse Gigs page on a desktop monitor, with the full navigation across the top, filters in a sidebar on the left and gig cards in three columns." width="1512" height="1350" decoding="async"><span class="mk" style="left: 57.5%; top: 7%" aria-hidden="true">1</span><span class="mk" style="left: 21.5%; top: 71%" aria-hidden="true">2</span><span class="mk" style="left: 46%; top: 77%" aria-hidden="true">3</span></div></div><span class="mon-neck" aria-hidden="true"></span><span class="mon-base" aria-hidden="true"></span></div>
-<figcaption><p class="t-label" style="margin: 0">Desktop</p><ol class="dev-notes"><li>The full navigation runs across the top.</li><li>The filters sit in a sidebar.</li><li>The gig cards sit in a three-column grid.</li></ol></figcaption>
-</figure>
-<figure class="device">
-<div class="dev-art"><div class="tab"><div class="screen"><img src="assets/oddjobs-earn-tablet.jpg" alt="The same Browse Gigs page on a tablet, with a smaller navigation bar across the top, the categories in one row and gig cards in two columns." width="1194" height="1592" decoding="async"><span class="mk" style="left: 42%; top: 3.5%" aria-hidden="true">1</span><span class="mk" style="left: 60%; top: 61%" aria-hidden="true">2</span></div></div></div>
-<figcaption><p class="t-label" style="margin: 0">Tablet</p><ol class="dev-notes"><li>The top and bottom bars keep their layout but get smaller and better spaced.</li><li>The card grid drops to two columns.</li></ol></figcaption>
-</figure>
-<figure class="device">
-<div class="dev-art"><div class="pho"><div class="screen"><img src="assets/oddjobs-earn-mobile.jpg" alt="The same Browse Gigs page on a phone, with a hamburger menu, Filter by and Sort by dropdowns and the gig cards stacked in one column." width="786" height="1703" decoding="async"><span class="mk" style="left: 81%; top: 10.7%" aria-hidden="true">1</span><span class="mk" style="left: 51%; top: 58%" aria-hidden="true">2</span><span class="mk" style="left: 81%; top: 64.6%" aria-hidden="true">3</span></div></div></div>
-<figcaption><p class="t-label" style="margin: 0">Mobile</p><ol class="dev-notes"><li>The navigation collapses into a hamburger menu.</li><li>The filters move into dropdowns.</li><li>The cards stack in one column.</li></ol></figcaption>
-</figure>
-</div>
-<div class="gig-panel gap-s">
-<div class="gig-browser"><div class="gig-bar" aria-hidden="true"><span></span><span></span><span></span></div><img src="assets/oddjobs-02.jpg" alt="" width="1600" height="657"></div>
-<div class="gig-space"></div>
-<div class="gig-phone"><div class="gig-screen"><img src="assets/oddjobs-03.jpg" alt="" width="786" height="860"></div></div>
-</div>
 </section>
 
 <section class="gap-w oj-sec" aria-label="Wireframes">
@@ -314,6 +300,32 @@
 </figure>
 </div>
 <svg class="oj-wires" aria-hidden="true" viewBox="{{flowBox}}"><sc-for list="{{flowWires}}" as="w" hint-placeholder-count="4"><path d="{{w.d}}" class="{{w.cls}}" style="stroke-dasharray: {{w.dash}}; stroke-dashoffset: {{w.off}}; transition-delay: {{w.delay}}"></path></sc-for></svg>
+</div>
+</section>
+
+<section class="gap-w" aria-labelledby="d3">
+<div class="split">
+<div class="c5"><p class="t-label">/ Decision 03</p></div>
+<div class="c5" style="display: flex; flex-direction: column; gap: 12px"><h2 id="d3" class="t-heading">Responsive design across three breakpoints.</h2><p class="t-body">Each component was adapted into desktop, tablet, and mobile variants to optimize the same content for different forms of interaction. Decisions at each breakpoint covered column structure, navigation, information hierarchy, and type scale. Card grids go from three columns to two to one, filters move from a sidebar into dropdowns, and navigation collapses into a hamburger menu on mobile.</p></div>
+</div>
+<div class="devices gap-s">
+<figure class="device">
+<div class="dev-art"><div class="mon"><div class="screen"><img src="assets/oddjobs-earn-desktop.jpg" alt="The Odd Jobs Browse Gigs page on a desktop monitor, with the full navigation across the top, filters in a sidebar on the left and gig cards in three columns." width="1512" height="1350" decoding="async"><span class="mk" style="left: 57.5%; top: 7%" aria-hidden="true">1</span><span class="mk" style="left: 21.5%; top: 71%" aria-hidden="true">2</span><span class="mk" style="left: 46%; top: 77%" aria-hidden="true">3</span></div></div><span class="mon-neck" aria-hidden="true"></span><span class="mon-base" aria-hidden="true"></span></div>
+<figcaption><p class="t-label" style="margin: 0">Desktop</p><ol class="dev-notes"><li>The full navigation runs across the top.</li><li>The filters sit in a sidebar.</li><li>The gig cards sit in a three-column grid.</li></ol></figcaption>
+</figure>
+<figure class="device">
+<div class="dev-art"><div class="tab"><div class="screen"><img src="assets/oddjobs-earn-tablet.jpg" alt="The same Browse Gigs page on a tablet, with a smaller navigation bar across the top, the categories in one row and gig cards in two columns." width="1194" height="1592" decoding="async"><span class="mk" style="left: 42%; top: 3.5%" aria-hidden="true">1</span><span class="mk" style="left: 60%; top: 61%" aria-hidden="true">2</span></div></div></div>
+<figcaption><p class="t-label" style="margin: 0">Tablet</p><ol class="dev-notes"><li>The top and bottom bars keep their layout but get smaller and better spaced.</li><li>The card grid drops to two columns.</li></ol></figcaption>
+</figure>
+<figure class="device">
+<div class="dev-art"><div class="pho"><div class="screen"><img src="assets/oddjobs-earn-mobile.jpg" alt="The same Browse Gigs page on a phone, with a hamburger menu, Filter by and Sort by dropdowns and the gig cards stacked in one column." width="786" height="1703" decoding="async"><span class="mk" style="left: 81%; top: 10.7%" aria-hidden="true">1</span><span class="mk" style="left: 51%; top: 58%" aria-hidden="true">2</span><span class="mk" style="left: 81%; top: 64.6%" aria-hidden="true">3</span></div></div></div>
+<figcaption><p class="t-label" style="margin: 0">Mobile</p><ol class="dev-notes"><li>The navigation collapses into a hamburger menu.</li><li>The filters move into dropdowns.</li><li>The cards stack in one column.</li></ol></figcaption>
+</figure>
+</div>
+<div class="gig-panel gap-s">
+<div class="gig-browser"><div class="gig-bar" aria-hidden="true"><span></span><span></span><span></span></div><img src="assets/oddjobs-02.jpg" alt="" width="1600" height="657"></div>
+<div class="gig-space"></div>
+<div class="gig-phone"><div class="gig-screen"><img src="assets/oddjobs-03.jpg" alt="" width="786" height="860"></div></div>
 </div>
 </section>
 
