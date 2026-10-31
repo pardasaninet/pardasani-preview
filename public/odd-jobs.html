@@ -32,22 +32,8 @@
 @media (max-width:719px){.hero-oj{aspect-ratio:2 / 1}}
 /* The walkthrough video: 8 of the 10 columns, centred, so it sits inside the page with a margin either side. Full width below 720px. */
 .oj-video{width:clamp(calc((100% - 108px) * 0.8 + 84px),calc((720px - 100%) * 999),100%);margin:12px auto 0}
-/* Decision 01: the landing page's Verified. Secure. section and a verified profile card on the same blue, side by side at the same height, each at its own ratio */
-.verify-pair{display:flex;gap:12px;align-items:flex-start}
-.verify-pair img{display:block;min-width:0;width:100%;height:auto;border-radius:20px;outline:1px solid rgba(22,22,22,0.14);outline-offset:-1px}
-.verify-pair .vp-section{flex:3.476 1 0}
-.verify-pair .vp-card{flex:1.6 1 0}
-@media (max-width:719px){.verify-pair{flex-direction:column}.verify-pair .vp-section,.verify-pair .vp-card{flex:none;width:100%}}
-/* Decision 03, the gig page: one sage panel with the desktop page in a browser frame and the phone rising over its lower right, in the same flat ink outlines as the devices */
-.gig-panel{position:relative;overflow:hidden;border-radius:20px;padding:clamp(20px,4vw,48px) clamp(20px,4vw,48px) 0;background:linear-gradient(180deg,#ebf2d3,#e8efcd)}
-.gig-browser{width:76%;border:2px solid var(--ink);border-radius:14px;background:var(--surface);overflow:hidden}
-.gig-bar{display:flex;gap:6px;padding:8px 10px;border-bottom:2px solid var(--ink)}
-.gig-bar span{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--ink)}
-.gig-browser img,.gig-screen img{display:block;width:100%;height:auto}
-.gig-space{height:clamp(70px,9vw,120px)}
-.gig-phone{position:absolute;right:clamp(20px,5vw,64px);bottom:0;width:30%;padding:8px 8px 0;box-sizing:border-box;border:2px solid var(--ink);border-bottom:0;border-radius:28px 28px 0 0;background:var(--surface)}
-.gig-screen{border-radius:20px 20px 0 0;overflow:hidden}
-@media (max-width:719px){.gig-browser{width:100%}.gig-phone{width:52%;right:16px}.gig-space{height:150px}}
+/* Decision 01: the landing page's Verified. Secure. section, full width */
+.verify-img{display:block;width:100%;height:auto;border-radius:20px;outline:1px solid rgba(22,22,22,0.14);outline-offset:-1px}
 /* Decision 03: the same screen on a monitor, a tablet and a phone, flat ink outlines, bottom-aligned, with numbered markers */
 .devices{display:grid;grid-template-columns:5fr 3fr 2fr;grid-template-rows:auto auto;column-gap:12px;row-gap:20px;align-items:end}
 .device{display:grid;grid-row:span 2;grid-template-rows:subgrid;margin:0}
@@ -237,10 +223,7 @@
 <div class="c5"><p class="t-label">/ Decision 01</p></div>
 <div class="c5" style="display: flex; flex-direction: column; gap: 12px"><h2 id="d1" class="t-heading">Verification.</h2><p class="t-body">The first decision was how to make a job board that actually works for university students with difficult schedules. Sign-up is linked to a university email, so everyone on the platform is a verified student. That keeps it trustworthy.</p></div>
 </div>
-<div class="verify-pair gap-s">
-<div class="vp-section"><img src="assets/oddjobs-verified-section.png" alt="The Verified. Secure. section of the landing page. Users must be verified by a partner institution, log in securely through campus portals, have their data protected and get paid through university payroll." width="3024" height="870" decoding="async"></div>
-<div class="vp-card"><img src="assets/oddjobs-verified-profile-card.png" alt="A poster's profile card on a job post shows her university, a green verified badge, 21 jobs and a 4.8 star rating." width="896" height="560" decoding="async"></div>
-</div>
+<div class="gap-s"><img class="verify-img" src="assets/oddjobs-verified-section.png" alt="The Verified. Secure. section of the landing page. Users must be verified by a partner institution, log in securely through campus portals, have their data protected and get paid through university payroll." width="3024" height="870" decoding="async"></div>
 </section>
 
 <section class="gap-m" aria-labelledby="d2">
@@ -321,11 +304,6 @@
 <div class="dev-art"><div class="pho"><div class="screen"><img src="assets/oddjobs-earn-mobile.jpg" alt="The same Browse Gigs page on a phone, with a hamburger menu, Filter by and Sort by dropdowns and the gig cards stacked in one column." width="786" height="1703" decoding="async"><span class="mk" style="left: 81%; top: 10.7%" aria-hidden="true">1</span><span class="mk" style="left: 51%; top: 58%" aria-hidden="true">2</span><span class="mk" style="left: 81%; top: 64.6%" aria-hidden="true">3</span></div></div></div>
 <figcaption><p class="t-label" style="margin: 0">Mobile</p><ol class="dev-notes"><li>The navigation collapses into a hamburger menu.</li><li>The filters move into dropdowns.</li><li>The cards stack in one column.</li></ol></figcaption>
 </figure>
-</div>
-<div class="gig-panel gap-s">
-<div class="gig-browser"><div class="gig-bar" aria-hidden="true"><span></span><span></span><span></span></div><img src="assets/oddjobs-02.jpg" alt="" width="1600" height="657"></div>
-<div class="gig-space"></div>
-<div class="gig-phone"><div class="gig-screen"><img src="assets/oddjobs-03.jpg" alt="" width="786" height="860"></div></div>
 </div>
 </section>
 
