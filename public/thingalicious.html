@@ -40,14 +40,15 @@
 .brand-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
 .brand-grid img{display:block;width:100%;height:auto;aspect-ratio:1241 / 434;object-fit:cover;border-radius:20px;outline:1px solid rgba(22,22,22,0.14);outline-offset:-1px}
 @media (max-width:719px){.brand-grid{grid-template-columns:1fr}}
-/* Packaging: the 2016 earring cards and the 2026 packaging side by side at the same height, each whole at its own ratio, labelled in the top-left corner */
+/* Packaging: the 2016 earring cards and the 2026 packaging side by side at the same height at every width, each whole at its own ratio, labelled in the top-left corner */
 .ba-pair{display:flex;gap:12px;align-items:flex-start}
 .ba-pair figure{position:relative;min-width:0;margin:0}
 .ba-pair img{display:block;width:100%;height:auto;border-radius:20px}
 .ba-before{flex:0.9588 1 0}
 .ba-after{flex:1.3333 1 0}
 .ba-label{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;min-height:28px;padding:0 12px;border-radius:999px}
-@media (max-width:719px){.ba-pair{flex-direction:column}.ba-before,.ba-after{flex:none;width:100%}}
+/* They stay side by side at every width and scale down; on narrow screens the labels get smaller to match */
+@media (max-width:719px){.ba-pair{gap:8px}.ba-label{left:8px;top:8px;min-height:22px;padding:0 8px;font-size:9px}}
 </style>
 </helmet>
 <div id="top" class="root" style="font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; color: #161616">
