@@ -52,12 +52,16 @@
 .acc-static:hover .acc-role{text-decoration:none}
 /* Card titles all use the Purdue University style */
 .tile-title{margin:0;font-size:clamp(28px,2.8vw,36px);font-weight:800;letter-spacing:-0.035em;line-height:1}
-/* Range: four straight cards on the bento grid. Four across, two by two once the row is under 1000px, one per row under 720px like the bento. */
-.range-row>.tile{min-height:0;display:flex;flex-direction:column;gap:8px;width:clamp(calc((100% - 42px) / 4),calc((1000px - 100%) * 999),clamp(calc((100% - 14px) / 2),calc((720px - 100%) * 999),100%))}
+/* Range: four straight cards on the bento grid. Four across, then two by two once the row is under 1000px, phones included. */
+.range-row>.tile{min-height:0;display:flex;flex-direction:column;gap:8px;width:clamp(calc((100% - 42px) / 4),calc((1000px - 100%) * 999),calc((100% - 14px) / 2))}
 .range-row ul{position:relative;list-style:none;margin:0;padding:0;font-size:15px;line-height:1.55}
+/* On phones the 2 × 2 cards are narrow, so the padding, title and list get a little smaller */
+@media (max-width:719px){.range-row>.tile{padding:16px}.range-row .tile-title{font-size:22px}.range-row ul{font-size:13.5px;line-height:1.45}}
 /* This site: the paragraph keeps to the left of the drawn browser. On phones it takes the full width and leaves room under it for the drawing. */
 .site-copy{position:relative;z-index:1;margin:18px 0 0;max-width:min(36ch,46%);font-size:clamp(17px,1.5vw,20px);font-weight:500;letter-spacing:-0.015em;line-height:1.35}
 @media (max-width:719px){.site-copy{max-width:none;margin-bottom:32%}}
+/* Toolkit and Education on phones and narrow screens: each tile is only as tall as its content, without the tiles' 320px minimum or the big gap under the label */
+@media (max-width:719px){.toolkit-tile,.edu-tile{min-height:0;gap:28px!important}}
 </style>
 </helmet>
 <div id="top" class="root {{rootClass}}" style="font-family: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif; color: #161616">
@@ -110,12 +114,12 @@
 </sc-if>
 
 <section class="row bento gap-m" aria-label="Bits and pieces">
-<div class="tile c6 gradient on-dark" style="color: var(--ground); display: flex; flex-direction: column; justify-content: space-between; gap: 96px">
+<div class="tile c6 gradient on-dark toolkit-tile" style="color: var(--ground); display: flex; flex-direction: column; justify-content: space-between; gap: 96px">
 <svg class="grain" aria-hidden="true" style="border-radius: 20px"><rect width="100%" height="100%" filter="url(#grain-aboutpage)"></rect></svg>
 <h2 class="t-label" style="position: relative">/ Toolkit</h2>
 <div style="position: relative; align-self: center"><dc-import name="Dock" hint-size="400px,90px"></dc-import></div>
 </div>
-<div class="tile c4" style="background: var(--tile); display: flex; flex-direction: column; justify-content: space-between; gap: 48px">
+<div class="tile c4 edu-tile" style="background: var(--tile); display: flex; flex-direction: column; justify-content: space-between; gap: 48px">
 <h2 class="t-label">/ Education</h2>
 <div style="display: flex; flex-direction: column; gap: 8px">
 <p class="tile-title">Purdue University</p>
