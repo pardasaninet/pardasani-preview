@@ -32,8 +32,6 @@
 @media (max-width:719px){.hero-oj{aspect-ratio:2 / 1}}
 /* The walkthrough video: 8 of the 10 columns, centred, so it sits inside the page with a margin either side. Full width below 720px. */
 .oj-video{width:clamp(calc((100% - 108px) * 0.8 + 84px),calc((720px - 100%) * 999),100%);margin:12px auto 0}
-/* Decision 01: the landing page's Verified. Secure. section, full width */
-.verify-img{display:block;width:100%;height:auto;border-radius:20px;outline:1px solid rgba(22,22,22,0.14);outline-offset:-1px}
 /* Decision 03: the same screen on a monitor, a tablet and a phone, flat ink outlines, bottom-aligned, with numbered markers */
 .devices{display:grid;grid-template-columns:5fr 3fr 2fr;grid-template-rows:auto auto;column-gap:12px;row-gap:20px;align-items:end}
 .device{display:grid;grid-row:span 2;grid-template-rows:subgrid;margin:0}
@@ -223,7 +221,7 @@
 <div class="c5"><p class="t-label">/ Decision 01</p></div>
 <div class="c5" style="display: flex; flex-direction: column; gap: 12px"><h2 id="d1" class="t-heading">Verification.</h2><p class="t-body">The first decision was how to make a job board that actually works for university students with difficult schedules. Sign-up is linked to a university email, so everyone on the platform is a verified student. That keeps it trustworthy.</p></div>
 </div>
-<div class="gap-s"><img class="verify-img" src="assets/oddjobs-verified-section.png" alt="The Verified. Secure. section of the landing page. Users must be verified by a partner institution, log in securely through campus portals, have their data protected and get paid through university payroll." width="3024" height="870" decoding="async"></div>
+<div class="row gap-s"><img class="c5 o5" src="assets/oddjobs-verified-section.png" alt="The Verified. Secure. section of the landing page. Users must be verified by a partner institution, log in securely through campus portals, have their data protected and get paid through university payroll." width="3024" height="870" decoding="async" style="display: block; height: auto; border-radius: 20px; outline: 1px solid rgba(22, 22, 22, 0.14); outline-offset: -1px"></div>
 </section>
 
 <section class="gap-m" aria-labelledby="d2">
