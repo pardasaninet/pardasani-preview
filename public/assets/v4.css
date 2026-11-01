@@ -123,9 +123,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset
 @media (hover:none),(max-width:719px){.ix-prev{display:none}}
 
 /* Case study */
-.stat{flex:1 1 0;min-width:0;display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:4px;padding-left:12px;border-left:1px solid var(--ink)}
-.stat dd{margin:0;font-size:18px;font-weight:600;line-height:1.2}
-@media (max-width:719px){.stat{padding-left:10px}.stat dd{font-size:14px;font-weight:500;line-height:1.3}}
+/* The stats row (year, context, tool): right-aligned, each stat only as wide as its value, 20px apart, in regular weight */
+.stats{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:8px 20px}
+.stat{flex:0 0 auto;min-width:0;display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:4px;padding-left:10px;border-left:1px solid var(--ink)}
+.stat dd{margin:0;font-size:15px;font-weight:400;line-height:1.3}
+@media (max-width:719px){.stats{gap:8px 16px}.stat{padding-left:8px}.stat dd{font-size:13px}}
 /* The stat labels stay for screen readers only. The value and its 1px ink line show. */
 .stat dt{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .play{display:flex;align-items:center;justify-content:center;width:96px;height:96px;box-sizing:border-box;border-radius:50%;padding:0;cursor:pointer;color:var(--ink);text-decoration:none;transition:transform 260ms var(--ease)}
