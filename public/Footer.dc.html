@@ -15,6 +15,8 @@
 <style>body{margin:0}
 /* A more compact footer: less space above the Contact label (the stylesheet's .foot has up to 128px) */
 .foot{padding-top:clamp(48px,5.5vw,80px)}
+/* The Contact line always stays on one line. Its usual size is 24px to 30px; on narrow phones it shrinks with the screen so the whole line still fits. */
+.foot-line{margin:0;white-space:nowrap;font-size:min(clamp(24px,2.3vw,30px),calc((100vw - 2 * var(--margin)) / 16));font-weight:500;letter-spacing:-0.02em;line-height:1.2}
 /* Bottom row: the year on the left, the credits centred on the page, Back to top on the right. On narrow screens the credits take their own line above the other two. */
 .foot-base{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px 24px;margin-top:var(--gap-s)}
 .foot-credits{display:flex;flex-direction:column;align-items:center;text-align:center}
@@ -34,9 +36,9 @@
 <svg width="0" height="0" aria-hidden="true" style="position: absolute"><filter id="grain-footer" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter></svg>
 <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#grain-footer)"></rect></svg>
 
-<div style="position: relative; display: flex; flex-direction: column; gap: 16px; max-width: clamp(230px, 46vw, 586px)">
+<div style="position: relative; display: flex; flex-direction: column; gap: 16px">
 <h2 class="t-label">/ Contact</h2>
-<p style="margin: 0; font-size: clamp(24px, 2.3vw, 30px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.2">Don't prompt Claude, prompt me.</p>
+<p class="foot-line">Don't prompt Claude, prompt me.</p>
 </div>
 
 <div style="position: relative; margin-top: var(--gap-s); display: flex; flex-direction: column; align-items: flex-start; gap: 12px">
